@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware'=>['auth']], function() {
+  Route::get('/home', 'HomeController@index')->name('home');
+  //RUTAS DE LA CONFIGURACION
+  Route::resource('roles','RoleController');
+  Route::resource('user','UserController');
+  Route::resource('permissions', 'PermissionController');
+});
