@@ -18,7 +18,7 @@
                 <div class='btn-group'>
                     <a href="{!! route('catareaciudads.show', [$catareaciudad->id]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('catareaciudads.edit', [$catareaciudad->id]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "ConfirmDelete($catareaciudad->id)"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

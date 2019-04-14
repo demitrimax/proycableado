@@ -67,7 +67,7 @@ class UserController extends Controller
         }
         $sweet = 'Usuario creado correctamente';
 
-        return redirect()->route('users.index')
+        return redirect()->route('user.index')
                         ->with(compact('sweet'));
     }
 
