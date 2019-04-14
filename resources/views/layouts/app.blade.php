@@ -102,11 +102,11 @@
                             <img src="{{asset('appzia/images/users/avatar-1.jpg')}}" alt="user-img" class="img-circle">
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)"> Profile</a></li>
-                            <li><a href="javascript:void(0)"><span class="badge badge-success pull-right">5</span> Settings </a></li>
-                            <li><a href="javascript:void(0)"> Lock screen</a></li>
+                            <li><a href="javascript:void(0)"> Perfil</a></li>
+                            <li><a href="javascript:void(0)"><span class="badge badge-success pull-right">5</span> Configuración </a></li>
+                            <li><a href="javascript:void(0)"> Bloqueo</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:void(0)"> Logout</a></li>
+                            <li><a href="javascript:void(0)"> Cerrar Sesión</a></li>
                         </ul>
                     </li>
                 </ul>
