@@ -2,7 +2,7 @@
     <thead>
         <tr>
             $FIELD_HEADERS$
-            <th colspan="3">Action</th>
+            <th colspan="3">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -10,11 +10,11 @@
         <tr>
             $FIELD_BODY$
             <td>
-                {!! Form::open(['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'delete']) !!}
+                {!! Form::open(['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'delete', 'id'=>'form'.$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.show', [$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', [$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    <a href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.show', [$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', [$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "ConfirmDelete($$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$)"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>
@@ -22,3 +22,23 @@
     @endforeach
     </tbody>
 </table>
+
+@section('scripts')
+<script>
+function ConfirmDelete(id) {
+  swal({
+        title: '¿Estás seguro?',
+        text: 'Estás seguro de borrar este elemento.',
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Continuar',
+        }).then((result) => {
+  if (result.value) {
+    document.forms['form'+id].submit();
+  }
+})
+}
+</script>
+@endsection

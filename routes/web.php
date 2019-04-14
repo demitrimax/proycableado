@@ -26,3 +26,6 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('user','UserController');
   Route::resource('permissions', 'PermissionController');
 });
+
+
+Route::resource('catpaisdivisions', 'catpaisdivisionController');

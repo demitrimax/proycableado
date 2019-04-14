@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title',config('app.name').' | $MODEL_NAME_PLURAL_HUMAN$' )
 @section('content')
     <section class="content-header">
         <h1>
