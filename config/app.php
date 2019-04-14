@@ -182,6 +182,7 @@ return [
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
         Laraveles\Spanish\SpanishServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class
 
     ],
 
@@ -235,6 +236,8 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
+
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
 

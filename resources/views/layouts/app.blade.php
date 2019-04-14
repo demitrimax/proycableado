@@ -153,6 +153,7 @@
         <script src="{{asset('appzia/plugins/raphael/raphael-min.js')}}"></script>
 
         <script src="{{asset('appzia/js/app.js')}}"></script>
+        @include('sweetalert::alert')`
         @yield('scripts')
 </body>
 </html>
