@@ -27,8 +27,8 @@
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="text-center">
-            <a href="index.html" class="logo"><img src="{{asset('appzia/images/logo.png')}}" alt="logo-img"></a>
-            <a href="index.html" class="logo-sm"><img src="{{asset('appzia/images/logo_sm.png')}}" alt="logo-img"></a>
+            <a href="index.html" class="logo"><img src="{{asset('logos/logo.png')}}" alt="logo-img"></a>
+            <a href="index.html" class="logo-sm"><img src="{{asset('logos/logo_sm.png')}}" alt="logo-img"></a>
         </div>
     </div>
     <!-- Button mobile view to collapse sidebar menu -->

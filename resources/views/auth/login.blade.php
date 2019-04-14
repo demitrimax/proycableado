@@ -5,7 +5,7 @@
 
     <div class="panel-body">
         <h3 class="text-center m-t-0 m-b-15">
-            <a href="index.html" class="logo"><img src="{{asset('appzia/images/logo_white.png')}}" alt="logo-img"></a>
+            <a href="{{url('/')}}" class="logo"><img src="{{asset('logos/logoammex_white.png')}}" alt="logo-img"></a>
         </h3>
         <h4 class="text-muted text-center m-t-0"><b>Iniciar Sesión</b></h4>
 
