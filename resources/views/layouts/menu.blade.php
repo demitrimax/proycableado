@@ -16,7 +16,9 @@
         @can('catareaciudads-list')
         <li class="{{ Request::is('catareaciudads*') ? 'active' : '' }}"><a href="{{route('catareaciudads.index')}}">Área Ciudad</a></li>
         @endcan
-        <li><a href="layouts-menu2.html">Menu Style 2</a></li>
+        @can('contratistas-list')
+        <li class="{{ Request::is('contratistas*') ? 'active' : '' }}"><a href="{{route('contratistas.index')}}">Contratistas</a></li>
+        @endcan
     </ul>
 </li>
 @hasrole('administrador')
