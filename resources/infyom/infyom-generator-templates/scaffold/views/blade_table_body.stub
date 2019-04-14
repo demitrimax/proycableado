@@ -13,8 +13,12 @@
                 {!! Form::open(['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.destroy', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'delete', 'id'=>'form'.$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}
                 <div class='btn-group'>
                     <a href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.show', [$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    @can('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$-edit')
                     <a href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', [$$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    @endcan
+                    @can('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$-delete')
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "ConfirmDelete($$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$)"]) !!}
+                    @endcan
                 </div>
                 {!! Form::close() !!}
             </td>

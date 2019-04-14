@@ -19,6 +19,8 @@
     <link href="{{asset('appzia/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('appzia/css/icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('appzia/css/style.css')}}" rel="stylesheet" type="text/css">
+
+      <link href="{{asset('appzia/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
     @yield('css')
 </head>
 <body class="fixed-left">
@@ -148,11 +150,8 @@
         <script src="{{asset('appzia/js/jquery.nicescroll.js')}}"></script>
         <script src="{{asset('appzia/js/jquery.scrollTo.min.js')}}"></script>
 
-        <!--Morris Chart-->
-        <script src="{{asset('appzia/plugins/morris/morris.min.js')}}"></script>
-        <script src="{{asset('appzia/plugins/raphael/raphael-min.js')}}"></script>
-
         <script src="{{asset('appzia/js/app.js')}}"></script>
+        <script src="{{asset('appzia/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
         @include('sweetalert::alert')`
         @yield('scripts')
 </body>

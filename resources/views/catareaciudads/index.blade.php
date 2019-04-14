@@ -1,20 +1,18 @@
 @extends('layouts.app')
 
-@section('title',config('app.name').' | $MODEL_NAME_PLURAL_HUMAN$' )
+@section('title',config('app.name').' | Catareaciudads' )
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
               <div class="panel-heading">
-                  <h3 class="panel-title">$MODEL_NAME_PLURAL_HUMAN$</h3>
+                  <h3 class="panel-title">Editar Área o Ciudad</h3>
               </div>
                 <div class="panel-body">
-                    <h1 class="pull-right">
-                      @can('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$-create')
-                       <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') !!}">Agregar Nuevo</a>
-                      @endcan
-                    </h1>
+                        @can('catareaciudads-create')
+                       <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('catareaciudads.create') !!}">Agregar Nuevo</a>
+                        @endcan
                     <div class="content">
                         <div class="clearfix"></div>
 
@@ -23,11 +21,11 @@
                         <div class="clearfix"></div>
                         <div class="box box-primary">
                             <div class="box-body">
-                                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.table')
+                                    @include('catareaciudads.table')
                             </div>
                         </div>
                         <div class="text-center">
-                            $PAGINATE$
+
                         </div>
                     </div>
                 </div> <!-- panel-body -->
