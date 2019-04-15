@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="proyectos-table">
+<table class="table" id="proyectos-table">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -20,12 +20,12 @@
             <td>
                 {!! Form::open(['route' => ['proyectos.destroy', $proyectos->id], 'method' => 'delete', 'id'=>'form'.$proyectos->id]) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('proyectos.show', [$proyectos->id]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('proyectos.show', [$proyectos->id]) !!}" class='btn btn-info'><i class="glyphicon glyphicon-eye-open"></i></a>
                     @can('proyectos-edit')
-                    <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class='btn btn-dark'><i class="glyphicon glyphicon-edit"></i></a>
                     @endcan
                     @can('proyectos-delete')
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
                     @endcan
                 </div>
                 {!! Form::close() !!}

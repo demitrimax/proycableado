@@ -20,7 +20,7 @@
 
                         <div class="clearfix"></div>
                         <div class="box box-primary">
-                            <div class="box-body">
+                            <div class="table-responsive">
                                     @include('catareaciudads.table')
                             </div>
                         </div>

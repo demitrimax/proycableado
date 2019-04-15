@@ -49,8 +49,8 @@
 
 <!-- Cat Pais-Division Id Field -->
 <tr>
-  <th>{!! Form::label('cat_pais-division_id', 'Cat Pais-Division Id:') !!}</th>
-  <td>{!! $proyectos->cat_pais-division_id !!}</td>
+  <th>{!! Form::label('cat_paisdivision_id', 'Pais-Division:') !!}</th>
+  <td>{!! $proyectos->cat_paisdivision_id !!}</td>
 </tr>
 
 
@@ -94,5 +94,3 @@
   <th>{!! Form::label('estatus_id', 'Estatus Id:') !!}</th>
   <td>{!! $proyectos->estatus_id !!}</td>
 </tr>
-
-

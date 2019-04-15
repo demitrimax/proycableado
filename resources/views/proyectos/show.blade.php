@@ -15,7 +15,7 @@
                     @include('proyectos.show_fields')
                     </tbody>
                   </table>
-                    <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Regresar</a>
                 </div>
             </div>
         </div>

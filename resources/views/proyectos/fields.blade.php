@@ -1,6 +1,6 @@
 <!-- Nombre Field -->
 <div class="form-group">
-    {!! Form::label('nombre', 'Nombre:', ['class'=>'col-md-2 control-label']) !!} 
+    {!! Form::label('nombre', 'Nombre:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
     {!! Form::text('nombre', null, ['class' => 'form-control', 'maxlength'=>'100', 'required']) !!}
   </div>
@@ -18,7 +18,7 @@
 <div class="form-group">
     {!! Form::label('cat_pais-division_id', 'Pais-Division:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::select('cat_pais-division_id', $catpaisdivision, null, ['class' => 'form-control']) !!}
+    {!! Form::select('cat_paisdivision_id', $catpaisdivision, null, ['class' => 'form-control']) !!}
   </div>
 </div>
 

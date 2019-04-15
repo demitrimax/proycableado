@@ -44,7 +44,7 @@ class proyectos extends Model
         'ftermino',
         'identificacion',
         'cat_cotratistas_id',
-        'cat_pais-division_id',
+        'cat_paisdivision_id',
         'cat_areaciudad_id',
         'cat_productos_id',
         'estatus_id'
@@ -63,7 +63,7 @@ class proyectos extends Model
         'ftermino' => 'datetime',
         'identificacion' => 'string',
         'cat_cotratistas_id' => 'integer',
-        'cat_pais-division_id' => 'integer',
+        'cat_paisdivision_id' => 'integer',
         'cat_areaciudad_id' => 'integer',
         'cat_productos_id' => 'integer',
         'estatus_id' => 'string'
@@ -80,7 +80,7 @@ class proyectos extends Model
         'finicio' => 'required',
         'ftermino' => 'required',
         'cat_cotratistas_id' => 'required',
-        'cat_pais-division_id' => 'required',
+        'cat_paisdivision_id' => 'required',
         'cat_areaciudad_id' => 'required',
         'cat_productos_id' => 'required',
     ];
@@ -98,7 +98,7 @@ class proyectos extends Model
      **/
     public function catPaisDivision()
     {
-        return $this->belongsTo(\App\Models\CatPaisDivision::class, 'cat_pais-division_id');
+        return $this->belongsTo(\App\Models\CatPaisDivision::class, 'cat_paisdivision_id');
     }
 
     /**

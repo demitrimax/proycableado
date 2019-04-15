@@ -4,7 +4,7 @@
 </li>
 
 <li>
-    <a href="{{route('proyectos.index')}}" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Proyectos <span class="badge badge-primary pull-right">NEW</span></span></a>
+    <a href="{{route('proyectos.index')}}" class="waves-effect"><i class="mdi mdi-basket"></i><span> Proyectos <span class="badge badge-primary pull-right">NEW</span></span></a>
 </li>
 
 

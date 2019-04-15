@@ -2,15 +2,13 @@
     <thead>
         <tr>
             <th>Nombre</th>
-        <th>Observaciones</th>
-            <th colspan="3">Acciones</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
     @foreach($catproductos as $catproductos)
         <tr>
             <td>{!! $catproductos->nombre !!}</td>
-            <td>{!! $catproductos->observaciones !!}</td>
             <td>
                 {!! Form::open(['route' => ['catproductos.destroy', $catproductos->id], 'method' => 'delete', 'id'=>'form'.$catproductos->id]) !!}
                 <div class='btn-group'>

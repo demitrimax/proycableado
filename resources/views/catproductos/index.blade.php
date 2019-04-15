@@ -22,7 +22,7 @@
 
                         <div class="clearfix"></div>
                         <div class="box box-primary">
-                            <div class="box-body">
+                            <div class="table-responsive">
                                     @include('catproductos.table')
                             </div>
                         </div>
