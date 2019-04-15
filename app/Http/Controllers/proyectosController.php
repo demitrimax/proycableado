@@ -15,6 +15,7 @@ use App\Models\catproductos;
 use App\Models\catpaisdivision;
 use App\Models\catareaciudad;
 use App\Models\contratistas;
+use App\catestaus;
 
 class proyectosController extends AppBaseController
 {
@@ -52,7 +53,12 @@ class proyectosController extends AppBaseController
      */
     public function create()
     {
-        return view('proyectos.create');
+        $catareaciudad = catareaciudad::pluck('nombre','id');
+        $catpaisdivision = catpaisdivision::pluck('nombre','id');
+        $catproducto = catproductos::pluck('nombre','id');
+        $contratistas = contratistas::pluck('nombre','id');
+        $estaus = catestaus::pluck('nombre','id');
+        return view('proyectos.create')->with(compact('catareaciudad','catpaisdivision','catproducto','contratistas','estatus'));
     }
 
     /**

@@ -83,7 +83,6 @@ class proyectos extends Model
         'cat_pais-division_id' => 'required',
         'cat_areaciudad_id' => 'required',
         'cat_productos_id' => 'required',
-        'estatus_id' => 'required'
     ];
 
     /**
