@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class catproductos
@@ -15,13 +16,13 @@ use Illuminate\Database\Eloquent\Model as Model;
  */
 class catproductos extends Model
 {
-
+    use SoftDeletes;
     public $table = 'cat_productos';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
+    protected $dates = ['deleted_at'];
 
     public $fillable = [
         'nombre',

@@ -29,9 +29,10 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('catpaisdivisions', 'catpaisdivisionController');
 
   Route::resource('catareaciudads', 'catareaciudadController');
+
+  Route::resource('contratistas', 'contratistasController');
+
+  Route::resource('catproductos', 'catproductosController');
+
+  Route::resource('proyectos', 'proyectosController');
 });
-
-
-Route::resource('contratistas', 'contratistasController');
-
-Route::resource('catproductos', 'catproductosController');
