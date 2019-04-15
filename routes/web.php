@@ -33,3 +33,5 @@ Route::group(['middleware'=>['auth']], function() {
 
 
 Route::resource('contratistas', 'contratistasController');
+
+Route::resource('catproductos', 'catproductosController');

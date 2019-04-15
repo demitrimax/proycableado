@@ -27,6 +27,9 @@
         @can('contratistas-list')
         <li class="{{ Request::is('contratistas*') ? 'active' : '' }}"><a href="{{route('contratistas.index')}}">Contratistas</a></li>
         @endcan
+        @can('catproductos-list')
+        <li class="{{ Request::is('catproductos*') ? 'active' : '' }}"><a href="{{route('catproductos.index')}}">Productos</a></li>
+        @endcan
     </ul>
 </li>
 
