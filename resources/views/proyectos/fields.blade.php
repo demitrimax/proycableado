@@ -42,7 +42,7 @@
 <div class="form-group">
     {!! Form::label('supervisor', 'Supervisor:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::text('supervidor', null, ['class' => 'form-control', 'maxlength'=>'100']) !!}
+    {!! Form::text('supervisor', null, ['class' => 'form-control', 'maxlength'=>'100']) !!}
   </div>
 </div>
 @php
