@@ -39,7 +39,7 @@ class proyectos extends Model
 
     public $fillable = [
         'nombre',
-        'supervidor',
+        'supervisor',
         'finicio',
         'ftermino',
         'identificacion',
@@ -58,7 +58,7 @@ class proyectos extends Model
     protected $casts = [
         'id' => 'integer',
         'nombre' => 'string',
-        'supervidor' => 'string',
+        'supervisor' => 'string',
         'finicio' => 'datetime',
         'ftermino' => 'datetime',
         'identificacion' => 'string',
