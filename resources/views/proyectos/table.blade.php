@@ -15,7 +15,7 @@
         <tr>
             <td><a href="{!! route('proyectos.show', [$proyectos->id]) !!}"> {!! $proyectos->folio !!} </a></td>
             <td>{!! $proyectos->nombre !!}</td>
-            <td>{!! $proyectos->supervidor !!}</td>
+            <td>{!! $proyectos->supervisor !!}</td>
             <td>{!! $proyectos->identificacion !!}</td>
             <td>{!! $proyectos->catproducto->nombre !!}</td>
             <td>{!! $proyectos->catestatus->nombre !!}</td>
