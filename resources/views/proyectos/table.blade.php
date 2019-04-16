@@ -1,6 +1,7 @@
 <table class="table" id="proyectos-table">
     <thead>
         <tr>
+            <th>Folio</th>
             <th>Nombre</th>
             <th>Supervisor</th>
             <th>Identificacion</th>
@@ -12,11 +13,12 @@
     <tbody>
     @foreach($proyectos as $proyectos)
         <tr>
+            <td>{!! $proyectos->folio !!}</td>
             <td>{!! $proyectos->nombre !!}</td>
             <td>{!! $proyectos->supervidor !!}</td>
             <td>{!! $proyectos->identificacion !!}</td>
-            <td>{!! $proyectos->cat_productos_id !!}</td>
-            <td>{!! $proyectos->estatus_id !!}</td>
+            <td>{!! $proyectos->catproducto->nombre !!}</td>
+            <td>{!! $proyectos->catestatus->nombre !!}</td>
             <td>
                 {!! Form::open(['route' => ['proyectos.destroy', $proyectos->id], 'method' => 'delete', 'id'=>'form'.$proyectos->id]) !!}
                 <div class='btn-group'>

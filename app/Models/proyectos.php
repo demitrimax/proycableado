@@ -88,9 +88,9 @@ class proyectos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function catCotratistas()
+    public function catContratista()
     {
-        return $this->belongsTo(\App\Models\CatContratista::class, 'cat_cotratistas_id');
+        return $this->belongsTo(\App\Models\contratistas::class, 'cat_cotratistas_id');
     }
 
     /**
@@ -98,7 +98,7 @@ class proyectos extends Model
      **/
     public function catPaisDivision()
     {
-        return $this->belongsTo(\App\Models\CatPaisDivision::class, 'cat_paisdivision_id');
+        return $this->belongsTo(\App\Models\catpaisdivision::class, 'cat_paisdivision_id');
     }
 
     /**
@@ -106,22 +106,26 @@ class proyectos extends Model
      **/
     public function catAreaciudad()
     {
-        return $this->belongsTo(\App\Models\CatAreaciudad::class, 'cat_areaciudad_id');
+        return $this->belongsTo(\App\Models\catareaciudad::class, 'cat_areaciudad_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function catProductos()
+    public function catProducto()
     {
-        return $this->belongsTo(\App\Models\CatProducto::class, 'cat_productos_id');
+        return $this->belongsTo(\App\Models\catproductos::class, 'cat_productos_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function estatus()
+    public function catestatus()
     {
-        return $this->belongsTo(\App\Models\CatEstatus::class, 'estatus_id');
+        return $this->belongsTo('App\catestatus', 'estatus_id');
+    }
+    public function getFolioAttribute()
+    {
+      return '#'.$this->created_at->format('y').$this->created_at->format('m').str_pad($this->id,3,"0",STR_PAD_LEFT);
     }
 }
