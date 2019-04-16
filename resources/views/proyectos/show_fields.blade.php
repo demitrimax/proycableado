@@ -20,7 +20,7 @@
 
 <!-- Cat Pais-Division Id Field -->
 <tr>
-  <th>{!! Form::label('cat_paisdivision_id', 'Pais-Division:') !!}</th>
+  <th>{!! Form::label('cat_paisdivision_id', 'País-División:') !!}</th>
   <td>{!! $proyectos->catPaisDivision->nombre !!}</td>
 </tr>
 
@@ -61,7 +61,7 @@
 
 <!-- Identificacion Field -->
 <tr>
-  <th>{!! Form::label('identificacion', 'Identificacion:') !!}</th>
+  <th>{!! Form::label('identificacion', 'Identificación:') !!}</th>
   <td>{!! $proyectos->identificacion !!}</td>
 </tr>
 
@@ -69,5 +69,5 @@
 <!-- Estatus Id Field -->
 <tr>
   <th>{!! Form::label('estatus_id', 'Estatus:') !!}</th>
-  <td>{!! $proyectos->estatus_id !!}</td>
+  <td>{!! $proyectos->catestatus->nombre !!}</td>
 </tr>
