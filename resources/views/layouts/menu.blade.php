@@ -2,10 +2,11 @@
 <li class="{{ Request::is('home*') ? 'active' : '' }}">
     <a href="{{url('home')}}" class="waves-effect"><i class="mdi mdi-home"></i><span> Dashboard <span class="badge badge-primary pull-right">1</span></span></a>
 </li>
-
+@can('proyectos-list')
 <li>
     <a href="{{route('proyectos.index')}}" class="waves-effect"><i class="mdi mdi-basket"></i><span> Proyectos <span class="badge badge-primary pull-right">NEW</span></span></a>
 </li>
+@endcan
 
 
 <li class="has_sub">

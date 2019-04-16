@@ -67,7 +67,11 @@
                                 <li><a href="javascript:void(0)"><span class="badge badge-success pull-right">5</span> Configuración </a></li>
                                 <li><a href="javascript:void(0)"> Bloqueo</a></li>
                                 <li class="divider"></li>
-                                <li><a href="javascript:void(0)"> Cerrar Sesión</a></li>
+                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();"> Cerrar Sesión</a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </ul>
                         </li>
                     </ul>
