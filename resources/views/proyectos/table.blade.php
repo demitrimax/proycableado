@@ -13,7 +13,7 @@
     <tbody>
     @foreach($proyectos as $proyectos)
         <tr>
-            <td>{!! $proyectos->folio !!}</td>
+            <td><a href="{!! route('proyectos.show', [$proyectos->id]) !!}"> {!! $proyectos->folio !!} </a></td>
             <td>{!! $proyectos->nombre !!}</td>
             <td>{!! $proyectos->supervidor !!}</td>
             <td>{!! $proyectos->identificacion !!}</td>

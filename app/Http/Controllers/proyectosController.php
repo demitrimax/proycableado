@@ -119,7 +119,13 @@ class proyectosController extends AppBaseController
             return redirect(route('proyectos.index'));
         }
 
-        return view('proyectos.edit')->with('proyectos', $proyectos);
+        $catareaciudad = catareaciudad::pluck('nombre','id');
+        $catpaisdivision = catpaisdivision::pluck('nombre','id');
+        $catproducto = catproductos::pluck('nombre','id');
+        $contratistas = contratistas::pluck('nombre','id');
+        $estatus = catestatus::pluck('nombre','id');
+
+        return view('proyectos.edit')->with(compact('proyectos', 'catareaciudad','catpaisdivision','catproducto','contratistas','estatus'));
     }
 
     /**

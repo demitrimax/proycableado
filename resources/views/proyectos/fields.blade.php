@@ -45,12 +45,24 @@
     {!! Form::text('supervidor', null, ['class' => 'form-control', 'maxlength'=>'100']) !!}
   </div>
 </div>
+@php
+  $finicio = null;
+  $ftermino = null;
+  if (isset($proyectos->finicio))
+  {
+    $finicio = date('Y-m-d', strtotime($proyectos->finicio));
+  }
+  if (isset($proyectos->ftermino))
+  {
+    $ftermino = date('Y-m-d', strtotime($proyectos->ftermino));
+  }
 
+@endphp
 <!-- Finicio Field -->
 <div class="form-group">
     {!! Form::label('finicio', 'Fecha de inicio:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::date('finicio', null, ['class' => 'form-control','id'=>'finicio']) !!}
+    {!! Form::date('finicio', $finicio, ['class' => 'form-control','id'=>'finicio']) !!}
   </div>
 </div>
 
@@ -67,7 +79,7 @@
 <div class="form-group">
     {!! Form::label('ftermino', 'Fecha de Termino:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::date('ftermino', null, ['class' => 'form-control','id'=>'ftermino']) !!}
+    {!! Form::date('ftermino', $ftermino, ['class' => 'form-control','id'=>'ftermino']) !!}
   </div>
 </div>
 
