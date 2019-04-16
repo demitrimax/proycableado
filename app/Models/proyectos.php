@@ -76,7 +76,7 @@ class proyectos extends Model
      */
     public static $rules = [
         'nombre' => 'required',
-        'supervidor' => 'required',
+        'supervisor' => 'required',
         'finicio' => 'required',
         'ftermino' => 'required',
         'cat_cotratistas_id' => 'required',
