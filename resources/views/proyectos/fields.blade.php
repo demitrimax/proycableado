@@ -40,7 +40,7 @@
 
 <!-- Supervidor Field -->
 <div class="form-group">
-    {!! Form::label('supervidor', 'Supervisor:', ['class'=>'col-md-2 control-label']) !!}
+    {!! Form::label('supervisor', 'Supervisor:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
     {!! Form::text('supervidor', null, ['class' => 'form-control', 'maxlength'=>'100']) !!}
   </div>
