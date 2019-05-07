@@ -1,3 +1,6 @@
+@section('css')
+
+@endsection
 <!-- Nombre Field -->
 <div class="form-group">
     {!! Form::label('nombre', 'Nombre:', ['class'=>'col-md-2 control-label']) !!}
@@ -59,21 +62,12 @@
 
 @endphp
 <!-- Finicio Field -->
-<div class="form-group">
+<div class="form-group date">
     {!! Form::label('finicio', 'Fecha de inicio:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::date('finicio', $finicio, ['class' => 'form-control','id'=>'finicio']) !!}
+    {!! Form::text('finicio', $finicio, ['class' => 'form-control','id'=>'finicio']) !!}
   </div>
 </div>
-
-@section('scripts')
-    <script type="text/javascript">
-        $('#finicio').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endsection
 
 <!-- Ftermino Field -->
 <div class="form-group">
@@ -81,6 +75,22 @@
     <div class="col-md-10">
     {!! Form::date('ftermino', $ftermino, ['class' => 'form-control','id'=>'ftermino']) !!}
   </div>
+</div>
+
+
+
+<!-- Identificacion Field -->
+<div class="form-group">
+    {!! Form::label('identificacion', 'Identificacion:', ['class'=>'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+    {!! Form::select('identificacion', [''=>'','OB'=>'OB','DTTO'=>'DTTO','ID'=>'ID','OT'=>'OT','SISA'=>'SISA'],null, ['class' => 'form-control']) !!}
+  </div>
+</div>
+
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
 
 @section('scripts')
@@ -91,17 +101,3 @@
         })
     </script>
 @endsection
-
-<!-- Identificacion Field -->
-<div class="form-group">
-    {!! Form::label('identificacion', 'Identificacion:', ['class'=>'col-md-2 control-label']) !!}
-    <div class="col-md-10">
-    {!! Form::select('identificacion', ['','OB','DTTO','ID','OT','SISA'],null, ['class' => 'form-control']) !!}
-  </div>
-</div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Cancelar</a>
-</div>
