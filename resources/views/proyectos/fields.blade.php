@@ -1,5 +1,7 @@
 @section('css')
 
+        <link href="{{asset('airdatepicker/dist/css/datepicker.min.css')}}" rel="stylesheet" type="text/css">
+
 @endsection
 <!-- Nombre Field -->
 <div class="form-group">
@@ -51,32 +53,27 @@
 @php
   $finicio = null;
   $ftermino = null;
+  $fechas = null;
   if (isset($proyectos->finicio))
   {
-    $finicio = date('Y-m-d', strtotime($proyectos->finicio));
+    if (isset($proyectos->ftermino))
+    {
+      $finicio = date('d/m/Y', strtotime($proyectos->finicio));
+      $ftermino = date('d/m/Y', strtotime($proyectos->ftermino));
+      $fechas = $finicio." : ".$ftermino;
+    }
+
   }
-  if (isset($proyectos->ftermino))
-  {
-    $ftermino = date('Y-m-d', strtotime($proyectos->ftermino));
-  }
+
 
 @endphp
 <!-- Finicio Field -->
 <div class="form-group date">
-    {!! Form::label('finicio', 'Fecha de inicio:', ['class'=>'col-md-2 control-label']) !!}
-    <div class="col-md-10">
-    {!! Form::text('finicio', $finicio, ['class' => 'form-control','id'=>'finicio']) !!}
+    {!! Form::label('fechas', 'Rango de Fechas:', ['class'=>'col-md-2 control-label']) !!}
+    <div class="col-md-10" id="finicio-container">
+    {!! Form::text('fechas', $fechas, ['class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-range'=>'true', 'data-multiple-dates-separator'=>' : ', 'data-date-format'=>'yyyy-mm-dd', 'pattern'=>'.{23}', 'title'=>'Rango de Fechas']) !!}
   </div>
 </div>
-
-<!-- Ftermino Field -->
-<div class="form-group">
-    {!! Form::label('ftermino', 'Fecha de Termino:', ['class'=>'col-md-2 control-label']) !!}
-    <div class="col-md-10">
-    {!! Form::date('ftermino', $ftermino, ['class' => 'form-control','id'=>'ftermino']) !!}
-  </div>
-</div>
-
 
 
 <!-- Identificacion Field -->
@@ -87,6 +84,13 @@
   </div>
 </div>
 
+<!-- Identificacion Field -->
+<div class="form-group">
+    {!! Form::label('observaciones', 'Observaciones:', ['class'=>'col-md-2 control-label']) !!}
+    <div class="col-md-10">
+    {!! Form::textarea('observaciones', null, ['class' => 'form-control']) !!}
+  </div>
+</div>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
@@ -94,10 +98,7 @@
 </div>
 
 @section('scripts')
-    <script type="text/javascript">
-        $('#ftermino').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
+<script src="{{asset('airdatepicker/dist/js/datepicker.min.js')}}"></script>
+<script src="{{asset('airdatepicker/dist/js/i18n/datepicker.es.js')}}"></script>
+
 @endsection

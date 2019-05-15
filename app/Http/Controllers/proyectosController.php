@@ -71,11 +71,19 @@ class proyectosController extends AppBaseController
     public function store(CreateproyectosRequest $request)
     {
         $input = $request->all();
+        $findstring = ":";
+        $pos = strpos($input['fechas'],$findstring);
+        $finicio = substr($input['fechas'], 0, 10);
+        $ftermino = substr($input['fechas'], $pos+2, 10);
+        $input['finicio'] = date('Y-m-d', strtotime($finicio));
+        $input['ftermino'] = date('Y-m-d', strtotime($ftermino));
+
+        //dd($input);
 
         $proyectos = $this->proyectosRepository->create($input);
 
-        Flash::success('Proyectos guardado correctamente.');
-        Alert::success('Proyectos guardado correctamente.');
+        Flash::success('Proyecto guardado correctamente.');
+        Alert::success('Proyecto guardado correctamente.');
 
         return redirect(route('proyectos.index'));
     }
@@ -92,8 +100,8 @@ class proyectosController extends AppBaseController
         $proyectos = $this->proyectosRepository->findWithoutFail($id);
 
         if (empty($proyectos)) {
-            Flash::error('Proyectos no encontrado');
-            Alert::error('Proyectos no encontrado.');
+            Flash::error('Proyecto no encontrado');
+            Alert::error('Proyecto no encontrado.');
 
             return redirect(route('proyectos.index'));
         }
@@ -113,8 +121,8 @@ class proyectosController extends AppBaseController
         $proyectos = $this->proyectosRepository->findWithoutFail($id);
 
         if (empty($proyectos)) {
-            Flash::error('Proyectos no encontrado');
-            Alert::error('Proyectos no encontrado');
+            Flash::error('Proyecto no encontrado');
+            Alert::error('Proyecto no encontrado');
 
             return redirect(route('proyectos.index'));
         }
@@ -141,16 +149,29 @@ class proyectosController extends AppBaseController
         $proyectos = $this->proyectosRepository->findWithoutFail($id);
 
         if (empty($proyectos)) {
-            Flash::error('Proyectos no encontrado');
-            Alert::error('Proyectos no encontrado');
+            Flash::error('Proyecto no encontrado');
+            Alert::error('Proyecto no encontrado');
 
             return redirect(route('proyectos.index'));
         }
+        $input = $request->all();
 
-        $proyectos = $this->proyectosRepository->update($request->all(), $id);
+        $findstring = ":";
+        $pos = strpos($input['fechas'],$findstring);
+        $finicio = substr($input['fechas'], 0, 10);
+        $ftermino = substr($input['fechas'], $pos+2, 10);
+        //$input['finicio'] = $finicio;
+        //$input['ftermino'] = $ftermino;
+        $input['finicio'] = date('Y-m-d', strtotime($finicio));
+        $input['ftermino'] = date('Y-m-d', strtotime($ftermino));
 
-        Flash::success('Proyectos actualizado correctamente.');
-        Alert::success('Proyectos actualizado correctamente.');
+        //dd($input);
+
+
+        $proyectos = $this->proyectosRepository->update($input, $id);
+
+        Flash::success('Proyecto actualizado correctamente.');
+        Alert::success('Proyecto actualizado correctamente.');
 
         return redirect(route('proyectos.index'));
     }
@@ -167,16 +188,16 @@ class proyectosController extends AppBaseController
         $proyectos = $this->proyectosRepository->findWithoutFail($id);
 
         if (empty($proyectos)) {
-            Flash::error('Proyectos no encontrado');
-            Alert::error('Proyectos no encontrado');
+            Flash::error('Proyecto no encontrado');
+            Alert::error('Proyecto no encontrado');
 
             return redirect(route('proyectos.index'));
         }
 
         $this->proyectosRepository->delete($id);
 
-        Flash::success('Proyectos borrado correctamente.');
-        Flash::success('Proyectos borrado correctamente.');
+        Flash::success('Proyecto borrado correctamente.');
+        Alert::success('Proyecto borrado correctamente.');
 
         return redirect(route('proyectos.index'));
     }

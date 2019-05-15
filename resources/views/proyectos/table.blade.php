@@ -27,7 +27,7 @@
                     <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class='btn btn-dark'><i class="glyphicon glyphicon-edit"></i></a>
                     @endcan
                     @can('proyectos-delete')
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
                     @endcan
                 </div>
                 {!! Form::close() !!}
