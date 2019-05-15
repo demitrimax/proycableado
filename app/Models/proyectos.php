@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 /**
  * Class proyectos
@@ -125,5 +126,31 @@ class proyectos extends Model
     public function getFolioAttribute()
     {
       return '#'.$this->created_at->format('y').$this->created_at->format('m').str_pad($this->id,3,"0",STR_PAD_LEFT);
+    }
+
+    public function getEstatusdateAttribute()
+    {
+      $fechaTermino = Carbon::parse($this->ftermino);
+      $fechaActual = Carbon::parse(date('Y-m-d'));
+
+      $diasDiferencia = $fechaActual->diffInDays($fechaTermino, false);
+      $valor = "";
+      $desc = "";
+      if ($diasDiferencia < 0 ) {
+        $valor = "danger";
+        $desc = "Vencido";
+      }
+      if ($diasDiferencia > 0 && $diasDiferencia < 5 ) {
+        $valor = "warning";
+        $desc = "Por terminar plazo";
+      }
+      if ($diasDiferencia > 5 ) {
+          $valor = "success";
+          $desc = "En tiempo";
+        }
+
+        $estatus = ['valor' => $valor, 'descripcion' => $desc ,'diferencia' => $diasDiferencia];
+
+      return $estatus;
     }
 }

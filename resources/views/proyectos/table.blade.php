@@ -5,7 +5,7 @@
             <th>Nombre</th>
             <th>Supervisor</th>
             <th>Identificacion</th>
-            <th>Cat Productos Id</th>
+            <th>Producto</th>
             <th>Estatus</th>
             <th>Acciones</th>
         </tr>
@@ -18,7 +18,7 @@
             <td>{!! $proyectos->supervisor !!}</td>
             <td>{!! $proyectos->identificacion !!}</td>
             <td>{!! $proyectos->catproducto->nombre !!}</td>
-            <td>{!! $proyectos->catestatus->nombre !!}</td>
+            <td title="{!! $proyectos->estatusdate['descripcion'] !!}"> <span class="label label-{!! $proyectos->estatusdate['valor'] !!}">{!! $proyectos->catestatus->nombre !!}</span></td>
             <td>
                 {!! Form::open(['route' => ['proyectos.destroy', $proyectos->id], 'method' => 'delete', 'id'=>'form'.$proyectos->id]) !!}
                 <div class='btn-group'>

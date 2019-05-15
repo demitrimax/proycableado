@@ -3,6 +3,16 @@
         <link href="{{asset('airdatepicker/dist/css/datepicker.min.css')}}" rel="stylesheet" type="text/css">
 
 @endsection
+
+
+  <!-- Generico Field -->
+  <div class="form-group">
+      {!! Form::label('generico', 'Genernico:', ['class'=>'col-md-2 control-label']) !!}
+      <div class="col-md-10">
+      {!! Form::checkbox('nombre', null, ['class' => 'checkbox checkbox-primary', 'maxlength'=>'100', 'required']) !!}
+    </div>
+  </div>
+
 <!-- Nombre Field -->
 <div class="form-group">
     {!! Form::label('nombre', 'Nombre:', ['class'=>'col-md-2 control-label']) !!}
