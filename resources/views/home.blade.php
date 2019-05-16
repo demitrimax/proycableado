@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="panel-body p-t-10">
                                             <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-down text-danger m-r-10"></i><b>{{ $cantproy->count() }}</b></h2>
-                                            <p class="text-muted m-b-0 m-t-20"><b>{{$cantproyenelmes}}</b> Capturados en este mes</p>
+                                            <p class="text-muted m-b-0 m-t-20"><b>{{$cantproyenelmes}}</b> Capturados en los ultimos 30 días</p>
                                         </div>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="panel-body p-t-10">
                                             <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up text-success m-r-10"></i><b>{{$proyatendidos}}</b></h2>
-                                            <p class="text-muted m-b-0 m-t-20"><b>42%</b> Orders in Last 10 months</p>
+                                            <p class="text-muted m-b-0 m-t-20"><b>{{ (int)(($proyatendidos/$cantproy->count())*100) }}%</b> del total atendidos.</p>
                                         </div>
                                     </div>
                                 </div>

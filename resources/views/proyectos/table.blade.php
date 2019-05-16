@@ -1,4 +1,14 @@
-<table class="table" id="proyectos-table">
+@section('css')
+<!-- DataTables -->
+<link href="{{asset('appzia/plugins/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/buttons.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/fixedHeader.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/responsive.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{asset('appzia/plugins/datatables/scroller.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+
+@endsection
+<table class="table table-striped table-bordered" id="proyectos-table">
     <thead>
         <tr>
             <th>Folio</th>
@@ -27,7 +37,7 @@
                     <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class='btn btn-dark'><i class="glyphicon glyphicon-edit"></i></a>
                     @endcan
                     @can('proyectos-delete')
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "ConfirmDelete($proyectos->id)"]) !!}
                     @endcan
                 </div>
                 {!! Form::close() !!}
@@ -38,9 +48,24 @@
 </table>
 
 @section('scripts')
+<!-- Datatables-->
+<script src="{{asset('appzia/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.bootstrap.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/buttons.bootstrap.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/jszip.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/pdfmake.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/vfs_fonts.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/buttons.html5.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/buttons.print.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.fixedHeader.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.keyTable.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.scroller.min.js')}}"></script>
 <script>
 function ConfirmDelete(id) {
-  swal({
+  swal.fire({
         title: '¿Estás seguro?',
         text: 'Estás seguro de borrar este elemento.',
         type: 'warning',
@@ -54,5 +79,50 @@ function ConfirmDelete(id) {
   }
 })
 }
+
+!function($) {
+    "use strict";
+
+    var DataTable = function() {
+        this.$dataTableButtons = $("#proyectos-table")
+    };
+    DataTable.prototype.createDataTableButtons = function() {
+        0 !== this.$dataTableButtons.length && this.$dataTableButtons.DataTable({
+            dom: "Bfrtip",
+            buttons: [{
+                extend: "copy",
+                className: "btn-success"
+            }, {
+                extend: "csv"
+            }, {
+                extend: "excel"
+            }, {
+                extend: "pdf"
+            }, {
+                extend: "print"
+            }],
+            responsive: !0
+        });
+    },
+    DataTable.prototype.init = function() {
+        //creating demo tabels
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({keys: true});
+        var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+
+        //creating table with button
+        this.createDataTableButtons();
+    },
+    //init
+    $.DataTable = new DataTable, $.DataTable.Constructor = DataTable
+}(window.jQuery),
+
+//initializing
+function ($) {
+    "use strict";
+    $.DataTable.init();
+}(window.jQuery);
+
 </script>
+
 @endsection

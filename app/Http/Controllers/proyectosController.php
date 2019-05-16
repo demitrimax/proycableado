@@ -29,6 +29,7 @@ class proyectosController extends AppBaseController
         $this->middleware('permission:proyectos-create', ['only' => ['create','store']]);
         $this->middleware('permission:proyectos-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:proyectos-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:proyectos-terminar', ['only' =>['terminar']]);
     }
 
     /**
@@ -85,7 +86,8 @@ class proyectosController extends AppBaseController
         Flash::success('Proyecto guardado correctamente.');
         Alert::success('Proyecto guardado correctamente.');
 
-        return redirect(route('proyectos.index'));
+        //return redirect(route('proyectos.index'));
+        return redirect(route('proyectos.show', [$proyectos->id]));
     }
 
     /**
@@ -175,7 +177,8 @@ class proyectosController extends AppBaseController
         Flash::success('Proyecto actualizado correctamente.');
         Alert::success('Proyecto actualizado correctamente.');
 
-        return redirect(route('proyectos.index'));
+        //return redirect(route('proyectos.index'));
+        return redirect(route('proyectos.show', [$proyectos->id]));
     }
 
     /**
@@ -202,5 +205,25 @@ class proyectosController extends AppBaseController
         Alert::success('Proyecto borrado correctamente.');
 
         return redirect(route('proyectos.index'));
+    }
+
+    public function terminar($id)
+    {
+      $proyectos = $this->proyectosRepository->findWithoutFail($id);
+
+      if (empty($proyectos)) {
+          Flash::error('Proyecto no encontrado');
+          Alert::error('Proyecto no encontrado');
+
+          return back();
+      }
+      $proyectos->estatus_id = 'T';
+      $proyectos->save();
+
+      Flash::success('Proyecto Terminado correctamente.');
+      Alert::success('Proyecto Terminado correctamente.');
+
+      return back();
+
     }
 }

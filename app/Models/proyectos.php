@@ -129,8 +129,13 @@ class proyectos extends Model
     }
     public function getFolioAttribute()
     {
+      $formatFolio = '#'.$this->created_at->format('y').$this->created_at->format('m').str_pad($this->id,4,"0",STR_PAD_LEFT);
       //cambio de formato de folio dependiendo si el proyecto es generico
-      return '#'.$this->created_at->format('y').$this->created_at->format('m').str_pad($this->id,3,"0",STR_PAD_LEFT);
+      if ($this->generico == 1)
+      {
+        $formatFolio = 'G'.$this->ftermino->format('y').$this->ftermino->format('m').str_pad($this->id,4,"0",STR_PAD_LEFT);
+      }
+      return $formatFolio;
     }
 
     public function getEstatusdateAttribute()
@@ -153,6 +158,10 @@ class proyectos extends Model
           $valor = "success";
           $desc = "En tiempo, le quedan ".$diasDiferencia." días.";
         }
+      if ($this->estatus_id == 'T'){
+        $valor = "info";
+        $desc = "Proyecto Terminado.";
+      }
 
         $estatus = ['valor' => $valor, 'descripcion' => $desc ,'diferencia' => $diasDiferencia];
 

@@ -12,9 +12,6 @@
 
     <title>@yield('title', config('app.name'))</title>
 
-    <!-- Scripts -->
-    <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="{{asset('appzia/plugins/morris/morris.css')}}">
 
     <link href="{{asset('appzia/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('appzia/css/icons.css')}}" rel="stylesheet" type="text/css">
