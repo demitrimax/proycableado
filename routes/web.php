@@ -35,6 +35,8 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('catproductos', 'catproductosController');
 
   Route::resource('proyectos', 'proyectosController');
-  
+
   Route::get('proyecto/{id}/terminar', 'proyectosController@terminar');
+
+  Route::resource('documentos', 'documentosController');
 });

@@ -21,7 +21,7 @@
                       @endcan
                       @can('proyectos-terminar')
                         @if($proyectos->estatus_id == 'A')
-                        <button onclick="ConfirmTerminar()" title="Terminar Proyecto" type="button" class="btn waves-effect btn-primary"> <i class="fa fa-star"></i> </button>
+                        <button onclick="ConfirmTerminar()" title="Terminar Proyecto" type="button" class="btn waves-effect btn-primary"> <i class="ion ion-checkmark-round"></i> </button>
                         @endif
                       @endcan
                   </div>

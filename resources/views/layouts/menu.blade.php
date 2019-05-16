@@ -31,6 +31,9 @@
         @can('catproductos-list')
         <li class="{{ Request::is('catproductos*') ? 'active' : '' }}"><a href="{{route('catproductos.index')}}">Productos</a></li>
         @endcan
+        <li class="{{ Request::is('documentos*') ? 'active' : '' }}">
+            <a href="{!! route('documentos.index') !!}"><i class="fa fa-edit"></i><span>Documentos</span></a>
+        </li>
     </ul>
 </li>
 

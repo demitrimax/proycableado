@@ -81,5 +81,5 @@
 <!-- Estatus Id Field -->
 <tr>
   <th>{!! Form::label('estatus_id', 'Estatus:') !!}</th>
-  <td>{!! $proyectos->catestatus->nombre !!}</td>
+  <td title="{!! $proyectos->estatusdate['descripcion'] !!}"> <span class="label label-{!! $proyectos->estatusdate['valor'] !!}">{!! $proyectos->catestatus->nombre !!}</span> </td>
 </tr>
