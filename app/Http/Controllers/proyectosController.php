@@ -155,7 +155,9 @@ class proyectosController extends AppBaseController
             return redirect(route('proyectos.index'));
         }
         $input = $request->all();
-
+        if (!isset($input['generico'])){
+                  $input['generico'] = 0;
+        }
         $findstring = ":";
         $pos = strpos($input['fechas'],$findstring);
         $finicio = substr($input['fechas'], 0, 10);

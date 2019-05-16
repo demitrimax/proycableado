@@ -4,12 +4,19 @@
 
 @endsection
 
+@php
+$valgenerico = false;
+if (isset($proyectos->generico)){
+  if ($proyectos->generico == 1)
+  $valgenerico = true;
+}
+@endphp
 
   <!-- Generico Field -->
   <div class="form-group">
-      {!! Form::label('generico', 'Genernico:', ['class'=>'col-md-2 control-label']) !!}
+      {!! Form::label('generico', 'Generico:', ['class'=>'col-md-2 control-label']) !!}
       <div class="col-md-10">
-      {!! Form::checkbox('nombre', null, ['class' => 'checkbox checkbox-primary', 'maxlength'=>'100', 'required']) !!}
+      {!! Form::checkbox('generico', '1', $valgenerico, ['class' => 'checkbox checkbox-primary']) !!}
     </div>
   </div>
 
@@ -57,7 +64,7 @@
 <div class="form-group">
     {!! Form::label('supervisor', 'Supervisor:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::text('supervisor', null, ['class' => 'form-control', 'maxlength'=>'100']) !!}
+    {!! Form::text('supervisor', null, ['class' => 'form-control', 'maxlength'=>'100', 'required']) !!}
   </div>
 </div>
 @php
@@ -68,8 +75,8 @@
   {
     if (isset($proyectos->ftermino))
     {
-      $finicio = date('d/m/Y', strtotime($proyectos->finicio));
-      $ftermino = date('d/m/Y', strtotime($proyectos->ftermino));
+      $finicio = date('d-m-Y', strtotime($proyectos->finicio));
+      $ftermino = date('d-m-Y', strtotime($proyectos->ftermino));
       $fechas = $finicio." : ".$ftermino;
     }
 

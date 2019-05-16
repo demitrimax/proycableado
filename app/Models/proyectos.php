@@ -48,7 +48,9 @@ class proyectos extends Model
         'cat_paisdivision_id',
         'cat_areaciudad_id',
         'cat_productos_id',
-        'estatus_id'
+        'estatus_id',
+        'observaciones',
+        'generico',
     ];
 
     /**
@@ -67,7 +69,9 @@ class proyectos extends Model
         'cat_paisdivision_id' => 'integer',
         'cat_areaciudad_id' => 'integer',
         'cat_productos_id' => 'integer',
-        'estatus_id' => 'string'
+        'estatus_id' => 'string',
+        'observaciones' => 'string',
+        'generico' => 'string',
     ];
 
     /**
@@ -125,6 +129,7 @@ class proyectos extends Model
     }
     public function getFolioAttribute()
     {
+      //cambio de formato de folio dependiendo si el proyecto es generico
       return '#'.$this->created_at->format('y').$this->created_at->format('m').str_pad($this->id,3,"0",STR_PAD_LEFT);
     }
 
@@ -138,19 +143,28 @@ class proyectos extends Model
       $desc = "";
       if ($diasDiferencia < 0 ) {
         $valor = "danger";
-        $desc = "Vencido";
+        $desc = "Vencido tiene ".$diasDiferencia." días.";
       }
-      if ($diasDiferencia > 0 && $diasDiferencia < 5 ) {
+      if ($diasDiferencia >= 0 && $diasDiferencia < 5 ) {
         $valor = "warning";
-        $desc = "Por terminar plazo";
+        $desc = "Por terminar plazo, le quedan ".$diasDiferencia." días.";
       }
-      if ($diasDiferencia > 5 ) {
+      if ($diasDiferencia >= 5 ) {
           $valor = "success";
-          $desc = "En tiempo";
+          $desc = "En tiempo, le quedan ".$diasDiferencia." días.";
         }
 
         $estatus = ['valor' => $valor, 'descripcion' => $desc ,'diferencia' => $diasDiferencia];
 
       return $estatus;
     }
+    public function getDuracionproyAttribute()
+    {
+      $fechaTermino = Carbon::parse($this->ftermino);
+      $fechaInicio = Carbon::parse($this->finicio);
+      $diasDiferencia = $fechaInicio->diffInDays($fechaTermino, false);
+
+      return $diasDiferencia;
+    }
+
 }

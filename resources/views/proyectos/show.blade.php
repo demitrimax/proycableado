@@ -14,6 +14,9 @@
                     </tbody>
                   </table>
                     <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Regresar</a>
+                    @can('proyectos-edit')
+                    <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class="btn btn-primary">Editar</a>
+                    @endcan
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 <!-- Id Field -->
 <tr>
   <th>{!! Form::label('id', 'Folio:') !!}</th>
-  <td>{!! $proyectos->folio !!}</td>
+  <td>{!! $proyectos->folio !!} {!! $proyectos->generico == 1 ? '(Generico)': '' !!}</td>
 </tr>
 
 
@@ -40,8 +40,8 @@
 
 <!-- Supervidor Field -->
 <tr>
-  <th>{!! Form::label('supervidor', 'Supervisor:') !!}</th>
-  <td>{!! $proyectos->supervidor !!}</td>
+  <th>{!! Form::label('supervisor', 'Supervisor:') !!}</th>
+  <td>{!! $proyectos->supervisor !!}</td>
 </tr>
 
 
@@ -58,11 +58,23 @@
   <td>{!! $proyectos->ftermino->format('d-m-y') !!}</td>
 </tr>
 
+<!-- Duración Attribute -->
+<tr>
+  <th>{!! Form::label('duracion', 'Duración del Proyecto:') !!}</th>
+  <td>{!! $proyectos->duracionproy !!} días</td>
+</tr>
+
 
 <!-- Identificacion Field -->
 <tr>
   <th>{!! Form::label('identificacion', 'Identificación:') !!}</th>
   <td>{!! $proyectos->identificacion !!}</td>
+</tr>
+
+<!-- Observaciones Field -->
+<tr>
+  <th>{!! Form::label('observaciones', 'Observaciones:') !!}</th>
+  <td>{!! $proyectos->observaciones !!}</td>
 </tr>
 
 

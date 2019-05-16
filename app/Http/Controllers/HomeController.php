@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Alert;
+use App\Models\proyectos;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,15 @@ class HomeController extends Controller
     public function index()
     {
         //Alert::success('Prueba de SweetAlert');
-        return view('home');
+        $cantproy = proyectos::get();
+
+
+        $fechaActual = Carbon::parse(date('Y-m-d'));
+        //fechas en los ultimos 30 días;
+        $FTermino =  $fechaActual->subDays(30);
+        $cantproyenelmes = $cantproy->where('created_at','>',$FTermino)->count();
+        $proyatendidos = $cantproy->where('estatus_id','T')->count();
+
+        return view('home')->with(compact('cantproy','cantproyenelmes','proyatendidos'));
     }
 }

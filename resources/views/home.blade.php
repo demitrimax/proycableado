@@ -26,6 +26,57 @@
               Ha iniciado sesión correctamente!
             </div>
         </div>
+        <div class="row">
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="panel text-center">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-muted font-light">Proyectos Totales</h4>
+                                        </div>
+                                        <div class="panel-body p-t-10">
+                                            <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-down text-danger m-r-10"></i><b>{{ $cantproy->count() }}</b></h2>
+                                            <p class="text-muted m-b-0 m-t-20"><b>{{$cantproyenelmes}}</b> Capturados en este mes</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="panel text-center">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-muted font-light">Proyectos Atendidos</h4>
+                                        </div>
+                                        <div class="panel-body p-t-10">
+                                            <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up text-success m-r-10"></i><b>{{$proyatendidos}}</b></h2>
+                                            <p class="text-muted m-b-0 m-t-20"><b>42%</b> Orders in Last 10 months</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="panel text-center">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-muted font-light">Usuarios en Linea</h4>
+                                        </div>
+                                        <div class="panel-body p-t-10">
+                                            <h2 class="m-t-0 m-b-15"><i class="mdi mdi-account-check text-success m-r-10"></i><b>452</b></h2>
+                                            <p class="text-muted m-b-0 m-t-20"><b>22%</b> From Last 24 Hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="panel text-center">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-muted font-light">Tareas Pendientes</h4>
+                                        </div>
+                                        <div class="panel-body p-t-10">
+                                            <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-down text-danger m-r-10"></i><b>5621</b></h2>
+                                            <p class="text-muted m-b-0 m-t-20"><b>35%</b> From Last 1 Month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
 
         </div><!-- container -->
 
