@@ -57,7 +57,7 @@
                                             <h4 class="panel-title text-muted font-light">Usuarios en Linea</h4>
                                         </div>
                                         <div class="panel-body p-t-10">
-                                            <h2 class="m-t-0 m-b-15"><i class="mdi mdi-account-check text-success m-r-10"></i><b>452</b></h2>
+                                            <h2 class="m-t-0 m-b-15"><i class="mdi mdi-account-check text-success m-r-10"></i><b>{{$usuariosOnline}}</b></h2>
                                             <p class="text-muted m-b-0 m-t-20"><b>22%</b> From Last 24 Hours</p>
                                         </div>
                                     </div>

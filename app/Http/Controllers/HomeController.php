@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Alert;
 use App\Models\proyectos;
 use Carbon\Carbon;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -35,7 +36,9 @@ class HomeController extends Controller
         $FTermino =  $fechaActual->subDays(30);
         $cantproyenelmes = $cantproy->where('created_at','>',$FTermino)->count();
         $proyatendidos = $cantproy->where('estatus_id','T')->count();
+        $usuarios = new User;
+        $usuariosOnline = $usuarios->allOnline()->count() ;
 
-        return view('home')->with(compact('cantproy','cantproyenelmes','proyatendidos'));
+        return view('home')->with(compact('cantproy','cantproyenelmes','proyatendidos', 'usuariosOnline'));
     }
 }
