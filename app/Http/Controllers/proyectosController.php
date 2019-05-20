@@ -218,6 +218,8 @@ class proyectosController extends AppBaseController
           return back();
       }
       $proyectos->estatus_id = 'T';
+      //corregir la fecha el signo de minuto esta mal
+      $proyectos->terminado = date('Y-m-d h:m:s');
       $proyectos->save();
 
       Flash::success('Proyecto Terminado correctamente.');

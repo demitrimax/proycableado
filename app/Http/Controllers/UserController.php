@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 use DB;
 use Hash;
 use Spatie\Permission\Traits\HasRoles;
+use Alert;
 
 class UserController extends Controller
 {
@@ -66,6 +67,7 @@ class UserController extends Controller
             $user->assignRole($request->input('roles'));
         }
         $sweet = 'Usuario creado correctamente';
+        Alert::success('Usuario creado correctamente');
 
         return redirect()->route('user.index')
                         ->with(compact('sweet'));
@@ -134,9 +136,9 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-
+        Alert::success('Usuario actualizado correctamente');
         return redirect()->route('user.index')
-                        ->with('success','User updated successfully');
+                        ->with('success','Usuario actualizado correctamente');
     }
 
 

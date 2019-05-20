@@ -51,6 +51,7 @@ class proyectos extends Model
         'estatus_id',
         'observaciones',
         'generico',
+        'terminado',
     ];
 
     /**
@@ -72,6 +73,7 @@ class proyectos extends Model
         'estatus_id' => 'string',
         'observaciones' => 'string',
         'generico' => 'string',
+        'terminado' => 'date',
     ];
 
     /**

@@ -21,10 +21,12 @@ Auth::routes();
 
 Route::group(['middleware'=>['auth']], function() {
   Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/profile', 'HomeController@profile');
   //RUTAS DE LA CONFIGURACION
   Route::resource('roles','RoleController');
   Route::resource('user','UserController');
   Route::resource('permissions', 'PermissionController');
+
 
   Route::resource('catpaisdivisions', 'catpaisdivisionController');
 

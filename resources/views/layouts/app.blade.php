@@ -60,7 +60,7 @@
                                 <img src="{{asset('appzia/images/users/avatar-1.jpg')}}" alt="user-img" class="img-circle">
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:void(0)"> Perfil</a></li>
+                                <li><a href="{{url('/profile')}}"> Perfil</a></li>
                                 <li><a href="javascript:void(0)"><span class="badge badge-success pull-right">5</span> Configuración </a></li>
                                 <li><a href="javascript:void(0)"> Bloqueo</a></li>
                                 <li class="divider"></li>
@@ -112,7 +112,7 @@
 
           <script src="{{asset('appzia/js/app.js')}}"></script>
           <script src="{{asset('appzia/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
-          @include('sweetalert::alert')`
+          @include('sweetalert::alert')
           @yield('scripts')
         </div>
         <!-- END wrapper -->

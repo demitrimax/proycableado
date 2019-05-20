@@ -34,7 +34,7 @@
 @section('scripts')
 <script>
 function ConfirmDelete(id) {
-  swal({
+  swal.fire({
         title: '¿Estás seguro?',
         text: 'Estás seguro de borrar este elemento.',
         type: 'warning',

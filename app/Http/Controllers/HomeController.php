@@ -41,4 +41,8 @@ class HomeController extends Controller
 
         return view('home')->with(compact('cantproy','cantproyenelmes','proyatendidos', 'usuariosOnline'));
     }
+
+    public function profile(){
+      return view('profile');
+    }
 }

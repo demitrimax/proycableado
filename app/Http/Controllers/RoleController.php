@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
+use Alert;
 
 class RoleController extends Controller
 {
@@ -69,9 +70,9 @@ class RoleController extends Controller
        $role = Role::create(['name' => $request->input('name')]);
        $role->syncPermissions($request->input('permission'));
 
-
+       Alert::success('Rol creado correctamente');
        return redirect()->route('roles.index')
-                       ->with('success','Role created successfully');
+                       ->with('success','Rol creado correctamente');
    }
    /**
     * Display the specified resource.
@@ -132,9 +133,9 @@ class RoleController extends Controller
 
        $role->syncPermissions($request->input('permission'));
 
-
+       Alert::success('Rol actualizado correctamente');
        return redirect()->route('roles.index')
-                       ->with('success','Role updated successfully');
+                       ->with('success','Rol actualizado correctamente');
    }
    /**
     * Remove the specified resource from storage.
@@ -145,7 +146,8 @@ class RoleController extends Controller
    public function destroy($id)
    {
        DB::table("roles")->where('id',$id)->delete();
+       Alert::success('Rol eliminado correctamente');
        return redirect()->route('roles.index')
-                       ->with('success','Role deleted successfully');
+                       ->with('success','Rol borrado correctamente');
    }
 }
