@@ -15,15 +15,20 @@
                       @include('proyectos.show_fields')
                       </tbody>
                     </table>
+                      {!! Form::open(['route' => ['proyectos.destroy', $proyectos->id], 'method' => 'delete', 'id'=>'form'.$proyectos->id]) !!}
                       <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Regresar</a>
                       @can('proyectos-edit')
                       <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class="btn btn-primary">Editar</a>
                       @endcan
                       @can('proyectos-terminar')
                         @if($proyectos->estatus_id == 'A')
-                        <button onclick="ConfirmTerminar()" title="Terminar Proyecto" type="button" class="btn waves-effect btn-primary"> <i class="ion ion-checkmark-round"></i> </button>
+                        <button onclick="ConfirmTerminar()" title="Terminar Proyecto" type="button" class="btn waves-effect btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Terminar el Proyecto actual"> <i class="ion ion-checkmark-round"></i> </button>
                         @endif
                       @endcan
+                      @can('proyectos-delete')
+                      {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "ConfirmDelete($proyectos->id)", 'data-original-title'=>'Eliminar Proyecto', 'data-toggle'=>'tooltip', 'data-placement'=>'top' ]) !!}
+                      @endcan
+                      {!! Form::close() !!}
                   </div>
               </div>
           </div>
@@ -47,6 +52,21 @@ function ConfirmTerminar() {
   if (result.value) {
     window.location.href = '{{url('proyecto/'.$proyectos->id.'/terminar')}}';
     //document.forms['form'+id].submit();
+  }
+})
+}
+function ConfirmDelete(id) {
+  swal.fire({
+        title: 'ELIMINAR PROYECTO',
+        text: 'El proyecto actual será eliminado.',
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Continuar',
+        }).then((result) => {
+  if (result.value) {
+    document.forms['form'+id].submit();
   }
 })
 }

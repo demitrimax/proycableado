@@ -129,6 +129,11 @@ class proyectos extends Model
     {
         return $this->belongsTo('App\catestatus', 'estatus_id');
     }
+    public function documentos()
+    {
+      return $this->belongsToMany('App\Models\documentos');
+    }
+
     public function getFolioAttribute()
     {
       $formatFolio = '#'.$this->created_at->format('y').$this->created_at->format('m').str_pad($this->id,4,"0",STR_PAD_LEFT);

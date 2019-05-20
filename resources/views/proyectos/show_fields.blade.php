@@ -65,11 +65,13 @@
 </tr>
 
 @if($proyectos->estatus_id == 'T')
+@if($proyectos->terminado)
 <!-- Identificacion Field -->
 <tr>
   <th>{!! Form::label('fterminado', 'Proyecto Terminado el día:') !!}</th>
   <td>{!! $proyectos->terminado->format('d-m-Y') !!}</td>
 </tr>
+@endif
 @endif
 
 <!-- Identificacion Field -->

@@ -16,6 +16,7 @@ use App\Models\catpaisdivision;
 use App\Models\catareaciudad;
 use App\Models\contratistas;
 use App\catestatus;
+use App\Models\documentos;
 
 class proyectosController extends AppBaseController
 {
@@ -80,8 +81,25 @@ class proyectosController extends AppBaseController
         $input['ftermino'] = date('Y-m-d', strtotime($ftermino));
 
         //dd($input);
-
         $proyectos = $this->proyectosRepository->create($input);
+
+        if(isset($input['documento'])){
+          //guardar el documento
+          $documento = new documentos;
+
+          //$documento->nombre_doc = $request->file('documento')->store('documentos');
+          $doc = $request->file('documento')->store('documentos');
+
+          $documento->file_servidor = $doc;
+          $documento->nombre_doc = $request->file('documento')->getClientOriginalName();
+          $documento->descripcion = $request->input('descripcion');
+          $documento->save();
+          //hacer la referencia muchos a muchos
+          $proyectos->documentos()->attach($documento);
+        }
+
+
+
 
         Flash::success('Proyecto guardado correctamente.');
         Alert::success('Proyecto guardado correctamente.');

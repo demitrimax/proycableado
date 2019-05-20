@@ -8,7 +8,7 @@
         <h3 class="panel-title">Alta de Proyectos</h3>
     </div>
       <div class="panel-body">
-        {!! Form::open(['route' => 'proyectos.store', 'class'=>'form-horizontal']) !!}
+        {!! Form::open(['route' => 'proyectos.store', 'class'=>'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
 
             @include('proyectos.fields')
 

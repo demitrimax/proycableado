@@ -108,6 +108,17 @@ if (isset($proyectos->generico)){
     {!! Form::textarea('observaciones', null, ['class' => 'form-control']) !!}
   </div>
 </div>
+
+
+<!-- Identificacion Field -->
+<div class="form-group">
+    {!! Form::label('documento', 'Adjuntar archivo:', ['class'=>'col-md-2 control-label']) !!} <button type="button" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="Esto adjuntará otro documento al proyecto"><i class="fa fa-question-circle-o"></i></button>
+    <div class="col-md-10">
+    {!! Form::file('documento', null, ['class' => 'form-control fileupload']) !!}
+  </div>
+</div>
+
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
