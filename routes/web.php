@@ -43,4 +43,6 @@ Route::group(['middleware'=>['auth']], function() {
 
   Route::resource('documentos', 'documentosController');
   Route::get('verdoc/{id}', 'documentosController@showdoc');
+
+  Route::resource('tareas', 'tareasController');
 });

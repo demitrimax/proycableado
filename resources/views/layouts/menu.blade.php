@@ -7,6 +7,11 @@
     <a href="{{route('proyectos.index')}}" class="waves-effect"><i class="mdi mdi-bookmark-check"></i><span> Proyectos <span class="badge badge-primary pull-right">NEW</span></span></a>
 </li>
 @endcan
+@can('tareas-list')
+<li class="{{ Request::is('tareas*') ? 'active' : '' }}">
+    <a href="{!! route('tareas.index') !!}"><i class="mdi mdi-checkbox-marked-circle"></i><span>Tareas</span></a>
+</li>
+@endcan
 
 
 <li class="has_sub">

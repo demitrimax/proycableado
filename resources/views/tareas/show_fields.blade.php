@@ -1,0 +1,58 @@
+<div class="panel panel-color panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Detalle de la Tarea</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-bordered detail-view" id="tareas-table">
+        <tbody>
+      <!-- Id Field -->
+      <tr>
+        <th>{!! Form::label('id', 'Id:') !!}</th>
+        <td>{!! $tareas->id !!}</td>
+      </tr>
+
+
+      <!-- Nombre Field -->
+      <tr>
+        <th>{!! Form::label('nombre', 'Nombre:') !!}</th>
+        <td>{!! $tareas->nombre !!}</td>
+      </tr>
+
+
+      <!-- Descripcion Field -->
+      <tr>
+        <th>{!! Form::label('descripcion', 'Descripcion:') !!}</th>
+        <td>{!! $tareas->descripcion !!}</td>
+      </tr>
+
+
+      <!-- Vencimiento Field -->
+      <tr>
+        <th>{!! Form::label('vencimiento', 'Vencimiento:') !!}</th>
+        <td>{!! $tareas->vencimiento->diffForHumans() !!} ({!! $tareas->vencimiento->format('d-m-Y') !!})</td>
+      </tr>
+
+
+      <!-- User Id Field -->
+      <tr>
+        <th>{!! Form::label('user_id', 'Usuario Asignado:') !!}</th>
+        <td>{!! $tareas->user->name !!}</td>
+      </tr>
+
+
+      <!-- Created At Field -->
+      <tr>
+        <th>{!! Form::label('created_at', 'Creado el:') !!}</th>
+        <td>{!! $tareas->created_at->format('d-m-Y H:i:s') !!}</td>
+      </tr>
+
+
+      <!-- Updated At Field -->
+      <tr>
+        <th>{!! Form::label('updated_at', 'Actualizado el:') !!}</th>
+        <td>{!! $tareas->updated_at->format('d-m-Y H:i:s') !!}</td>
+      </tr>
+      </tbody>
+      </table>
+    </div>
+</div>
