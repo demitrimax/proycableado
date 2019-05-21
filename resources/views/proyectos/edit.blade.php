@@ -9,7 +9,7 @@
                   <h3 class="panel-title">Editar Proyectos</h3>
               </div>
               <div class="panel-body">
-              {!! Form::model($proyectos, ['route' => ['proyectos.update', $proyectos->id], 'method' => 'patch', 'class'=>'form-horizontal']) !!}
+              {!! Form::model($proyectos, ['route' => ['proyectos.update', $proyectos->id], 'method' => 'patch', 'class'=>'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
 
                    @include('proyectos.fields')
 

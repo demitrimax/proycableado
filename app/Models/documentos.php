@@ -55,5 +55,10 @@ class documentos extends Model
         'nombre_doc' => 'required',
     ];
 
+    public function proyectos()
+    {
+      return $this->belongsToMany('App\Models\proyectos');
+    }
+
 
 }

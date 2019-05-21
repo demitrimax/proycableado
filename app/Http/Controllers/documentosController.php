@@ -13,6 +13,9 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Illuminate\Support\Facades\Storage;
 use App\Models\documentos;
+use App\Helpers\SomeClass;
+use Auth;
+use App\Models\proyectos;
 
 class documentosController extends AppBaseController
 {
@@ -68,7 +71,7 @@ class documentosController extends AppBaseController
         $this->validate($request, $rules);
 
         $input = $request->all();
-
+        $input['user_id'] = Auth::user()->id;
         //$documentos = $this->documentosRepository->create($input);
 
         $documentos = new documentos;
@@ -77,6 +80,7 @@ class documentosController extends AppBaseController
         $documentos->file_servidor = $documento;
         $documentos->nombre_doc = $request->file('nombre_doc')->getClientOriginalName();
         $documentos->descripcion = $request->input('descripcion');
+        $documentos->user_id = Auth::user()->id;
         $documentos->save();
 
         Flash::success('Documentos guardado correctamente.');
@@ -87,7 +91,7 @@ class documentosController extends AppBaseController
           if(isset($input['proyecto_id'])){
             $proyecto_id = $input['proyecto_id'];
             $proyecto = proyectos::find($proyecto_id);
-            $documentos->proyecto()->attach($proyecto);
+            $documentos->proyectos()->attach($proyecto);
             $modelo_id = $proyecto_id;
           }
 
@@ -179,8 +183,8 @@ class documentosController extends AppBaseController
         $documentos = $this->documentosRepository->findWithoutFail($id);
 
         if (empty($documentos)) {
-            Flash::error('Documentos no encontrado');
-            Alert::error('Documentos no encontrado');
+            Flash::error('Documento no encontrado');
+            Alert::error('Documento no encontrado');
 
             return redirect(route('documentos.index'));
         }
@@ -192,4 +196,35 @@ class documentosController extends AppBaseController
 
         return redirect(route('documentos.index'));
     }
+    public function showdoc($id)
+    {
+      $documentos = $this->documentosRepository->findWithoutFail($id);
+
+      if (empty($documentos)) {
+          Flash::error('Documentos no encontrado');
+          Alert::error('Documentos no encontrado');
+
+          return redirect(route('documentos.index'));
+      }
+      $nomarchivo = SomeClass::normalizeString($documentos->nombre_doc);
+
+      //return Storage::download($documentos->documento,$nomarchivo);
+
+      //return Storage::get($documentos->documento,$nomarchivo);
+      $mimetype = Storage::mimeType($documentos->file_servidor);
+
+      $path = storage_path('app/'.$documentos->file_servidor);
+      //return response()->download($path);
+      if ($mimetype == 'application/pdf'){
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$nomarchivo.'"'
+        ]);
+      }
+      else {
+        return Storage::download($documentos->file_servidor, $nomarchivo);
+      }
+
+    }
+
 }

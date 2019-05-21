@@ -17,6 +17,7 @@ use App\Models\catareaciudad;
 use App\Models\contratistas;
 use App\catestatus;
 use App\Models\documentos;
+use Auth;
 
 class proyectosController extends AppBaseController
 {
@@ -42,10 +43,10 @@ class proyectosController extends AppBaseController
     public function index(Request $request)
     {
         $this->proyectosRepository->pushCriteria(new RequestCriteria($request));
-        $proyectos = $this->proyectosRepository->all();
+        $proyectos = $this->proyectosRepository->orderBy('estatus_id', 'asc')->orderBy('ftermino', 'asc')->get();
 
         return view('proyectos.index')
-            ->with('proyectos', $proyectos);
+            ->with(compact('proyectos'));
     }
 
     /**
@@ -92,13 +93,12 @@ class proyectosController extends AppBaseController
 
           $documento->file_servidor = $doc;
           $documento->nombre_doc = $request->file('documento')->getClientOriginalName();
-          $documento->descripcion = $request->input('descripcion');
+          $documento->descripcion = 'Documento correspondiente al proyecto: '.$request->input('nombre');
+          $documento->user_id = Auth::user()->id;
           $documento->save();
           //hacer la referencia muchos a muchos
           $proyectos->documentos()->attach($documento);
         }
-
-
 
 
         Flash::success('Proyecto guardado correctamente.');
@@ -189,8 +189,23 @@ class proyectosController extends AppBaseController
 
         //dd($input);
 
-
         $proyectos = $this->proyectosRepository->update($input, $id);
+
+        if(isset($input['documento'])){
+          //guardar el documento
+          $documento = new documentos;
+
+          //$documento->nombre_doc = $request->file('documento')->store('documentos');
+          $doc = $request->file('documento')->store('documentos');
+
+          $documento->file_servidor = $doc;
+          $documento->nombre_doc = $request->file('documento')->getClientOriginalName();
+          $documento->descripcion = 'Documento actualizado correspondiente al proyecto: '.$request->input('nombre');
+          $documento->user_id = Auth::user()->id;
+          $documento->save();
+          //hacer la referencia muchos a muchos
+          $proyectos->documentos()->attach($documento);
+        }
 
         Flash::success('Proyecto actualizado correctamente.');
         Alert::success('Proyecto actualizado correctamente.');

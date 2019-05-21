@@ -88,6 +88,7 @@ function ConfirmDelete(id) {
     };
     DataTable.prototype.createDataTableButtons = function() {
         0 !== this.$dataTableButtons.length && this.$dataTableButtons.DataTable({
+            ordering: false,
             dom: "Bfrtip",
             buttons: [{
                 extend: "copy",

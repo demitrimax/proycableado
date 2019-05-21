@@ -41,4 +41,5 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('proyecto/{id}/terminar', 'proyectosController@terminar');
 
   Route::resource('documentos', 'documentosController');
+  Route::get('verdoc/{id}', 'documentosController@showdoc');
 });

@@ -7,6 +7,7 @@
   </div>
 
           <div class="row">
+
             <div class="col-md-6">
               <div class="panel-body">
                   <div class="table-responsive">
@@ -32,9 +33,83 @@
                   </div>
               </div>
           </div>
+
+          <div class="col-md-6">
+            <div class="panel-body">
+                <div class="table-responsive">
+                  @if($proyectos->documentos->count()>0)
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Documento</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($proyectos->documentos as $key=>$documento)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td><a href="{{url('verdoc/'.$documento->id)}}">{{$documento->nombre_doc}}</a></td>
+                        <td>{{$documento->descripcion}}</td>
+                        <td>@mdo</td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                @else
+                No existen documentos para el proyecto.
+                @endif
+                </div>
+                @can('documentos-create')
+                  @if($proyectos->estatus_id == 'A')
+                  <button title="Agregar Documento" type="button" class="btn waves-effect btn-primary" data-toggle="modal" data-target="#addDoc"> <i class="ion ion-document-text"></i> Agregar Documento</button>
+                  @endif
+                @endcan
+            </div>
+
+        </div>
+
+
         </div>
 
     </div>
+    @can('documentos-create')
+    <div id="addDoc" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              {!! Form::open(['route' => 'documentos.store', 'enctype' => 'multipart/form-data']) !!}
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title" id="myModalLabel">Agregar Documento al proyecto</h4>
+              </div>
+              <div class="modal-body">
+                  {!! Form::hidden('redirect', 'proyectos.show')!!}
+                  {!! Form::hidden('proyecto_id', $proyectos->id)!!}
+                  <!-- Nombre Doc Field -->
+                  <div class="form-group">
+                      {!! Form::label('nombre_doc', 'Documento:') !!}
+                      {!! Form::file('nombre_doc', null, ['class' => 'form-control']) !!}
+                  </div>
+
+                  <!-- Descripcion Field -->
+                  <div class="form-group">
+                      {!! Form::label('descripcion', 'Descripcion o Comentario:') !!}
+                      {!! Form::text('descripcion', null, ['class' => 'form-control']) !!}
+                  </div>
+
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary waves-effect waves-light">Agregar</button>
+              </div>
+              {!! Form::close() !!}
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div>
+  @endcan
 @endsection
 
 @section('scripts')
