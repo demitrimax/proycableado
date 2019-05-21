@@ -45,4 +45,8 @@ class HomeController extends Controller
     public function profile(){
       return view('profile');
     }
+
+    public function lockscreen() {
+      return view('lockscreen');
+    }
 }

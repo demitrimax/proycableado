@@ -22,6 +22,7 @@ Auth::routes();
 Route::group(['middleware'=>['auth']], function() {
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/profile', 'HomeController@profile');
+  Route::get('/lockscreen', 'HomeController@lockscreen');
   //RUTAS DE LA CONFIGURACION
   Route::resource('roles','RoleController');
   Route::resource('user','UserController');

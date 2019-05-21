@@ -21,7 +21,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{url('/profile')}}"><i class="md md-face-unlock"></i> Perfil<div class="ripple-wrapper"></div></a></li>
                         <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-                        <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
+                        <li><a href="{{url('/lockscreen')}}"><i class="md md-lock"></i> Lock screen</a></li>
                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                      <i class="md md-settings-power"></i> {{ __('Logout') }}</a></li>
