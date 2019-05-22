@@ -51,7 +51,9 @@
                     </form>
 
                     <ul class="nav navbar-nav navbar-right pull-right">
-                        @include('layouts.notificaciones')
+                      @if($vartareas->count()>0)
+                          @include('layouts.notificatareas')
+                      @endif
                         <li class="hidden-xs">
                             <a href="#" id="btn-fullscreen" class="waves-effect waves-light notification-icon-box"><i class="mdi mdi-fullscreen"></i></a>
                         </li>

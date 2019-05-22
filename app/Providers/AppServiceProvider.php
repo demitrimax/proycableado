@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Auth;
+use App\Models\tareas;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,18 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+
+        view()->composer('*', function($view)
+      {
+          if (Auth::check()) {
+              $CurrentUserId = Auth::user()->id;
+              $vartareas = tareas::where('user_id',$CurrentUserId)->where('terminado',null)->get();
+              $view->with(compact('vartareas'));
+
+              //View::share('solicitudess',solicitudes::all());
+          }else {
+              $view->with('vartareas', null);
+          }
+      });
     }
 }

@@ -3,7 +3,7 @@
         <i class="fa fa-bell"></i> <span class="badge badge-xs badge-danger"></span>
     </a>
     <ul class="dropdown-menu dropdown-menu-lg noti-list-box">
-        <li class="text-center notifi-title">Notificaciones <span class="badge badge-xs badge-success">3</span></li>
+        <li class="text-center notifi-title">Tareas <span class="badge badge-xs badge-success">{{$vartareas->count()}}</span></li>
         <li class="list-group">
            <!-- list item-->
            <a href="javascript:void(0);" class="list-group-item">
