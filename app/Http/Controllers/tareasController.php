@@ -66,8 +66,8 @@ class tareasController extends AppBaseController
 
         $tareas = $this->tareasRepository->create($input);
 
-        Flash::success('Tareas guardado correctamente.');
-        Alert::success('Tareas guardado correctamente.');
+        Flash::success('Tarea guardada correctamente.');
+        Alert::success('Tarea guardada correctamente.');
 
         return redirect(route('tareas.index'));
     }
@@ -84,8 +84,8 @@ class tareasController extends AppBaseController
         $tareas = $this->tareasRepository->findWithoutFail($id);
 
         if (empty($tareas)) {
-            Flash::error('Tareas no encontrado');
-            Alert::error('Tareas no encontrado.');
+            Flash::error('Tarea no encontrada');
+            Alert::error('Tarea no encontrada.');
 
             return redirect(route('tareas.index'));
         }
@@ -105,8 +105,8 @@ class tareasController extends AppBaseController
         $tareas = $this->tareasRepository->findWithoutFail($id);
 
         if (empty($tareas)) {
-            Flash::error('Tareas no encontrado');
-            Alert::error('Tareas no encontrado');
+            Flash::error('Tarea no encontrada');
+            Alert::error('Tarea no encontrada');
 
             return redirect(route('tareas.index'));
         }
@@ -128,16 +128,16 @@ class tareasController extends AppBaseController
         $tareas = $this->tareasRepository->findWithoutFail($id);
 
         if (empty($tareas)) {
-            Flash::error('Tareas no encontrado');
-            Alert::error('Tareas no encontrado');
+            Flash::error('Tarea no encontrada');
+            Alert::error('Tarea no encontrada');
 
             return redirect(route('tareas.index'));
         }
 
         $tareas = $this->tareasRepository->update($request->all(), $id);
 
-        Flash::success('Tareas actualizado correctamente.');
-        Alert::success('Tareas actualizado correctamente.');
+        Flash::success('Tarea actualizada correctamente.');
+        Alert::success('Tarea actualizada correctamente.');
 
         return redirect(route('tareas.index'));
     }
@@ -154,16 +154,16 @@ class tareasController extends AppBaseController
         $tareas = $this->tareasRepository->findWithoutFail($id);
 
         if (empty($tareas)) {
-            Flash::error('Tareas no encontrado');
-            Alert::error('Tareas no encontrado');
+            Flash::error('Tarea no encontrada');
+            Alert::error('Tarea no encontrada');
 
             return redirect(route('tareas.index'));
         }
 
         $this->tareasRepository->delete($id);
 
-        Flash::success('Tareas borrado correctamente.');
-        Flash::success('Tareas borrado correctamente.');
+        Flash::success('Tarea borrada correctamente.');
+        Flash::success('Tarea borrada correctamente.');
 
         return redirect(route('tareas.index'));
     }

@@ -12,7 +12,7 @@
     @foreach($tareas as $tareas)
         <tr>
             <td>{!! $tareas->nombre !!}</td>
-            <td>{!!  str_limit($tareas->descripcion, $limit = 50, $end = '...') !!}</td>
+            <td>{!!  str_limit(strip_tags($tareas->descripcion), $limit = 50, $end = '...') !!}</td>
             <td>{!! $tareas->vencimiento->format('d-m-Y') !!}</td>
             <td>{!! $tareas->user->name !!}</td>
             <td>

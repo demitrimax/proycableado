@@ -1,3 +1,8 @@
+@section('css')
+<!-- Summernote css -->
+<link href="{{asset('appzia/plugins/summernote/summernote.css')}}" rel="stylesheet" />
+
+@endsection
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre', 'Nombre:') !!}
@@ -7,7 +12,7 @@
 <!-- Descripcion Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('descripcion', 'Descripcion:') !!}
-    {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::textarea('descripcion', null, ['class' => 'form-control summernote', 'required']) !!}
 </div>
 @php
 
@@ -40,5 +45,24 @@
 </div>
 
 @section('scripts')
+
+        <!--Summernote js-->
+        <script src="{{asset('appzia/plugins/summernote/summernote.min.js')}}"></script>
+        <script>
+
+            jQuery(document).ready(function(){
+
+                $('.summernote').summernote({
+                    height: 200,                 // set editor height
+
+                    minHeight: null,             // set minimum height of editor
+                    maxHeight: null,             // set maximum height of editor
+
+                    focus: true                 // set focus to editable area after initializing summernote
+                });
+
+            });
+        </script>
+
 
 @endsection

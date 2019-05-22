@@ -1,5 +1,5 @@
 @extends('layouts.applogin')
-
+@section('title',config('app.name').' | Iniciar Sesión' )
 @section('content')
 <div class="panel panel-color panel-primary panel-pages">
 
@@ -58,7 +58,7 @@
               </div>
               @endif
                 <div class="col-sm-5 text-right">
-                    <a href="pages-register.html" class="text-muted">Crear una cuenta</a>
+                    <a href="{{url('/register')}}" class="text-muted">Crear una cuenta</a>
                 </div>
             </div>
         </form>

@@ -1,7 +1,13 @@
 @extends('layouts.applogin')
-
+@section('title',config('app.name').' | Registro de nuevos usuarios' )
 @section('content')
 <div class="panel panel-color panel-primary panel-pages">
+
+  <div class="clearfix"></div>
+
+  @include('flash::message')
+
+  <div class="clearfix"></div>
 
                 <div class="panel-body">
                     <h3 class="text-center m-t-0 m-b-15">

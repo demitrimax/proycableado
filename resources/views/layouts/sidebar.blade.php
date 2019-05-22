@@ -3,7 +3,7 @@
 
         <div class="user-details">
             <div class="pull-left">
-                <img src="{{asset('appzia/images/users/avatar-1.jpg')}}" alt="" class="thumb-md img-circle">
+                <img src="{{asset(Auth::user()->uavatar)}}" alt="" class="thumb-md img-circle">
             </div>
             <div class="user-info">
                 <div class="dropdown">
@@ -29,10 +29,10 @@
                             @csrf
                         </form>
                     </ul>
-                                            @endguest
+                  @endguest
                 </div>
 
-                <p class="text-muted m-0">Admin</p>
+                <p class="text-muted m-0">{{Auth::user()->cargo}}</p>
             </div>
         </div>
         <!--- Divider -->
