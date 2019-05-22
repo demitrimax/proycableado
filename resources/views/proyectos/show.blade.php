@@ -36,6 +36,16 @@
 
           <div class="col-md-6">
             <div class="panel-body">
+              @can('documentos-list')
+                  @php
+
+                  function human_filesize($bytes, $decimals = 2) {
+                    $sz = 'BKMGTP';
+                    $factor = floor((strlen($bytes) - 1) / 3);
+                    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+                  }
+
+                  @endphp
                 <div class="table-responsive">
                   @if($proyectos->documentos->count()>0)
                   <table class="table table-bordered">
@@ -51,9 +61,17 @@
                       @foreach($proyectos->documentos as $key=>$documento)
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td><a href="{{url('verdoc/'.$documento->id)}}">{{$documento->nombre_doc}}</a></td>
+                        <td>
+                          <a href="{{url('verdoc/'.$documento->id)}}">{{$documento->nombre_doc}}</a>
+                          @if (file_exists(storage_path('app/'.$documento->file_servidor)) )
+                          ( {{ human_filesize(filesize(storage_path('app/'.$documento->file_servidor))) }}bytes)
+                          @endif
+
+                        </td>
                         <td>{{$documento->descripcion}}</td>
-                        <td>@mdo</td>
+                        <td>
+                          <button type="button" class="btn waves-effect btn-default"> <i class="fa fa-times"></i> </button>
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -62,6 +80,7 @@
                 No existen documentos para el proyecto.
                 @endif
                 </div>
+                @endcan
                 @can('documentos-create')
                   @if($proyectos->estatus_id == 'A')
                   <button title="Agregar Documento" type="button" class="btn waves-effect btn-primary" data-toggle="modal" data-target="#addDoc"> <i class="ion ion-document-text"></i> Agregar Documento</button>

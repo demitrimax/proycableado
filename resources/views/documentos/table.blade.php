@@ -8,9 +8,25 @@
         </tr>
     </thead>
     <tbody>
+      @php
+
+      function human_filesize($bytes, $decimals = 2) {
+        $sz = 'BKMGTP';
+        $factor = floor((strlen($bytes) - 1) / 3);
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+      }
+
+      @endphp
+
     @foreach($documentos as $documentos)
+
         <tr>
-            <td>{!! $documentos->nombre_doc !!}</td>
+            <td>
+              {!! $documentos->nombre_doc !!}
+              @if (file_exists(storage_path('app/'.$documentos->file_servidor)) )
+              ( {{ human_filesize(filesize(storage_path('app/'.$documentos->file_servidor))) }}bytes)
+              @endif
+            </td>
             <td>{!! $documentos->file_servidor !!}</td>
             <td>{!! $documentos->descripcion !!}</td>
             <td>

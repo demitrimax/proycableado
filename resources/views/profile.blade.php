@@ -12,8 +12,9 @@
                 <h3 class="panel-title">Perfil del Usuario</h3>
               </div>
             <div class="panel-body panel-profile">
-              <img class="profile-user-img img-responsive img-circle thumb-md center-block" src="{{asset('bingo/images/client-logo/clients-1.jpg')}}" alt="User profile picture">
-
+              <a href="#">
+              <img class="profile-user-img img-responsive img-circle thumb-md center-block" src="{{asset(Auth::user()->uavatar)}}" alt="User profile picture">
+            </a>
               <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
 
               <p class="text-muted text-center">{{Auth::user()->cargo}}</p>

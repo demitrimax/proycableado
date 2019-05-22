@@ -215,9 +215,9 @@ class documentosController extends AppBaseController
 
       $path = storage_path('app/'.$documentos->file_servidor);
       //return response()->download($path);
-      if ($mimetype == 'application/pdf'){
+      if ($mimetype == 'application/pdf' || $mimetype == 'image/jpeg'){
         return Response::make(file_get_contents($path), 200, [
-            'Content-Type' => 'application/pdf',
+            'Content-Type' => $mimetype,
             'Content-Disposition' => 'inline; filename="'.$nomarchivo.'"'
         ]);
       }
