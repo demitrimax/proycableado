@@ -52,6 +52,13 @@
         <th>{!! Form::label('updated_at', 'Actualizado el:') !!}</th>
         <td>{!! $tareas->updated_at->format('d-m-Y H:i:s') !!}</td>
       </tr>
+
+      @if($tareas->viewed_at)
+      <tr>
+        <th>{!! Form::label('vistoat', 'Visto por el usuario el:') !!}</th>
+        <td>{!! $tareas->viewed_at !!}</td>
+      </tr>
+      @endif
       </tbody>
       </table>
     </div>

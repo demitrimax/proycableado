@@ -12,6 +12,7 @@ use Alert;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\User;
+use Auth;
 
 class tareasController extends AppBaseController
 {
@@ -21,7 +22,8 @@ class tareasController extends AppBaseController
     public function __construct(tareasRepository $tareasRepo)
     {
         $this->tareasRepository = $tareasRepo;
-        $this->middleware('permission:tareas-list');
+        $this->middleware('permission:tareas-list', ['only'=>['index']]);
+        $this->middleware('permission:tareas-detalle', ['only'=>['detalle']]);
         $this->middleware('permission:tareas-create', ['only' => ['create','store']]);
         $this->middleware('permission:tareas-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:tareas-delete', ['only' => ['destroy']]);
@@ -88,6 +90,11 @@ class tareasController extends AppBaseController
             Alert::error('Tarea no encontrada.');
 
             return redirect(route('tareas.index'));
+        }
+        if($tareas->user_id == Auth::user()->id){
+          //si el usuario asignado vió los detalles de la tarea guardar el registro
+          $tareas->viewed_at = Date('Y-m-d H:i:s');
+          $tareas->save();
         }
 
         return view('tareas.show')->with('tareas', $tareas);

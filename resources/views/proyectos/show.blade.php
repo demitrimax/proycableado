@@ -70,7 +70,8 @@
                         </td>
                         <td>{{$documento->descripcion}}</td>
                         <td>
-                          <button type="button" class="btn waves-effect btn-default"> <i class="fa fa-times"></i> </button>
+
+                          <button type="button" class="btn waves-effect btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar"> <i class="fa fa-times"></i> </button>
                         </td>
                     </tr>
                     @endforeach
