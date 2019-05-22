@@ -48,7 +48,10 @@ class tareas extends Model
         'nombre' => 'string',
         'descripcion' => 'string',
         'vencimiento' => 'date',
-        'user_id' => 'integer'
+        'user_id' => 'integer',
+        'viewed_at' => 'date',
+        'terminado' => 'date',
+        'avance_porc' => 'integer',
     ];
 
     /**

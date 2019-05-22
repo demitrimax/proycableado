@@ -59,6 +59,10 @@
         <td>{!! $tareas->viewed_at !!}</td>
       </tr>
       @endif
+      <tr>
+        <th>{!! Form::label('porcentaje', 'Porcentaje de Avance:') !!}</th>
+        <td>{!! $tareas->avance_porc !!}%</td>
+      </tr>
       </tbody>
       </table>
     </div>

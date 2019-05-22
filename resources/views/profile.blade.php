@@ -45,6 +45,19 @@
               <h3 class="panel-title">Tareas Asignadas</h3>
             </div>
           <div class="panel-body panel-profile">
+            <div class="col-md-12">
+                      <h5>Progreso</h5>
+                      <ul class="list-group">
+                        @foreach( $vartareas as $key=>$tarea)
+                          <li class="list-group-item">
+                            @if($tarea->avance_porc)
+                              <span class="badge badge-primary">{{$tarea->avance_porc}}%</span>
+                              @endif
+                              {{$tarea->nombre}}
+                          </li>
+                          @endforeach
+                      </ul>
+                  </div>
 
           </div>
           <!-- /.box-body -->

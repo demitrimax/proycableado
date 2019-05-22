@@ -14,8 +14,12 @@
 
                     @include('tareas.show_fields')
                   </div>
-
+                    @can('tareas-list')
                     <a href="{!! route('tareas.index') !!}" class="btn btn-default">Regresar</a>
+                    @else
+                    <a href="{!! url()->previous() !!}" class="btn btn-default">Regresar</a>
+                    @endcan
+
                 </div>
             </div>
         </div>

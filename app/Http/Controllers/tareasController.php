@@ -93,8 +93,11 @@ class tareasController extends AppBaseController
         }
         if($tareas->user_id == Auth::user()->id){
           //si el usuario asignado vió los detalles de la tarea guardar el registro
-          $tareas->viewed_at = Date('Y-m-d H:i:s');
-          $tareas->save();
+          if(empty($tareas->viewed_at)){
+            $tareas->viewed_at = Date('Y-m-d h:i:s');
+            $tareas->avance_porc = 10;
+            $tareas->save();
+          }
         }
 
         return view('tareas.show')->with('tareas', $tareas);
