@@ -1,12 +1,14 @@
 @section('css')
 <!-- Summernote css -->
 <link href="{{asset('appzia/plugins/summernote/summernote.css')}}" rel="stylesheet" />
+<link href="{{asset('appzia/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet">
+<link href="{{asset('airdatepicker/dist/css/datepicker.min.css')}}" rel="stylesheet" type="text/css">
 
 @endsection
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre', 'Nombre:') !!}
-    {!! Form::text('nombre', null, ['class' => 'form-control', 'required', 'maxlength' => '35']) !!}
+    {!! Form::text('nombre', null, ['class' => 'form-control maxlen', 'required', 'maxlength' => '35']) !!}
 </div>
 
 <!-- Descripcion Field -->
@@ -27,8 +29,8 @@
 @endphp
 <!-- Vencimiento Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('vencimiento', 'Vencimiento:') !!}
-    {!! Form::date('vencimiento', $vencimiento, ['class' => 'form-control','id'=>'vencimiento']) !!}
+    {!! Form::label('vencimiento', 'Vencimiento:') !!}<button type="button" class="btn btn-sm btn-primary" data-toggle="popover" title="Formato de Fecha" data-content="Escriba la fecha en formato yyyy-mm-dd o utilice el selector de fecha."><i class="fa fa-question"></i></button>
+    {!! Form::text('vencimiento', $vencimiento, ['placeholder'=>'yyyy-mm-dd','class' => 'form-control datepicker-here','id'=>'venciiento', 'data-language'=>'es', 'data-date-format'=>'yyyy-mm-dd', 'required', 'pattern'=>'(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))' ] ) !!}
 </div>
 
 
@@ -45,11 +47,19 @@
 </div>
 
 @section('scripts')
+<script src="{{asset('appzia/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('airdatepicker/dist/js/datepicker.min.js')}}"></script>
+<script src="{{asset('airdatepicker/dist/js/i18n/datepicker.es.js')}}"></script>
 
         <!--Summernote js-->
         <script src="{{asset('appzia/plugins/summernote/summernote.min.js')}}"></script>
         <script>
+        //Bootstrap-MaxLength
+           $('.maxlen').maxlength();
 
+           $(function () {
+             $('[data-toggle="popover"]').popover()
+           })
             jQuery(document).ready(function(){
 
                 $('.summernote').summernote({

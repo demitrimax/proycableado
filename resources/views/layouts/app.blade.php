@@ -17,7 +17,12 @@
     <link href="{{asset('appzia/css/icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('appzia/css/style.css')}}" rel="stylesheet" type="text/css">
 
-      <link href="{{asset('appzia/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('appzia/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
+      <style>
+      .swal2-popup {
+        font-size: 1.6rem !important;
+      }
+      </style>
     @yield('css')
 </head>
 <body class="fixed-left">

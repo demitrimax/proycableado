@@ -44,4 +44,6 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('verdoc/{id}', 'documentosController@showdoc');
 
   Route::resource('tareas', 'tareasController');
+  Route::post('tareas/avance', 'tareasController@registroavance')->name('tareas.avanceregistro');
+
 });

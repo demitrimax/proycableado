@@ -13,12 +13,16 @@
                   <div class="col-md-6">
 
                     @include('tareas.show_fields')
-                  </div>
                     @can('tareas-list')
                     <a href="{!! route('tareas.index') !!}" class="btn btn-default">Regresar</a>
                     @else
                     <a href="{!! url()->previous() !!}" class="btn btn-default">Regresar</a>
                     @endcan
+                  </div>
+                  <div class="col-md-6">
+                    @include('tareas.regavances')
+                  </div>
+
 
                 </div>
             </div>
