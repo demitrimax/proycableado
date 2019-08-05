@@ -42,7 +42,9 @@ class AppServiceProvider extends ServiceProvider
 
               //View::share('solicitudess',solicitudes::all());
           }else {
-              $view->with('vartareas', null);
+            $vartareas = null;
+            $nuevastareas = null;
+              $view->with(compact('vartareas','nuevastareas'));
           }
       });
     }
