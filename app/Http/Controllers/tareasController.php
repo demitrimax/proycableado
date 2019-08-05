@@ -48,6 +48,15 @@ class tareasController extends AppBaseController
             ->with('tareas', $tareas);
     }
 
+    public function todasindex(Request $request)
+    {
+        $this->tareasRepository->pushCriteria(new RequestCriteria($request));
+        $tareas = $this->tareasRepository->orderBy('vencimiento','asc')->get();
+
+        return view('tareas.index')
+            ->with('tareas', $tareas);
+    }
+
     /**
      * Show the form for creating a new tareas.
      *

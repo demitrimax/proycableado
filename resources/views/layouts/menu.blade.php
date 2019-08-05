@@ -9,8 +9,7 @@
 @endcan
 @can('tareas-list')
 <li class="{{ Request::is('tareas*') ? 'active' : '' }}">
-    <a href="{!! route('tareas.index') !!}"><i class="mdi mdi-checkbox-marked-circle"></i><span>Tareas</span></a>
-    {{ $nuevastareas->count()>0 ? '<span class="badge badge-primary pull-right">$nuevastareas->count()</span></span></a>' : '' }}
+    <a href="{!! route('tareas.index') !!}"><i class="mdi mdi-checkbox-marked-circle"></i><span>Tareas {!! $nuevastareas->count()>0 ? '<span class="badge badge-primary pull-right">'.$nuevastareas->count().'</span></a>' : '' !!}</span></a>
 </li>
 @endcan
 
