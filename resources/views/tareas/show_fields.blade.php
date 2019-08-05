@@ -29,7 +29,7 @@
       <!-- Vencimiento Field -->
       <tr>
         <th>{!! Form::label('vencimiento', 'Vencimiento:') !!}</th>
-        <td>{!! $tareas->vencimiento->diffForHumans() !!} ({!! $tareas->vencimiento->format('d-m-Y') !!})</td>
+        <td>{!! $tareas->vencimiento->diffForHumans() !!} ({!! $tareas->vencimiento->format('d-m-Y') !!}) <span class="label label-{!! $tareas->estatusdate['valor'] !!}">{!! $tareas->estatusdate['descripcion'] !!}</span></td>
       </tr>
 
 
@@ -59,6 +59,14 @@
         <td>{!! $tareas->viewed_at !!}</td>
       </tr>
       @endif
+
+      @if($tareas->terminado)
+      <tr>
+        <th>{!! Form::label('terminado', 'Tarea completada por el Usuario:') !!}</th>
+        <td>{!! $tareas->terminado->format('d-m-Y H:i:s') !!}</td>
+      </tr>
+      @endif
+
       <tr>
         <th>{!! Form::label('porcentaje', 'Porcentaje de Avance:') !!}</th>
         <td>{!! $tareas->avance_porc !!}%</td>

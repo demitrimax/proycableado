@@ -47,3 +47,6 @@ Route::group(['middleware'=>['auth']], function() {
   Route::post('tareas/avance', 'tareasController@registroavance')->name('tareas.avanceregistro');
 
 });
+
+
+Route::resource('empleados', 'empleadosController');

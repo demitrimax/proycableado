@@ -7,6 +7,7 @@ use Alert;
 use App\Models\proyectos;
 use Carbon\Carbon;
 use App\User;
+use App\Models\tareas;
 
 class HomeController extends Controller
 {
@@ -38,8 +39,10 @@ class HomeController extends Controller
         $proyatendidos = $cantproy->where('estatus_id','T')->count();
         $usuarios = new User;
         $usuariosOnline = $usuarios->allOnline()->count() ;
+        $tareascount = tareas::whereNull('terminado')->count();
 
-        return view('home')->with(compact('cantproy','cantproyenelmes','proyatendidos', 'usuariosOnline'));
+
+        return view('home')->with(compact('cantproy','cantproyenelmes','proyatendidos', 'usuariosOnline', 'tareascount'));
     }
 
     public function profile(){

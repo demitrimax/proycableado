@@ -6,7 +6,7 @@
 
   <div class="row">
 
-          <div class="col-lg-5">
+          <div class="col-lg-6">
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title">Perfil del Usuario</h3>
@@ -39,7 +39,7 @@
           </div>
 
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-6">
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Tareas Asignadas</h3>
@@ -53,7 +53,7 @@
                             @if($tarea->avance_porc)
                               <span class="badge badge-primary">{{$tarea->avance_porc}}%</span>
                               @endif
-                              {{$tarea->nombre}}
+                              <a href="{!! route('tareas.show', [$tarea->id]) !!}">{{$tarea->nombre}}</a>
                           </li>
                           @endforeach
                       </ul>

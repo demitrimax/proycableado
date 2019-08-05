@@ -33,8 +33,10 @@ class AppServiceProvider extends ServiceProvider
       {
           if (Auth::check()) {
               $CurrentUserId = Auth::user()->id;
+              $currentDate = date('Y-m-d');
               $vartareas = tareas::where('user_id',$CurrentUserId)->where('terminado',null)->get();
-              $view->with(compact('vartareas'));
+              $nuevastareas = tareas::where('created_at', $currentDate)->where('terminado',null)->get();
+              $view->with(compact('vartareas','nuevastareas'));
 
               //View::share('solicitudess',solicitudes::all());
           }else {

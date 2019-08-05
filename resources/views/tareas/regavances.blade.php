@@ -3,8 +3,41 @@
         <h3 class="panel-title">Registro de Avances</h3>
     </div>
     <div class="panel-body">
+      @if($tareas->avances->count()>0)
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Concepto</th>
+            <th>Avance</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($tareas->avances as $avance)
+          <tr>
+            <td>
+              <button type="button" class="btn btn-info btn-xs"
+              data-container="body" title="" data-toggle="popover"
+              data-trigger="focus" data-placement="top"
+              data-content="{{$avance->comentario}}"
+              data-original-title="" aria-describedby="popover579223">
+              <badge><i class="fa fa-info"></i></badge>
+              </button>
+            {{$avance->concepto}}
+            </td>
+            <td>{{$avance->avancepor}}%</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      @endif
 
-      <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#RegistroAvances">Registrar Avance</button>
+      @can('registrar-avances')
+        @if($tareas->avance_porc < 100)
+          @if($tareas->user_id == Auth::user()->id)
+            <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#RegistroAvances">Registrar Avance</button>
+          @endif
+        @endif
+      @endcan
     </div>
 </div>
 
@@ -23,17 +56,24 @@
                     <div class="form-group">
                         {!! Form::label('concepto', 'Concepto:') !!}
                         {!! Form::text('concepto', null, ['class' => 'form-control maxlen', 'required', 'maxlength' => '35']) !!}
+                        {!! Form::hidden('tarea_id', $tareas->id)!!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('observaciones', 'Observaciones:') !!}
-                        {!! Form::textarea('concepto', null, ['class' => 'form-control maxlen', 'required', 'maxlength' => '35']) !!}
+                        {!! Form::label('comentario', 'Comentarios:') !!}
+                        {!! Form::textarea('comentario', null, ['class' => 'form-control']) !!}
                     </div>
+                    @php
+                    $porcentaje = null;
+                      if(isset($tareas->avance_porc)){
+                        $porcentaje = $tareas->avance_porc;
+                      }
+                    @endphp
 
                     <div class="form-group">
-                    {!! Form::label('avance', 'Avance:') !!}
+                    {!! Form::label('avancepor', 'Avance:') !!}
                     <div class="input-group bootstrap-touchspin">
-                        {!! Form::number('avance', null, ['class' => 'form-control', 'required', 'max' => '100', 'min'=>'0']) !!}
+                        {!! Form::number('avancepor', $porcentaje, ['class' => 'form-control', 'required', 'max' => '100', 'min'=>$porcentaje]) !!}
                         <span class="input-group-addon bootstrap-touchspin-postfix">%</span>
                     </div>
                   </div>
@@ -45,8 +85,8 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Registrar Avance</button>
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Registrar Avance</button>
             </div>
             {!! Form::close() !!}
           </div><!-- /.modal-content -->

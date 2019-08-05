@@ -160,7 +160,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         $this->$MODEL_NAME_CAMEL$Repository->delete($id);
 
         Flash::success('$MODEL_NAME_HUMAN$ borrado correctamente.');
-        Flash::success('$MODEL_NAME_HUMAN$ borrado correctamente.');
+        Alert::success('$MODEL_NAME_HUMAN$ borrado correctamente.');
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
     }

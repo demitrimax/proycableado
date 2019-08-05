@@ -13,6 +13,8 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\User;
 use Auth;
+use App\Models\tareavances;
+use App\Models\tareas;
 
 class tareasController extends AppBaseController
 {
@@ -38,7 +40,9 @@ class tareasController extends AppBaseController
     public function index(Request $request)
     {
         $this->tareasRepository->pushCriteria(new RequestCriteria($request));
-        $tareas = $this->tareasRepository->all();
+        $tareas = $this->tareasRepository->orderBy('vencimiento','asc')->get();
+
+        $tareas = tareas::whereNull('terminado')->orderBy('vencimiento', 'asc')->get();
 
         return view('tareas.index')
             ->with('tareas', $tareas);
@@ -98,7 +102,15 @@ class tareasController extends AppBaseController
             $tareas->avance_porc = 10;
             $tareas->save();
           }
+          if($tareas->avance_porc == 100){
+            if(empty($tareas->terminado)){
+              $tareas->terminado = date('Y-m-d H:i:s');
+              $tareas->save();
+            }
+
+          }
         }
+
 
         return view('tareas.show')->with('tareas', $tareas);
     }
@@ -173,8 +185,34 @@ class tareasController extends AppBaseController
         $this->tareasRepository->delete($id);
 
         Flash::success('Tarea borrada correctamente.');
-        Flash::success('Tarea borrada correctamente.');
+        Alert::success('Tarea borrada correctamente.');
 
         return redirect(route('tareas.index'));
+    }
+
+    public function registroavance(Request $request)
+    {
+      $input = $request->all();
+
+      $avance = new tareavances;
+      $avance->concepto = $input['concepto'];
+      $avance->comentario = $input['comentario'];
+      $avance->avancepor = $input['avancepor'];
+      $avance->tarea_id = $input['tarea_id'];
+      $avance->save();
+
+      $tarea = tareas::find($input['tarea_id']);
+      $tarea->avance_porc = $input['avancepor'];
+      if($input['avancepor'] == 100){
+        $tarea->terminado = date('Y-m-d H:i:s');
+      }
+      $tarea->save();
+
+      Flash::success('se ha registrado avance correctamente');
+      Alert::success('se ha registrado avance correctamente.');
+
+      return back();
+
+
     }
 }

@@ -10,6 +10,7 @@
 @can('tareas-list')
 <li class="{{ Request::is('tareas*') ? 'active' : '' }}">
     <a href="{!! route('tareas.index') !!}"><i class="mdi mdi-checkbox-marked-circle"></i><span>Tareas</span></a>
+    {{ $nuevastareas->count()>0 ? '<span class="badge badge-primary pull-right">$nuevastareas->count()</span></span></a>' : '' }}
 </li>
 @endcan
 
@@ -38,9 +39,15 @@
         @endcan
         @can('documentos-list')
         <li class="{{ Request::is('documentos*') ? 'active' : '' }}">
-            <a href="{!! route('documentos.index') !!}"><i class="fa fa-edit"></i><span>Documentos</span></a>
+            <a href="{!! route('documentos.index') !!}"><span>Documentos</span></a>
         </li>
         @endcan
+        @can('empleados-list')
+        <li class="{{ Request::is('empleados*') ? 'active' : '' }}">
+            <a href="{!! route('empleados.index') !!}"><span>Empleados</span></a>
+        </li>
+        @endcan
+
     </ul>
 </li>
 

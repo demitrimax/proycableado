@@ -90,6 +90,9 @@ function ConfirmDelete(id) {
         0 !== this.$dataTableButtons.length && this.$dataTableButtons.DataTable({
             ordering: false,
             dom: "Bfrtip",
+            "language": {
+                      "url": "{{asset('appzia/plugins/datatables/Spanish.json')}}"
+                  },
             buttons: [{
                 extend: "copy",
                 className: "btn-success"
