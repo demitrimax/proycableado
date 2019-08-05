@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version August 3, 2019, 7:16 pm CDT
  *
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
+ * @property \Illuminate\Database\Eloquent\Collection
+ * @property \Illuminate\Database\Eloquent\Collection
  * @property string nombre
  * @property string apellidos
  * @property string curp
@@ -21,7 +21,7 @@ class empleados extends Model
     use SoftDeletes;
 
     public $table = 'cat_empleados';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -32,7 +32,8 @@ class empleados extends Model
     public $fillable = [
         'nombre',
         'apellidos',
-        'curp'
+        'curp',
+        'bajatemp'
     ];
 
     /**
@@ -41,10 +42,11 @@ class empleados extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'nombre' => 'string',
+        'id'        => 'integer',
+        'nombre'    => 'string',
         'apellidos' => 'string',
-        'curp' => 'string'
+        'curp'      => 'string',
+        'bajatemp'  => 'integer',
     ];
 
     /**
@@ -53,8 +55,8 @@ class empleados extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }

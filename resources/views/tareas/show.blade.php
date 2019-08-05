@@ -27,6 +27,9 @@
                     @else
                     <a href="{!! url()->previous() !!}" class="btn btn-default">Regresar</a>
                     @endcan
+                    @can('tareas-edit')
+                    <a href="{!! route('tareas.edit', [$tareas->id]) !!}" class='btn btn-primary'>Editar</a>
+                    @endcan
                   </div>
                   <div class="col-md-6">
                     @include('tareas.regavances')

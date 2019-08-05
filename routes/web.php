@@ -51,4 +51,5 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('empleados', 'empleadosController');
 
   Route::get('asistencia', 'asistenciaController@index')->name('asistencia');
+  Route::post('asistencia/registrar', 'asistenciaController@registrar')->name('asistencia.registrar');
 });

@@ -14,7 +14,7 @@
 @endcan
 @can('asistencia')
 <li class="{{ Request::is('asistencia*') ? 'active' : '' }}">
-    <a href="{!! route('asistencia') !!}"><i class="mdi mdi-checkbox-marked-circle"></i><span>Asistencia </span></a>
+    <a href="{!! route('asistencia') !!}"><i class="mdi mdi-book-minus"></i><span>Asistencia </span></a>
 </li>
 @endcan
 

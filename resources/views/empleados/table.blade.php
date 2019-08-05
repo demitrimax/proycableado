@@ -2,26 +2,26 @@
     <thead>
         <tr>
             <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>CURP</th>
-            <th colspan="3">Acciones</th>
+            <th>CURP</th>
+            <th>Estado</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
     @foreach($empleados as $empleados)
         <tr>
-            <td>{!! $empleados->nombre !!}</td>
-            <td>{!! $empleados->apellidos !!}</td>
+            <td>{!! $empleados->nombre.' '.$empleados->apellidos !!}</td>
             <td>{!! $empleados->curp !!}</td>
+            <td>{!! $empleados->bajatemp == 1 ? '<span class="label label-danger">Baja Temporal</span>' : '<span class="label label-primary">Activo</span>'!!}</td>
             <td>
                 {!! Form::open(['route' => ['empleados.destroy', $empleados->id], 'method' => 'delete', 'id'=>'form'.$empleados->id]) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('empleados.show', [$empleados->id]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('empleados.show', [$empleados->id]) !!}" class='btn btn-info'><i class="glyphicon glyphicon-eye-open"></i></a>
                     @can('empleados-edit')
-                    <a href="{!! route('empleados.edit', [$empleados->id]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('empleados.edit', [$empleados->id]) !!}" class='btn btn-primary'><i class="glyphicon glyphicon-edit"></i></a>
                     @endcan
                     @can('empleados-delete')
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "ConfirmDelete($empleados->id)"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "ConfirmDelete($empleados->id)"]) !!}
                     @endcan
                 </div>
                 {!! Form::close() !!}

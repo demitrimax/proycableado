@@ -22,6 +22,22 @@
     {!! Form::label('curp', 'CURP:') !!}
     {!! Form::text('curp', null, ['class' => 'form-control maxlen', 'maxlength'=>'18']) !!}
 </div>
+@php
+  $bajaval = 0;
+  if(isset($empleados->bajatemp)){
+    $bajaval = 1;
+  }
+@endphp
+@isset($empleados->nombre)
+<!-- Curp Field -->
+<div class="form-group col-sm-6">
+    <div class="checkbox checkbox-primary">
+    {!! Form::hidden('bajatemp', null)!!}
+    {!! Form::checkbox('bajatemp', 1, $bajaval) !!}
+    {!! Form::label('bajatemp', 'Baja Temporal') !!}
+  </div>
+</div>
+@endisset
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
