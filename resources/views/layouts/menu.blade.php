@@ -12,6 +12,11 @@
     <a href="{!! route('tareas.index') !!}"><i class="mdi mdi-checkbox-marked-circle"></i><span>Tareas {!! $nuevastareas->count()>0 ? '<span class="badge badge-primary pull-right">'.$nuevastareas->count().'</span></a>' : '' !!}</span></a>
 </li>
 @endcan
+@can('asistencia')
+<li class="{{ Request::is('asistencia*') ? 'active' : '' }}">
+    <a href="{!! route('asistencia') !!}"><i class="mdi mdi-checkbox-marked-circle"></i><span>Asistencia </span></a>
+</li>
+@endcan
 
 
 <li class="has_sub">

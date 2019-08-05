@@ -49,4 +49,6 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('tareas/todas/all', 'tareasController@todasindex')->name('tareas.todas');
 
   Route::resource('empleados', 'empleadosController');
+
+  Route::get('asistencia', 'asistenciaController@index')->name('asistencia');
 });
