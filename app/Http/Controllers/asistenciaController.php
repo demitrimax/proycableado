@@ -13,8 +13,33 @@ class asistenciaController extends Controller
     //
     public function index()
     {
+      //$input = $request->all();
       $empleados = empleados::orderBy('apellidos','asc')->whereNull('bajatemp')->get();
-      return view('asistencia.lista')->with(compact('empleados'));
+      $mifecha = Date('Y-m-d');
+
+      $asistencia = asistencia::where('fecha', $mifecha)->get();
+      $meses = asistencia::selectRaw('MONTH(fecha) as mes, YEAR(fecha) as anio')
+                            ->groupBy('anio','mes')
+                            ->get();
+      //$losmeses = [''$meses->
+      return view('asistencia.lista')->with(compact('empleados', 'asistencia', 'meses'));
+    }
+
+    public function filtrofecha(Request $request)
+    {
+      $input = $request->all();
+      $empleados = empleados::orderBy('apellidos','asc')->whereNull('bajatemp')->get();
+      $mifecha = Date('Y-m-d');
+      if(isset($input['fecha'])){
+        $mifecha = $input['fecha'];
+      }
+
+      $asistencia = asistencia::where('fecha', $mifecha)->get();
+      $meses = asistencia::selectRaw('MONTH(fecha) as mes, YEAR(fecha) as anio')
+                            ->groupBy('anio','mes')
+                            ->get();
+      //dd($asistencia);
+      return view('asistencia.lista')->with(compact('empleados', 'mifecha', 'asistencia', 'meses'));
     }
 
     public function registrar(Request $request)
@@ -30,24 +55,19 @@ class asistenciaController extends Controller
         if(empty($miempleado)){
 
         }
-        //verificar que no se repite
+        //para que no se repita, buscar la asistencia registrada de ese dia
         $asistencia = asistencia::where('fecha',$fecha)->where('empleado_id',$miempleado->id)->first();
-
+        //si existe entonces actualiza
         if(empty($asistencia)){
           $asistencia = new asistencia;
-        }
-
-        if(!empty($empleado['asistencia'])){
           $asistencia->empleado_id = $miempleado->id;
+        }
+          if($empleado['asistencia'] == 1){
           $asistencia->fecha = $fecha;
-        }
-        if(!empty($empleado['retardo'])){
-          $asistencia->retardo = 1;
-        }
-        if(!empty($empleado['extra'])){
-          $asistencia->extra = 1;
-        }
+          $asistencia->retardo = $empleado['retardo'];
+          $asistencia->extra = $empleado['extra'];
           $asistencia->save();
+        }
 
       }
 

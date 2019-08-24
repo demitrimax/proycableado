@@ -18,6 +18,33 @@
 </li>
 @endcan
 
+<li class="has_sub">
+  @php
+  if( Request::is('inventario*') || Request::is('productos*') || Request::is('categorias*')
+      || Request::is('bodegas*') || Request::is('clientes*') ) {
+      $varActive = "active";
+  } else {
+    $varActive = "";
+  }
+  @endphp
+    <a href="javascript:void(0);" class="waves-effect {{$varActive}}"><i class="mdi mdi-cube"></i><span> Inventario </span><span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+    <ul class="list-unstyled">
+        @can('productos-list')
+        <li class="{{ Request::is('productos*') ? 'active' : '' }}"><a href="{{route('productos.index')}}">Productos</a></li>
+        @endcan
+        @can('categorias-list')
+        <li class="{{ Request::is('categorias*') ? 'active' : '' }}"><a href="{{route('categorias.index')}}">Categorias</a></li>
+        @endcan
+        @can('bodegas-list')
+        <li class="{{ Request::is('bodegas*') ? 'active' : '' }}"><a href="{{route('bodegas.index')}}">Bodegas</a></li>
+        @endcan
+        @can('clientes-list')
+        <li class="{{ Request::is('clientes*') ? 'active' : '' }}"><a href="{{route('clientes.index')}}">Clientes</a></li>
+        @endcan
+
+    </ul>
+</li>
+
 
 <li class="has_sub">
   @php

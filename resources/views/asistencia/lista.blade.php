@@ -18,9 +18,30 @@
 
                         <div class="clearfix"></div>
                         @include('asistencia.table')
+                        <button class="btn btn-primary waves-effect waves-light" type="button" data-toggle="modal" data-target="#myModal">Reporte Mensual</button>
                     </div>
                 </div> <!-- panel-body -->
             </div> <!-- panel -->
         </div> <!-- col -->
     </div>
+
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title" id="myModalLabel">Reporte Mensual de Asistencia</h4>
+              </div>
+              <div class="modal-body">
+                  <h4>Seleccione el Mes</h4>
+
+                  {!! Form::select('meses', $meses, null, ['class'=>'form-control'])!!}
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary waves-effect waves-light">Ver Reporte</button>
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div>
 @endsection

@@ -23,7 +23,7 @@
 
     <!-- Curp Field -->
     <tr>
-      <th>{!! Form::label('curp', 'Curp:') !!}</th>
+      <th>{!! Form::label('curp', 'CURP:') !!}</th>
       <td>{!! $empleados->curp !!}</td>
     </tr>
 

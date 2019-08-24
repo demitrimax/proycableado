@@ -51,5 +51,12 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('empleados', 'empleadosController');
 
   Route::get('asistencia', 'asistenciaController@index')->name('asistencia');
+  Route::post('asistencia', 'asistenciaController@filtrofecha')->name('asistencia.fecha');
   Route::post('asistencia/registrar', 'asistenciaController@registrar')->name('asistencia.registrar');
+
+  //inventarios
+  Route::resource('categorias', 'categoriasController');
+  Route::resource('productos', 'productosController');
+  Route::resource('bodegas', 'bodegasController');
+  Route::resource('clientes', 'clientesController');
 });
