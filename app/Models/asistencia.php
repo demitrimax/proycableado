@@ -48,4 +48,9 @@ class asistencia extends Model
         'fecha'       => 'required'
     ];
 
+    public function empleado()
+    {
+      return $this->belongsTo('App\Models\empleados', 'empleado_id');
+    }
+
 }

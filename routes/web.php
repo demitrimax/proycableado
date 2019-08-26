@@ -51,8 +51,9 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('empleados', 'empleadosController');
 
   Route::get('asistencia', 'asistenciaController@index')->name('asistencia');
-  Route::post('asistencia', 'asistenciaController@filtrofecha')->name('asistencia.fecha');
+  Route::post('asistencia/filtro/fecha', 'asistenciaController@filtrofecha')->name('asistencia.fecha');
   Route::post('asistencia/registrar', 'asistenciaController@registrar')->name('asistencia.registrar');
+  Route::post('asistencia/reporte', 'asistenciaController@reportemensual')->name('asistencia.reporte');
 
   //inventarios
   Route::resource('categorias', 'categoriasController');

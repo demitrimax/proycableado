@@ -13,8 +13,10 @@
   <div class="input-group">
     @php
       $fecha = date('Y-m-d');
+      //dd($asistencia);
       if(isset($mifecha)){
         $fecha = $mifecha;
+
       }
     @endphp
     {!! Form::text('fecha', date('Y-m-d'), ['id'=>'fecha','placeholder'=>'yyyy-mm-dd','class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-date-format'=>'yyyy-mm-dd', 'required', 'pattern'=>'(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))' ] ) !!}
@@ -43,29 +45,32 @@
             {!! Form::hidden('empleados['.$empleados->id.'][id]', $empleados->id) !!}
             <td>
               @php
-                $asisten = 0;
-                $retardo = 0;
-                $extra = 0;
+                $asisten = false;
+                $retardo = false;
+                $extra = false;
+                //dd($asistencia);
                 foreach($asistencia->where('empleado_id',$empleados->id) as $asiste){
-                  $asisten = 0;
-                  $retardo = 0;
-                  $extra = 0;
+                  //dd($asiste);
+                  $asisten = false;
+                  $retardo = false;
+                  $extra = false;
                   if($asiste->fecha){
-                    $asisten = 1;
+                    $asisten = true;
                   }
                   if($asiste->extra == 1){
-                    $extra = 1;
+                    $extra = true;
                   }
                   if($asiste->retardo == 1){
-                    $retardo = 1;
+                    $retardo = true;
                   }
                 }
 
               @endphp
 
               <div class="checkbox checkbox-success">
+                    {{$asisten}}
                     {!! Form::hidden('empleados['.$empleados->id.'][asistencia]', 0) !!}
-                    {!! Form::checkbox('empleados['.$empleados->id.'][asistencia]', 1, $asisten) !!}
+                    {!! Form::checkbox('empleados['.$empleados->id.'][asistencia]', 1, $asisten, ['value'=>$asisten]) !!}
                     {!! Form::label('empleados['.$empleados->id.'][asistencia]', 'Asistencia') !!}
                 </div>
 
@@ -121,7 +126,8 @@
   var dp = $('#fecha').datepicker().data('datepicker');
 
   @isset($mifecha)
-  dp.selectDate('{{$mifecha}}');
+  var miFecha = new Date('{{$mifecha}}')
+  dp.selectDate(miFecha);
   @else
     dp.selectDate(new Date());
   @endisset
@@ -129,7 +135,7 @@
     var fecha = $('#fecha').val();
     if (fecha.length > 7) {
       var form = document.getElementById('formasistencia');
-      form.action='{{url('asistencia')}}';
+      form.action='{{url('asistencia/filtro/fecha')}}';
       form.submit();
     }
 

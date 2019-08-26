@@ -32,15 +32,18 @@
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <h4 class="modal-title" id="myModalLabel">Reporte Mensual de Asistencia</h4>
               </div>
+              {!! Form::open(['url' => ['asistencia/reporte'], 'method' => 'post'])!!}
               <div class="modal-body">
                   <h4>Seleccione el Mes</h4>
 
-                  {!! Form::select('meses', $meses, null, ['class'=>'form-control'])!!}
+                  {!! Form::select('mesanio', $mesesasistencia, null, ['class'=>'form-control'])!!}
               </div>
+
               <div class="modal-footer">
                   <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary waves-effect waves-light">Ver Reporte</button>
+                  <button type="submit" class="btn btn-primary waves-effect waves-light">Ver Reporte</button>
               </div>
+              {!! Form::close()!!}
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div>
