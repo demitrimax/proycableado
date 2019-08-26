@@ -33,13 +33,16 @@
         <li class="{{ Request::is('productos*') ? 'active' : '' }}"><a href="{{route('productos.index')}}">Productos</a></li>
         @endcan
         @can('categorias-list')
-        <li class="{{ Request::is('categorias*') ? 'active' : '' }}"><a href="{{route('categorias.index')}}">Categorias</a></li>
+        <li class="{{ Request::is('categorias*') ? 'active' : '' }}"><a href="{{route('categorias.index')}}">Categorias de productos</a></li>
         @endcan
         @can('bodegas-list')
         <li class="{{ Request::is('bodegas*') ? 'active' : '' }}"><a href="{{route('bodegas.index')}}">Bodegas</a></li>
         @endcan
         @can('clientes-list')
         <li class="{{ Request::is('clientes*') ? 'active' : '' }}"><a href="{{route('clientes.index')}}">Clientes</a></li>
+        @endcan
+        @can('invproveedores-list')
+        <li class="{{ Request::is('invproveedores*') ? 'active' : '' }}"><a href="{{route('invproveedores.index')}}">Proveedores</a></li>
         @endcan
 
     </ul>
