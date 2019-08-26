@@ -68,7 +68,7 @@
               @endphp
 
               <div class="checkbox checkbox-success">
-                    {{$asisten}}
+                    
                     {!! Form::hidden('empleados['.$empleados->id.'][asistencia]', 0) !!}
                     {!! Form::checkbox('empleados['.$empleados->id.'][asistencia]', 1, $asisten, ['value'=>$asisten]) !!}
                     {!! Form::label('empleados['.$empleados->id.'][asistencia]', 'Asistencia') !!}
