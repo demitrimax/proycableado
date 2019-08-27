@@ -14,6 +14,7 @@
   </thead>
   <tbody>
     @foreach($asistenciames->unique('empleado_id') as $empleadoasiste)
+    @if($empleadoasiste->empleado)
     <tr>
       <td>{{$empleadoasiste->empleado->nombre.' '.$empleadoasiste->empleado->apellidos}}</td>
       @foreach($misfechas as $fec)
@@ -28,6 +29,7 @@
         </td>
       @endforeach
     </tr>
+    @endif
     @endforeach
   </tbody>
 </table>

@@ -29,6 +29,16 @@
   @endphp
     <a href="javascript:void(0);" class="waves-effect {{$varActive}}"><i class="mdi mdi-cube"></i><span> Inventario </span><span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
     <ul class="list-unstyled">
+        @can('inventario-salida')
+        <li class="nav-item"><a href="{!! route('inventario.salida') !!}" class="nav-link {{ Request::is('inventario/salida*') ? 'active' : '' }}">Salidas</a></li>
+        @endcan
+        @can('inventario-entrada')
+        <li class="nav-item"><a href="{!! route('inventario.entrada') !!}" class="nav-link {{ Request::is('inventario/entrada*') ? 'active' : '' }}">Entradas</a></li>
+        @endcan
+        @can('invoperacions-list')
+        <li class="nav-item"><a href="{!! route('invoperacions.index') !!}" class="nav-link {{ Request::is('invoperacions*') ? 'active' : '' }}">Operación</a></li>
+        @endcan
+        
         @can('productos-list')
         <li class="{{ Request::is('productos*') ? 'active' : '' }}"><a href="{{route('productos.index')}}">Productos</a></li>
         @endcan

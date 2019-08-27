@@ -61,4 +61,17 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('bodegas', 'bodegasController');
   Route::resource('clientes', 'clientesController');
   Route::resource('invproveedores', 'invproveedoresController');
+
+  Route::resource('invoperacions', 'invoperacionController');
+  Route::get('inventario/entrada', 'invoperacionController@entrada')->name('inventario.entrada');
+  Route::get('inventario/salida', 'invoperacionController@salida')->name('inventario.salida');
+  Route::post('inventario/entrada/registro', 'invoperacionController@regentrada')->name('inventario.regentrada');
+  Route::post('inventario/salida/registro', 'invoperacionController@regsalida')->name('inventario.regsalida');
+  Route::get('precio/venta/producto/{id}', 'invoperacionController@precioventaproducto');
+  Route::get('precio/compra/producto/{id}', 'invoperacionController@preciocompraproducto');
+  Route::post('inventario/operacion/producto/{id}/surtidototal', 'invoperacionController@surtidototalproducto')->name('inventario.producto.surtido.total');
+  Route::post('inventario/operacion/producto/{id}/surtidoparcial', 'invoperacionController@surtidoparcialproducto')->name('inventario.producto.surtido.parcial');
+  Route::get('inventario/informe/productos', 'invoperacionController@verinformeproductos')->name('inventario.informe.productos');
+  Route::get('inventario/informe/ver1', 'invoperacionController@informeVer1');
+  Route::get('inventario/informe/ver2', 'invoperacionController@informeVer2');
 });
