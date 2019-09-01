@@ -16,6 +16,7 @@ use Auth;
 use App\Models\tareavances;
 use App\Models\tareas;
 
+
 class tareasController extends AppBaseController
 {
     /** @var  tareasRepository */
@@ -41,8 +42,20 @@ class tareasController extends AppBaseController
     {
         $this->tareasRepository->pushCriteria(new RequestCriteria($request));
         $tareas = $this->tareasRepository->orderBy('vencimiento','asc')->get();
-
-        $tareas = tareas::whereNull('terminado')->orderBy('vencimiento', 'asc')->get();
+        //dd(Auth::user()->hasRole('administrador'));
+        if (Auth::user()->hasRole('administrador')) {
+          $tareas = tareas::whereNull('terminado')
+                          ->orderBy('vencimiento', 'asc')
+                          ->limit(50)
+                          ->get();
+        }
+        else {
+          $tareas = tareas::whereNull('terminado')
+                            ->orderBy('vencimiento', 'asc')
+                            ->where('user_id', Auth::user()->id)
+                            ->limit(50)
+                            ->get();
+        }
 
         return view('tareas.index')
             ->with('tareas', $tareas);
@@ -52,6 +65,18 @@ class tareasController extends AppBaseController
     {
         $this->tareasRepository->pushCriteria(new RequestCriteria($request));
         $tareas = $this->tareasRepository->orderBy('vencimiento','asc')->get();
+
+        if (Auth::user()->hasRole('administrador')) {
+          $tareas = tareas::whereNull('terminado')
+                          ->orderBy('vencimiento', 'asc')
+                          ->get();
+        }
+        else {
+          $tareas = tareas::whereNull('terminado')
+                            ->orderBy('vencimiento', 'asc')
+                            ->where('user_id', Auth::user()->id)
+                            ->get();
+        }
 
         return view('tareas.index')
             ->with('tareas', $tareas);

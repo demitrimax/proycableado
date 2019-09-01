@@ -8,6 +8,7 @@ use App\Models\proyectos;
 use Carbon\Carbon;
 use App\User;
 use App\Models\tareas;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -39,7 +40,13 @@ class HomeController extends Controller
         $proyatendidos = $cantproy->where('estatus_id','T')->count();
         $usuarios = new User;
         $usuariosOnline = $usuarios->allOnline()->count() ;
-        $tareascount = tareas::whereNull('terminado')->count();
+        if(Auth::user()->hasRole('administrador')){
+          $tareascount = tareas::whereNull('terminado')->count();
+        }
+        else {
+          $tareascount = tareas::whereNull('terminado')->where('user_id', Auth::user()->id)->count();
+        }
+
 
 
         return view('home')->with(compact('cantproy','cantproyenelmes','proyatendidos', 'usuariosOnline', 'tareascount'));

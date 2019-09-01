@@ -31,13 +31,13 @@
       </table>
       @endif
 
-      @can('registrar-avances')
+
         @if($tareas->avance_porc < 100)
           @if($tareas->user_id == Auth::user()->id)
             <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#RegistroAvances">Registrar Avance</button>
           @endif
         @endif
-      @endcan
+
     </div>
 </div>
 

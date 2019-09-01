@@ -17,7 +17,7 @@
                       </tbody>
                     </table>
                       {!! Form::open(['route' => ['proyectos.destroy', $proyectos->id], 'method' => 'delete', 'id'=>'form'.$proyectos->id]) !!}
-                      <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Regresar</a>
+                      <a href="{!! url()->previous() !!}" class="btn btn-default">Regresar</a>
                       @can('proyectos-edit')
                       <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class="btn btn-primary">Editar</a>
                       @endcan
@@ -71,7 +71,16 @@
                         <td>{{$documento->descripcion}}</td>
                         <td>
 
-                          <button type="button" class="btn waves-effect btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar"> <i class="fa fa-times"></i> </button>
+                          {!! Form::open(['route' => ['documentos.destroy', $documento->id], 'method' => 'delete', 'id'=>'formDoc'.$documento->id]) !!}
+                          <div class='btn-group'>
+                            @can('documentos-delete')
+                              {!! Form::hidden('proyectoid', $proyectos->id)!!}
+                              {!! Form::hidden('redirect', 'proyectos.show')!!}
+                              <button type="button" class="btn waves-effect btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar" onclick = "ConfirmDeleteDoc({{$documento->id}})"> <i class="fa fa-times"></i> </button>
+                            @endcan
+                          </div>
+                          {!! Form::close() !!}
+
                         </td>
                     </tr>
                     @endforeach
@@ -83,9 +92,9 @@
                 </div>
                 @endcan
                 @can('documentos-create')
-                  @if($proyectos->estatus_id == 'A')
+
                   <button title="Agregar Documento" type="button" class="btn waves-effect btn-primary" data-toggle="modal" data-target="#addDoc"> <i class="ion ion-document-text"></i> Agregar Documento</button>
-                  @endif
+                  
                 @endcan
             </div>
 
@@ -162,6 +171,21 @@ function ConfirmDelete(id) {
         }).then((result) => {
   if (result.value) {
     document.forms['form'+id].submit();
+  }
+})
+}
+function ConfirmDeleteDoc(id) {
+  swal.fire({
+        title: 'Eliminar Documento',
+        text: 'Se eliminará el documento.',
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Continuar',
+        }).then((result) => {
+  if (result.value) {
+    document.forms['formDoc'+id].submit();
   }
 })
 }

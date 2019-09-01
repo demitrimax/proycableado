@@ -178,7 +178,7 @@ class documentosController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $documentos = $this->documentosRepository->findWithoutFail($id);
 
@@ -191,8 +191,14 @@ class documentosController extends AppBaseController
 
         $this->documentosRepository->delete($id);
 
+        Alert::success('Documentos borrado correctamente.');
         Flash::success('Documentos borrado correctamente.');
-        Flash::success('Documentos borrado correctamente.');
+
+        if($request->input('redirect')){
+          $proyectoid = $request->input('proyectoid');
+          $redirect = $request->input('redirect');
+          return redirect(route($redirect, [$proyectoid]));
+        }
 
         return redirect(route('documentos.index'));
     }

@@ -122,7 +122,7 @@ if (isset($proyectos->generico)){
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('proyectos.index') !!}" class="btn btn-default">Cancelar</a>
+    <a href="{!! url()->previous() !!}" class="btn btn-default">Cancelar</a>
 </div>
 
 @section('scripts')

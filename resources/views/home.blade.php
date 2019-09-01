@@ -70,7 +70,13 @@
                                         </div>
                                         <div class="panel-body p-t-10">
                                             <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-down text-danger m-r-10"></i><b>{{$tareascount}}</b></h2>
-                                            <p class="text-muted m-b-0 m-t-20"><b>35%</b> From Last 1 Month</p>
+                                            <p class="text-muted m-b-0 m-t-20">
+                                              @hasrole('administrador')
+                                                <a href="{{url('tareas')}}"> Ver todas las tareas</a>
+                                                @else
+                                                <a href="{{ url('profile') }}"> Ver Mis Tareas <a>
+                                                @endhasrole
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
