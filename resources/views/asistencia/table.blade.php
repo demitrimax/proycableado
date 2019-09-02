@@ -34,7 +34,8 @@
             <th>CURP</th>
             <th>Asistencia</th>
             <th>Retardo</th>
-            <th>Extra</th>
+            <th title="Tiempo Extra">Extra</th>
+            <th>Comentario</th>
         </tr>
     </thead>
     <tbody>
@@ -68,10 +69,10 @@
               @endphp
 
               <div class="checkbox checkbox-success">
-                    
+
                     {!! Form::hidden('empleados['.$empleados->id.'][asistencia]', 0) !!}
                     {!! Form::checkbox('empleados['.$empleados->id.'][asistencia]', 1, $asisten, ['value'=>$asisten]) !!}
-                    {!! Form::label('empleados['.$empleados->id.'][asistencia]', 'Asistencia') !!}
+                    {!! Form::label('empleados['.$empleados->id.'][asistencia]', 'A') !!}
                 </div>
 
             </td>
@@ -80,7 +81,7 @@
                 <div class="checkbox checkbox-warning">
                         {!! Form::hidden('empleados['.$empleados->id.'][retardo]', 0) !!}
                         {!! Form::checkbox('empleados['.$empleados->id.'][retardo]', 1, $retardo) !!}
-                        {!! Form::label('empleados['.$empleados->id.'][retardo]', 'Retardo') !!}
+                        {!! Form::label('empleados['.$empleados->id.'][retardo]', 'R') !!}
               </div>
 
             </td>
@@ -89,9 +90,12 @@
               <div class="checkbox checkbox-info">
                 {!! Form::hidden('empleados['.$empleados->id.'][extra]', 0) !!}
                 {!! Form::checkbox('empleados['.$empleados->id.'][extra]', 1, $extra) !!}
-                {!! Form::label('empleados['.$empleados->id.'][extra]', 'Tiempo Extra') !!}
+                {!! Form::label('empleados['.$empleados->id.'][extra]', 'TE') !!}
                 </div>
 
+            </td>
+            <td>
+              {{Form::text('empleados['.$empleados->id.'][comentario]', null, ['class'=>'form-control', 'maxlength'=>'50', 'placeholder'=>'Escriba un comentario para la asistencia'])}}
             </td>
         </tr>
     @endforeach

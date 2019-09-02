@@ -21,7 +21,7 @@
         <td>
         @foreach($asistenciames->where('empleado_id', $empleadoasiste->empleado_id) as $fechas)
           @if($fechas->fecha->format('d-m') == $fec)
-            <span class="badge badge-success"><i class="ion ion-checkmark-circled"></i></span> {{-- $fechas->fecha->format('d') --}}
+            <span class="badge badge-{!! $fechas->comentario ? 'alert' : 'success' !!}"><i class="ion ion-checkmark-circled" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$fechas->comentario}}"></i></span> {{-- $fechas->fecha->format('d') --}}
             {!! $fechas->retardo == 1 ? '<span class="badge badge-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Retardo"><i class="ion ion-alert-circled"></i></span>' : '' !!}
             {!! $fechas->extra == 1 ? '<span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tiempo extra"><i class="ion ion-information-circled"></i></span>' : '' !!}
           @endif

@@ -21,6 +21,8 @@ class asistenciaController extends Controller
       $asistencia = asistencia::where('fecha', $mifecha)->get();
       $meses = asistencia::selectRaw('MONTH(fecha) as mes, YEAR(fecha) as anio')
                             ->groupBy('anio','mes')
+                            ->orderBy('anio', 'desc')
+                            ->orderBy('mes', 'desc')
                             ->get();
       //dd($meses);
       $losmeses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
@@ -78,6 +80,7 @@ class asistenciaController extends Controller
           $asistencia->fecha = $fecha;
           $asistencia->retardo = $empleado['retardo'];
           $asistencia->extra = $empleado['extra'];
+          $asistencia->comentario = $empleado['comentario'];
           $asistencia->save();
         }
 
