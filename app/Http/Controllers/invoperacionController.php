@@ -192,7 +192,7 @@ class invoperacionController extends AppBaseController
     public function entrada()
     {
       $proveedores = invproveedores::orderBy('nombre','asc')->pluck('nombre','id');
-      $productos = productos::orderBy('nombre','asc')->pluck('nombre','id');
+      $productos = productos::where('inventariable',0)->orderBy('nombre','asc')->pluck('nombre','id');
       $bodegas = bodegas::pluck('nombre','id');
       $operaciontipo = 'entrada';
       $facturara = facturara::pluck('nombre', 'id');
@@ -201,7 +201,7 @@ class invoperacionController extends AppBaseController
     public function salida()
     {
       $clientes = clientes::orderBy('nombre','asc')->pluck('nombre','id');
-      $productos = productos::orderBy('nombre','asc')->get();
+      $productos = productos::where('inventariable',0)->orderBy('nombre','asc')->get();
       $productos = $productos->where('stock', '>', 0 )->pluck('nomproductostock','id');
       $bodegas = bodegas::pluck('nombre','id');
       $operaciontipo = 'salida';
@@ -225,7 +225,7 @@ class invoperacionController extends AppBaseController
       $invoperacion->subtotal = $input['aSubtotal'];
       $invoperacion->iva = $input['aIva'];
       $invoperacion->fecha = $input['fecha'];
-      $invoperacion->facturara_id = $input['facturara_id'];
+      //$invoperacion->facturara_id = $input['facturara_id'];
       $invoperacion->numfactura = $input['numfactura'];
       $invoperacion->estatus = 'S';
       $invoperacion->save();
@@ -307,6 +307,7 @@ class invoperacionController extends AppBaseController
           $invdetoperacion->tipo_operacion = 'Salida';
           $invdetoperacion->fecha = $input['fecha'];
           $invdetoperacion->bodega_id = $input['bodega_id'];
+          $invdetoperacion->estatus = 'T';
           $invdetoperacion->save();
         }
 
@@ -358,9 +359,14 @@ class invoperacionController extends AppBaseController
         Alert::error('Operación de Inventario no encontrado');
         return back();
       }
-
-      $detoperacion->estatus = 'P';
-      $detoperacion->parcial = $input['parcial'];
+      if($detoperacion->cantidad == $input['parcial'])
+      {
+        $detoperacion->estatus = 'T';
+      }
+      else {
+        $detoperacion->estatus = 'P';
+        $detoperacion->parcial = $input['parcial'];
+      }
       $detoperacion->save();
       Flash::success('Surtido Parcialmente');
       Alert::success('Surtido Parcialmente');

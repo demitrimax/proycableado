@@ -1,4 +1,4 @@
-@extends('layouts.appv2')
+@extends('layouts.app')
 
 @section('title',config('app.name').' | Reporte de Existencia de Productos' )
 

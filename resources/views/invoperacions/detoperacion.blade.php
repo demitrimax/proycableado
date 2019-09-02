@@ -1,4 +1,4 @@
-
+@if($invoperacion->invdetoperacions->count()>0)
 <table class="table mg-b-0 table-primary">
   <thead class="bg-info">
     <tr>
@@ -21,7 +21,7 @@
         @if($detoperacion->estatus == 'S')
         {!! Form::button('<i class="fa fa-exchange"></i> Surtido Total', ['class'=>'btn btn-xs btn-info', 'data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Surtido Total', 'onclick' => 'SurtidoTotal('.$detoperacion->id.')' ]) !!}
 
-        {!! Form::button('<i class="fa fa-cubes"></i> Surtido Parcial', ['class'=>'btn btn-xs btn-warning', 'data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Surtido Parcial', 'onclick' => "SurtidoParcial($detoperacion->id, $detoperacion->cantidad)"]) !!}
+        {!! Form::button('<i class="fa fa-cubes"></i> Surtido Parcial', ['class'=>'btn btn-xs btn-warning', 'data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Surtido Parcial', 'onclick' => "SurtidoParcial($invoperacion->id, $detoperacion->id, $detoperacion->cantidad)"]) !!}
         @endif
 
         @if($detoperacion->estatus == 'T')
@@ -42,7 +42,7 @@
     @endforeach
   </tbody>
 </table>
-{!! Form::open(['route' => ['inventario.producto.surtido.parcial', $invoperacion->id], 'id'=>'formparcial'.$detoperacion->id]) !!}
+{!! Form::open(['route' => ['inventario.producto.surtido.parcial', $invoperacion->id], 'id'=>'formparcial'.$invoperacion->id]) !!}
   {!! Form::hidden('parcial', null, ['id'=>'parcial'])!!}
   {!! Form::hidden('detoperacionid', null, ['id'=>'detoperacionid'])!!}
 {!! form::close()!!}
@@ -89,6 +89,7 @@
        </table>
      </div>
  </div>
+ @endif
 
  @section('scripts')
 
@@ -109,12 +110,12 @@ function SurtidoTotal(id) {
   }
 })
 }
-async function SurtidoParcial(id, maxval) {
+async function SurtidoParcial(id, iddet, maxval) {
 const { value: surtido } = await swal.fire({
         title: 'Surtido Parcial',
         input: 'number',
         inputAttributes: {
-            min: (maxval*0.1),
+            min: parseInt(maxval*0.1),
             max: maxval,
             step: 1
           },
@@ -128,7 +129,7 @@ const { value: surtido } = await swal.fire({
         if(surtido){
           //alert(surtido);
           $("#parcial").val(surtido);
-          $("#detoperacionid").val(id);
+          $("#detoperacionid").val(iddet);
           //alert($('#parcial').val());
           document.forms['formparcial'+id].submit();
         }

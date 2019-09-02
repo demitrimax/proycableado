@@ -18,7 +18,7 @@
                     @include('invoperacions.detoperacion')
                   </div>
 
-                    <a href="{!! route('invoperacions.index') !!}" class="btn btn-secondary">Regresar</a>
+                    <a href="{!! route('invoperacions.index') !!}" class="btn btn-primary">Regresar</a>
                 </div>
             </div>
         </div>
