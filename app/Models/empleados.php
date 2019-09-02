@@ -32,6 +32,7 @@ class empleados extends Model
     public $fillable = [
         'nombre',
         'apellidos',
+        'rfc',
         'curp',
         'bajatemp'
     ];
@@ -46,6 +47,7 @@ class empleados extends Model
         'nombre'    => 'string',
         'apellidos' => 'string',
         'curp'      => 'string',
+        'rfc'       => 'string',
         'bajatemp'  => 'integer',
     ];
 

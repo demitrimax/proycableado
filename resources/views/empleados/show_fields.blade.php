@@ -27,6 +27,12 @@
       <td>{!! $empleados->curp !!}</td>
     </tr>
 
+    <!-- Curp Field -->
+    <tr>
+      <th>{!! Form::label('rfc', 'RFC:') !!}</th>
+      <td>{!! $empleados->rfc !!}</td>
+    </tr>
+
 
   </tbody>
 </table>

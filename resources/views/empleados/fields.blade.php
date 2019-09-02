@@ -22,6 +22,12 @@
     {!! Form::label('curp', 'CURP:') !!}
     {!! Form::text('curp', null, ['class' => 'form-control maxlen', 'maxlength'=>'18']) !!}
 </div>
+
+<!-- RFC Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('rfc', 'RFC:') !!}
+    {!! Form::text('rfc', null, ['class' => 'form-control maxlen', 'maxlength'=>'13']) !!}
+</div>
 @php
   $bajaval = 0;
   if(isset($empleados->bajatemp)){
