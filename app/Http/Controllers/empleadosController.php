@@ -195,8 +195,12 @@ class empleadosController extends AppBaseController
       //guardar la imagen en el sistema de archivos
       $manager = new ImageManager;
       $file = $request->file('empleadophoto');
-      $path = public_path() . '/empleadofoto/';
+      $path = public_path() . '/empleadophoto/';
+      $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+      //dd($extension);
       $filename = uniqid().$file->getClientOriginalName();
+      $filename = uniqid().'.'.$extension;
+
       //cambiar el tamaño de la imagen
       $image = $manager->make($file)->resize(400, 300)->save($path.$filename);
       //$file->move($path,$filename);

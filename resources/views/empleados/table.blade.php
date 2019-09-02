@@ -1,6 +1,7 @@
 <table class="table table-responsive" id="empleados-table">
     <thead>
         <tr>
+            <th>Foto</th>
             <th>Nombre</th>
             <th>CURP</th>
             <th>Estado</th>
@@ -10,6 +11,7 @@
     <tbody>
     @foreach($empleados as $empleados)
         <tr>
+            <td><img src="{{asset($empleados->ufoto)}}" alt="user-img" class="thumb-sm img-circle"></td>
             <td>{!! $empleados->nombre.' '.$empleados->apellidos !!}</td>
             <td>{!! $empleados->curp !!}</td>
             <td>{!! $empleados->bajatemp == 1 ? '<span class="label label-danger">Baja Temporal</span>' : '<span class="label label-primary">Activo</span>'!!}</td>

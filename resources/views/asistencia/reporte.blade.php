@@ -16,7 +16,8 @@
     @foreach($asistenciames->unique('empleado_id') as $empleadoasiste)
     @if($empleadoasiste->empleado)
     <tr>
-      <td>{{$empleadoasiste->empleado->nombre.' '.$empleadoasiste->empleado->apellidos}}</td>
+      <td>  
+        {{$empleadoasiste->empleado->nombre.' '.$empleadoasiste->empleado->apellidos}}</td>
       @foreach($misfechas as $fec)
         <td>
         @foreach($asistenciames->where('empleado_id', $empleadoasiste->empleado_id) as $fechas)

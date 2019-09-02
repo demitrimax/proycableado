@@ -15,7 +15,7 @@ class asistenciaController extends Controller
     public function index()
     {
       //$input = $request->all();
-      $empleados = empleados::orderBy('apellidos','asc')->whereNull('bajatemp')->get();
+      $empleados = empleados::orderBy('apellidos','asc')->whereNull('bajatemp')->orWhere('bajatemp',0)->get();
       $mifecha = Date('Y-m-d');
 
       $asistencia = asistencia::where('fecha', $mifecha)->get();
@@ -38,7 +38,7 @@ class asistenciaController extends Controller
     public function filtrofecha(Request $request)
     {
       $input = $request->all();
-      $empleados = empleados::orderBy('apellidos','asc')->whereNull('bajatemp')->get();
+      $empleados = empleados::orderBy('apellidos','asc')->whereNull('bajatemp')->orWhere('bajatemp',0)->get();
       $mifecha = Date('Y-m-d');
       if(isset($input['fecha'])){
         $mifecha = $input['fecha'];
