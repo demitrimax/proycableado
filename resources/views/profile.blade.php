@@ -18,7 +18,7 @@
                 <h3 class="panel-title">Perfil del Usuario</h3>
               </div>
             <div class="panel-body panel-profile">
-              <a href="#">
+              <a href="javascript:verAvatar();">
               <img class="profile-user-img img-responsive img-circle thumb-md center-block" src="{{asset(Auth::user()->uavatar)}}" alt="User profile picture">
             </a>
               <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
@@ -100,4 +100,21 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+@endsection
+
+@section('scripts')
+<script>
+function verAvatar()
+{
+  Swal.fire({
+    title: 'Foto de Perfil',
+    text: 'Esta es la imagen que tenemos de tu perfil',
+    imageUrl: '{{asset(Auth::user()->uavatar)}}',
+    imageWidth: 400,
+    imageHeight: 300,
+    imageAlt: 'Imagen de Perfil',
+    animation: false
+  })
+}
+</script>
 @endsection

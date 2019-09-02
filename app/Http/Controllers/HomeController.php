@@ -93,7 +93,7 @@ class HomeController extends Controller
       $path = public_path() . '/avatar/';
       $filename = uniqid().$file->getClientOriginalName();
       //cambiar el tamaño de la imagen
-      $image = $manager->make($file)->resize(200, 400)->save($path.$filename);
+      $image = $manager->make($file)->resize(400, 300)->save($path.$filename);
       //$file->move($path,$filename);
       //guardar el registro de la Imagen
       $avatar = User::find(Auth::user()->id);
