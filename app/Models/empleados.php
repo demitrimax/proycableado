@@ -34,7 +34,13 @@ class empleados extends Model
         'apellidos',
         'rfc',
         'curp',
-        'bajatemp'
+        'bajatemp',
+        'fingreso',
+        'fbaja',
+        'fnacimiento',
+        'nss',
+        'foto',
+        'comentario'
     ];
 
     /**
@@ -49,6 +55,12 @@ class empleados extends Model
         'curp'      => 'string',
         'rfc'       => 'string',
         'bajatemp'  => 'integer',
+        'fingreso'  => 'date',
+        'fbaja'     => 'date',
+        'fnacimiento' => 'date',
+        'nss'       => 'string',
+        'foto'      => 'string',
+        'comentario'=> 'string',
     ];
 
     /**
@@ -59,6 +71,15 @@ class empleados extends Model
     public static $rules = [
 
     ];
+
+    public function getUfotoAttribute()
+    {
+      $avatar = 'avatar/avatar.png';
+      if ($this->foto){
+        $avatar = $this->foto;
+      }
+      return $avatar;
+    }
 
 
 }

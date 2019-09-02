@@ -28,22 +28,60 @@
     {!! Form::label('rfc', 'RFC:') !!}
     {!! Form::text('rfc', null, ['class' => 'form-control maxlen', 'maxlength'=>'13']) !!}
 </div>
+
+<!-- NSS Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('nss', 'NSS:') !!} <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="Número de Seguridad Social"><i class="fa fa-info-circle"></i></span>
+    {!! Form::text('nss', null, ['class' => 'form-control maxlen', 'maxlength'=>'11']) !!}
+</div>
+@php
+  $fechaingreso = null;
+  if(isset($empleados->fingreso))
+  {
+    $fechaingreso = $empleados->fingreso->format('Y-m-d');
+  }
+@endphp
+<!-- Fecha de Ingreso Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fingreso', 'Fecha de Ingreso:') !!} <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="Fecha de Ingreso"><i class="fa fa-info-circle"></i></span>
+    {!! Form::text('fingreso', $fechaingreso, ['class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-date-format'=>'yyyy-mm-dd', 'title'=>'Fecha de Ingreso']) !!}
+</div>
+@php
+  $fechanacimiento = null;
+  if(isset($empleados->fnacimiento))
+  {
+    $fechanacimiento = $empleados->fnacimiento->format('Y-m-d');
+  }
+@endphp
+<!-- Fecha de Nacimiento Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fnacimiento', 'Fecha de Nacimiento:') !!} <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="Fecha de Nacimiento"><i class="fa fa-info-circle"></i></span>
+    {!! Form::text('fnacimiento', $fechanacimiento, ['class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-date-format'=>'yyyy-mm-dd', 'title'=>'Fecha de Nacimiento']) !!}
+</div>
 @php
   $bajaval = 0;
   if(isset($empleados->bajatemp)){
     $bajaval = 1;
+    if($empleados->bajaval == 0){
+      $bajaval = 0;
+    }
   }
 @endphp
 @isset($empleados->nombre)
 <!-- Curp Field -->
 <div class="form-group col-sm-6">
     <div class="checkbox checkbox-primary">
-    {!! Form::hidden('bajatemp', null)!!}
+    {!! Form::hidden('bajatemp', 0)!!}
     {!! Form::checkbox('bajatemp', 1, $bajaval) !!}
     {!! Form::label('bajatemp', 'Baja Temporal') !!}
   </div>
 </div>
 @endisset
+
+<div class="form-group col-sm-12">
+    {!! Form::label('comentario', 'Comentarios:') !!}
+    {!! Form::textarea('comentario', null, ['class' => 'form-control']) !!}
+</div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

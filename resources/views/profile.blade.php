@@ -113,7 +113,7 @@ function verAvatar()
     imageWidth: 400,
     imageHeight: 300,
     imageAlt: 'Imagen de Perfil',
-    animation: false
+    animation: true
   })
 }
 </script>

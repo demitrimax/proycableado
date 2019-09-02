@@ -50,6 +50,7 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('tareas/todas/all', 'tareasController@todasindex')->name('tareas.todas');
 
   Route::resource('empleados', 'empleadosController');
+  Route::post('empleado/photo', 'empleadosController@empleadoUploadPhoto')->name('empleado.upload.photo');
 
   Route::get('asistencia', 'asistenciaController@index')->name('asistencia');
   Route::post('asistencia/filtro/fecha', 'asistenciaController@filtrofecha')->name('asistencia.fecha');

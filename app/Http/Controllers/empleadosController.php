@@ -11,6 +11,8 @@ use Flash;
 use Alert;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\empleados;
+use Intervention\Image\ImageManager;
 
 class empleadosController extends AppBaseController
 {
@@ -136,7 +138,7 @@ class empleadosController extends AppBaseController
         Flash::success('Empleado actualizado correctamente.');
         Alert::success('Empleado actualizado correctamente.');
 
-        return redirect(route('empleados.index'));
+        return redirect(route('empleados.show', [$empleados->id]));
     }
 
     /**
@@ -163,5 +165,47 @@ class empleadosController extends AppBaseController
         Alert::success('Empleados borrado correctamente.');
 
         return redirect(route('empleados.index'));
+    }
+    public function empleadoUploadPhoto(Request $request)
+    {
+      $rules = [
+        'empleadophoto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'empleado_id'   => 'required',
+      ];
+      $this->validate($request, $rules);
+      /*
+      $input = $request->all();
+      $input['user_id'] = Auth::user()->id;
+      //$documentos = $this->documentosRepository->create($input);
+
+      $usuario = User::find(Auth::user()->id);
+
+      $photo = $request->file('nombre_doc')->store('documentos');
+
+      $usuario->avatar = $photo;
+
+      $usuario->save();
+
+      Flash::success('Avatar guardadao correctamente.');
+      Alert::success('Avatar guardadao correctamente.');
+
+      return back();
+      */
+
+      //guardar la imagen en el sistema de archivos
+      $manager = new ImageManager;
+      $file = $request->file('empleadophoto');
+      $path = public_path() . '/empleadofoto/';
+      $filename = uniqid().$file->getClientOriginalName();
+      //cambiar el tamaño de la imagen
+      $image = $manager->make($file)->resize(400, 300)->save($path.$filename);
+      //$file->move($path,$filename);
+      //guardar el registro de la Imagen
+      $empleado = empleados::find($request->input('empleado_id'));
+      $empleado->foto = 'empleadophoto/'.$filename;
+      $empleado->save(); //INSERT
+      Alert::success('Se ha guardado la foto del empleado');
+      Flash::success('Se ha guardado la foto del empleado');
+      return back();
     }
 }
