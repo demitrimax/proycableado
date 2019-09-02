@@ -5,6 +5,11 @@
 <section class="content">
 
   <div class="row">
+    <div class="clearfix"></div>
+
+    @include('flash::message')
+
+    <div class="clearfix"></div>
 
           <div class="col-lg-6">
             <div class="panel panel-primary">
@@ -33,7 +38,7 @@
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-primary btn-block"><b>Editar Perfil</b></a>
+              <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#FotoPerfilModal"><b>Editar Perfil</b></button>
             </div>
             <!-- /.box-body -->
           </div>
@@ -68,4 +73,30 @@
 
 
 </section>
+
+
+
+<!-- sample modal content -->
+<div id="FotoPerfilModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Cargar imagen de perfil</h4>
+            </div>
+            {!! Form::open(['route'=>'profile.upload.photo', 'enctype'=>'multipart/form-data'])!!}
+            <div class="modal-body">
+                <h4>Puede cargar una foto nueva para su perfil</h4>
+                {!! Form::hidden('user_id', Auth::user()->id)!!}
+                {!! Form::file('profilephoto', ['class'=>'form-control', 'accept'=>'image/*']) !!}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar imagen</button>
+            </div>
+            {!! Form::close()!!}
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @endsection

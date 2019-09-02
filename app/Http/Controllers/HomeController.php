@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
 use Alert;
+use Flash;
 use App\Models\proyectos;
 use Carbon\Carbon;
 use App\User;
@@ -58,5 +60,47 @@ class HomeController extends Controller
 
     public function lockscreen() {
       return view('lockscreen');
+    }
+
+    public function profileUploadPhoto(Request $request)
+    {
+      $rules = [
+        'profilephoto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ];
+      $this->validate($request, $rules);
+      /*
+      $input = $request->all();
+      $input['user_id'] = Auth::user()->id;
+      //$documentos = $this->documentosRepository->create($input);
+
+      $usuario = User::find(Auth::user()->id);
+
+      $photo = $request->file('nombre_doc')->store('documentos');
+
+      $usuario->avatar = $photo;
+
+      $usuario->save();
+
+      Flash::success('Avatar guardadao correctamente.');
+      Alert::success('Avatar guardadao correctamente.');
+
+      return back();
+      */
+
+      //guardar la imagen en el sistema de archivos
+      $manager = new ImageManager;
+      $file = $request->file('profilephoto');
+      $path = public_path() . '/avatar/';
+      $filename = uniqid().$file->getClientOriginalName();
+      //cambiar el tamaño de la imagen
+      $image = $manager->make($file)->resize(200, 400)->save($path.$filename);
+      //$file->move($path,$filename);
+      //guardar el registro de la Imagen
+      $avatar = User::find(Auth::user()->id);
+      $avatar->avatar = 'avatar/'.$filename;
+      $avatar->save(); //INSERT
+      Alert::success('Foto de perfil actualizada');
+      Flash::success('Foto de perfil actualizada');
+      return back();
     }
 }

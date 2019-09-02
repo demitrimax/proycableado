@@ -21,6 +21,7 @@ Auth::routes();
 Route::group(['middleware'=>['auth']], function() {
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/profile', 'HomeController@profile');
+  Route::post('profile/photo', 'HomeController@profileUploadPhoto')->name('profile.upload.photo');
   Route::get('/lockscreen', 'HomeController@lockscreen');
   //RUTAS DE LA CONFIGURACION
   Route::resource('roles','RoleController');
@@ -74,7 +75,6 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('inventario/informe/productos', 'invoperacionController@verinformeproductos')->name('inventario.informe.productos');
   Route::get('inventario/informe/ver1', 'invoperacionController@informeVer1');
   Route::get('inventario/informe/ver2', 'invoperacionController@informeVer2');
+
+  Route::resource('docscategorias', 'docscategoriasController');
 });
-
-
-Route::resource('docscategorias', 'docscategoriasController');
