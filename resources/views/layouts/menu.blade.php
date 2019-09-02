@@ -38,7 +38,7 @@
         @can('invoperacions-list')
         <li class="nav-item"><a href="{!! route('invoperacions.index') !!}" class="nav-link {{ Request::is('invoperacions*') ? 'active' : '' }}">Operación</a></li>
         @endcan
-        
+
         @can('productos-list')
         <li class="{{ Request::is('productos*') ? 'active' : '' }}"><a href="{{route('productos.index')}}">Productos</a></li>
         @endcan
@@ -61,7 +61,7 @@
 
 <li class="has_sub">
   @php
-  if( Request::is('catpaisdivisions*') || Request::is('catareaciudads*') || Request::is('contratistas*')  ) {
+  if( Request::is('catpaisdivisions*') || Request::is('catareaciudads*') || Request::is('contratistas*') ||  Request::is('docscategorias*') ) {
       $varActive = "active";
   } else {
     $varActive = "";
@@ -89,6 +89,11 @@
         @can('empleados-list')
         <li class="{{ Request::is('empleados*') ? 'active' : '' }}">
             <a href="{!! route('empleados.index') !!}"><span>Empleados</span></a>
+        </li>
+        @endcan
+        @can('docscategorias-list')
+        <li class="{{ Request::is('docscategorias*') ? 'active' : '' }}">
+            <a href="{!! route('docscategorias.index') !!}"><span>Categorías de Documentos</span></a>
         </li>
         @endcan
 

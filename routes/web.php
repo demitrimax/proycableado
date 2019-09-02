@@ -75,3 +75,6 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('inventario/informe/ver1', 'invoperacionController@informeVer1');
   Route::get('inventario/informe/ver2', 'invoperacionController@informeVer2');
 });
+
+
+Route::resource('docscategorias', 'docscategoriasController');
