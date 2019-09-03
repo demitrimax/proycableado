@@ -46,6 +46,7 @@ Route::group(['middleware'=>['auth']], function() {
 
   Route::resource('tareas', 'tareasController');
   Route::post('tareas/avance', 'tareasController@registroavance')->name('tareas.avanceregistro');
+  Route::get('tareas/documento/{id}', 'tareasController@VerDocumentos');
 
   Route::get('tareas/todas/all', 'tareasController@todasindex')->name('tareas.todas');
 

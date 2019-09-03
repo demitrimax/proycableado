@@ -15,6 +15,9 @@ use App\User;
 use Auth;
 use App\Models\tareavances;
 use App\Models\tareas;
+use App\Models\documentos;
+use Illuminate\Support\Facades\Storage;
+use App\Helpers\SomeClass;
 
 
 class tareasController extends AppBaseController
@@ -233,6 +236,12 @@ class tareasController extends AppBaseController
       $avance->comentario = $input['comentario'];
       $avance->avancepor = $input['avancepor'];
       $avance->tarea_id = $input['tarea_id'];
+      if(isset($input['documento'])){
+        //guardar el documento
+        //$documento->nombre_doc = $request->file('documento')->store('documentos');
+        $doc = $request->file('documento')->store('documentos');
+        $avance->documento = $doc;
+      }
       $avance->save();
 
       $tarea = tareas::find($input['tarea_id']);
@@ -247,6 +256,35 @@ class tareasController extends AppBaseController
 
       return back();
 
+    }
 
+    public function verDocumentos($id)
+    {
+      $tarea = tareavances::find($id);
+
+      if (empty($tarea)) {
+          Flash::error('Documentos no encontrado');
+          Alert::error('Documentos no encontrado');
+
+          return back();
+      }
+      //$nomarchivo = SomeClass::normalizeString($tarea->nombre_doc);
+
+      //return Storage::download($documentos->documento,$nomarchivo);
+
+      //return Storage::get($documentos->documento,$nomarchivo);
+      $mimetype = Storage::mimeType($tarea->documento);
+
+      $path = storage_path('app/'.$tarea->documento);
+      //return response()->download($path);
+      if ($mimetype == 'application/pdf' || $mimetype == 'image/*'){
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => $mimetype,
+            'Content-Disposition' => 'inline; filename="'.$nomarchivo.'"'
+        ]);
+      }
+      else {
+        return Storage::download($tarea->documento);
+      }
     }
 }

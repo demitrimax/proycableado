@@ -41,3 +41,7 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+  @stack('scripts')
+@endsection

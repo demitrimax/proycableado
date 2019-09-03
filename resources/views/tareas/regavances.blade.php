@@ -22,6 +22,9 @@
               data-original-title="" aria-describedby="popover579223">
               <badge><i class="fa fa-info"></i></badge>
               </button>
+              @if($avance->documento)
+              <a class="btn btn-success btn-xs" href="{{url('tareas/documento/'.$avance->id)}}"><i class="fa fa-paperclip"></i></a>
+              @endif
             {{$avance->concepto}}
             </td>
             <td>{{$avance->avancepor}}%</td>
@@ -49,10 +52,11 @@
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <h4 class="modal-title" id="myLargeModalLabel">Registrar Avance</h4>
               </div>
-              {!! Form::open(['route' => 'tareas.avanceregistro']) !!}
+              {!! Form::open(['route' => 'tareas.avanceregistro', 'enctype'=>'multipart/form-data']) !!}
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-12">
+
                     <div class="form-group">
                         {!! Form::label('concepto', 'Concepto:') !!}
                         {!! Form::text('concepto', null, ['class' => 'form-control maxlen', 'required', 'maxlength' => '35']) !!}
@@ -78,7 +82,9 @@
                     </div>
                   </div>
 
-
+                  <div class="form-group">
+                  {!! Form::label('documento', 'Documento:') !!}
+                      {!! Form::file('documento', ['class' => 'form-control']) !!}
                 </div>
 
                 </div>
@@ -92,3 +98,13 @@
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+  @push('scripts')
+    <script>
+      function VerDocumento(id)
+      {
+        //alert('Documento: '+id);
+         window.open("{{url('tareas/documento/')}}+id");
+      }
+    </script>
+  @endpush
