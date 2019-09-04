@@ -15,6 +15,8 @@ use App\Models\empleados;
 use Intervention\Image\ImageManager;
 use App\Models\documentos;
 use App\Models\docscategorias;
+use Auth;
+
 
 class empleadosController extends AppBaseController
 {
@@ -230,17 +232,24 @@ class empleadosController extends AppBaseController
       $this->validate($request, $rules, $messages);
 
       $input = $request->all();
-
+      $empleado = empleados::find($request->input('empleado_id'));
+      if(empty($empleado)){
+        Alert::error('No se encuentra el empleado');
+        Flash::error('No se encuentra el empleado');
+        return back();
+      }
 
       $documentos = new documentos;
 
-      $documento = $request->file('empleado_doc')->store('documentos');
+      $documento = $request->file('empleadodoc')->store('documentos');
       $documentos->file_servidor = $documento;
-      $documentos->nombre_doc = $request->file('nombre_doc')->getClientOriginalName();
+      $documentos->nombre_doc = $request->file('empleadodoc')->getClientOriginalName();
       $documentos->descripcion = $request->input('descripcion');
       $documentos->user_id = Auth::user()->id;
-      $documentos->categoria_id = $reques->input('categoria_id');
+      $documentos->categoria_id = $request->input('categoria_id');
       $documentos->save();
+
+      $empleado->documentos()->attach($documentos);
 
       Flash::success('Documentos guardado correctamente.');
       Alert::success('Documentos guardado correctamente.');

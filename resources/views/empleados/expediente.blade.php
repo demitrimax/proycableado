@@ -6,10 +6,11 @@
   <div class="panel-body panel-profile">
 
     <ul class="list-group list-group-unbordered">
-
+      @foreach($empleados->documentos as $key=>$documento)
       <li class="list-group-item">
-        <b>CURP</b> <a class="pull-right">{{$empleados->curp}}</a>
+        <b>{{$documento->categoria->nombre}}</b> <a class="pull-right" href="{{url('verdoc/'.$documento->id)}}">{{$documento->nombre_doc}}</a>
       </li>
+      @endforeach
 
     </ul>
 

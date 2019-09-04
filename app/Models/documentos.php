@@ -31,7 +31,8 @@ class documentos extends Model
     public $fillable = [
         'nombre_doc',
         'file_servidor',
-        'descripcion'
+        'descripcion',
+        'categoria_id'
     ];
 
     /**
@@ -40,10 +41,11 @@ class documentos extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'nombre_doc' => 'string',
-        'file_servidor' => 'string',
-        'descripcion' => 'string'
+        'id'              => 'integer',
+        'nombre_doc'      => 'string',
+        'file_servidor'   => 'string',
+        'descripcion'     => 'string',
+        'categoria_id'    => 'integer'
     ];
 
     /**
@@ -58,6 +60,11 @@ class documentos extends Model
     public function proyectos()
     {
       return $this->belongsToMany('App\Models\proyectos');
+    }
+
+    public function categoria()
+    {
+      return $this->belongsTo('App\Models\docscategorias', 'categoria_id');
     }
 
 
