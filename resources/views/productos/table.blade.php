@@ -1,3 +1,13 @@
+@section('css')
+<!-- DataTables -->
+<link href="{{asset('appzia/plugins/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/buttons.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/fixedHeader.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/responsive.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('appzia/plugins/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{asset('appzia/plugins/datatables/scroller.bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+
+@endsection
 <table class="table table-responsive table-hover" id="productos-table">
     <thead>
         <tr>
@@ -34,6 +44,73 @@
 </table>
 
 @section('scripts')
+<!-- Datatables-->
+<script src="{{asset('appzia/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.bootstrap.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/buttons.bootstrap.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/jszip.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/pdfmake.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/vfs_fonts.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/buttons.html5.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/buttons.print.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.fixedHeader.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.keyTable.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
+<script src="{{asset('appzia/plugins/datatables/dataTables.scroller.min.js')}}"></script>
+<script>
+
+
+!function($) {
+    "use strict";
+
+    var DataTable = function() {
+        this.$dataTableButtons = $("#productos-table")
+    };
+    DataTable.prototype.createDataTableButtons = function() {
+        0 !== this.$dataTableButtons.length && this.$dataTableButtons.DataTable({
+            ordering: false,
+            dom: "Bfrtip",
+            "language": {
+                      "url": "{{asset('appzia/plugins/datatables/Spanish.json')}}"
+                  },
+            buttons: [{
+                extend: "copy",
+                className: "btn-success"
+            }, {
+                extend: "csv"
+            }, {
+                extend: "excel"
+            }, {
+                extend: "pdf"
+            }, {
+                extend: "print"
+            }],
+            responsive: !0
+        });
+    },
+    DataTable.prototype.init = function() {
+        //creating demo tabels
+        $('#datatable').dataTable();
+        $('#datatable-keytable').DataTable({keys: true});
+        var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+
+        //creating table with button
+        this.createDataTableButtons();
+    },
+    //init
+    $.DataTable = new DataTable, $.DataTable.Constructor = DataTable
+}(window.jQuery),
+
+//initializing
+function ($) {
+    "use strict";
+    $.DataTable.init();
+}(window.jQuery);
+
+</script>
+
 <script>
 function ConfirmDelete(id) {
   swal.fire({
