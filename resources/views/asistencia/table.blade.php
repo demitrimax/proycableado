@@ -32,7 +32,7 @@
         <tr>
             <th>Nombre</th>
             <th>CURP</th>
-            <th>Asistencia</th>
+            <th> <div class="checkbox checkbox-success"> {!! Form::checkbox('selectall', 1, 0, ['class'=>'form-control', 'id'=>'selectall'])!!} {!! Form::label('selectall', 'Asistencia') !!}</div></th>
             <th>Retardo</th>
             <th title="Tiempo Extra">Extra</th>
             <th>Comentario</th>
@@ -72,7 +72,7 @@
               <div class="checkbox checkbox-success">
 
                     {!! Form::hidden('empleados['.$empleados->id.'][asistencia]', 0) !!}
-                    {!! Form::checkbox('empleados['.$empleados->id.'][asistencia]', 1, $asisten, ['value'=>$asisten]) !!}
+                    {!! Form::checkbox('empleados['.$empleados->id.'][asistencia]', 1, $asisten, ['value'=>$asisten, 'class'=>'asisten']) !!}
                     {!! Form::label('empleados['.$empleados->id.'][asistencia]', 'A') !!}
                 </div>
 
@@ -114,14 +114,7 @@
 <script src="{{asset('appzia/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('appzia/plugins/datatables/dataTables.bootstrap.js')}}"></script>
 <script>
-  $(function () {
-    $('#empleados-table').DataTable({
-      "language": {
-                "url": "{{asset('appzia/plugins/datatables/Spanish.json')}}"
-            },
-            paging: false
-    })
-  })
+
   $('#fecha').datepicker({
       language: 'es',
       maxDate: new Date() // Now can select only dates, which goes after today,
@@ -145,5 +138,9 @@
     }
 
   }
+  $("#selectall").on("click", function() {
+    //alert('Se ha cambiado la propiedad');
+    $(".asisten").prop("checked", this.checked);
+  });
 </script>
 @endsection

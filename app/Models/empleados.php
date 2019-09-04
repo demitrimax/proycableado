@@ -81,5 +81,10 @@ class empleados extends Model
       return $avatar;
     }
 
+    public function documentos()
+    {
+      return $this->belongsToMany('App\Models\documentos', 'documentos_catempleados', 'empleado_id', 'documento_id');
+    }
+
 
 }

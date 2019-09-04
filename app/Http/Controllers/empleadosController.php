@@ -13,6 +13,8 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\empleados;
 use Intervention\Image\ImageManager;
+use App\Models\documentos;
+use App\Models\docscategorias;
 
 class empleadosController extends AppBaseController
 {
@@ -90,7 +92,9 @@ class empleadosController extends AppBaseController
             return redirect(route('empleados.index'));
         }
 
-        return view('empleados.show')->with('empleados', $empleados);
+        $categoriasDoc = docscategorias::where('modelo', 'empleados')->pluck('nombre','id');
+
+        return view('empleados.show')->with(compact('empleados', 'categoriasDoc'));
     }
 
     /**
@@ -210,6 +214,37 @@ class empleadosController extends AppBaseController
       $empleado->save(); //INSERT
       Alert::success('Se ha guardado la foto del empleado');
       Flash::success('Se ha guardado la foto del empleado');
+      return back();
+    }
+
+    public function empleadoCargaDocumento(Request $request)
+    {
+      $rules = [
+        'empleado_doc'  => 'file',
+        'categoria_id'  => 'required'
+      ];
+      $messages = [
+        'empleado_doc.file'    => 'Se necesita seleccionar un archivo.',
+        'categoria_id.required'    => 'Se necesita una categoria',
+      ];
+      $this->validate($request, $rules, $messages);
+
+      $input = $request->all();
+
+
+      $documentos = new documentos;
+
+      $documento = $request->file('empleado_doc')->store('documentos');
+      $documentos->file_servidor = $documento;
+      $documentos->nombre_doc = $request->file('nombre_doc')->getClientOriginalName();
+      $documentos->descripcion = $request->input('descripcion');
+      $documentos->user_id = Auth::user()->id;
+      $documentos->categoria_id = $reques->input('categoria_id');
+      $documentos->save();
+
+      Flash::success('Documentos guardado correctamente.');
+      Alert::success('Documentos guardado correctamente.');
+
       return back();
     }
 }

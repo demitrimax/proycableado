@@ -43,7 +43,7 @@
                 </a>
               </li>
               <li class="list-group-item">
-                <b>Comentarios</b> <a class="pull-right">{{$empleados->comentario}}</a>
+                <b>Comentarios</b> <br><textarea class="pull-right">{{$empleados->comentario}}</textarea>
               </li>
               <li class="list-group-item">
                 <b>Estatus</b> <a class="pull-right">
@@ -56,6 +56,8 @@
           <!-- /.box-body -->
         </div>
       </div>
+      @include('empleados.expediente')
+
     </div>
 
     <!-- sample modal content -->
