@@ -112,7 +112,8 @@ if (isset($proyectos->generico)){
 
 <!-- Identificacion Field -->
 <div class="form-group">
-    {!! Form::label('documento', 'Adjuntar archivo:', ['class'=>'col-md-2 control-label']) !!} <button type="button" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="Esto adjuntará otro documento al proyecto"><i class="fa fa-question-circle-o"></i></button>
+    <label for="documento" class="col-md-2 control-label">Documento: <button type="button" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="top" title="Esto adjuntará otro documento al proyecto"><i class="fas fa-question-circle"></i></button></label>
+
     <div class="col-md-10">
     {!! Form::file('documento', null, ['class' => 'form-control fileupload']) !!}
   </div>

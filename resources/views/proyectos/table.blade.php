@@ -16,7 +16,7 @@
             <th>Supervisor</th>
             <th>Identificacion</th>
             <th>Producto</th>
-            <td>Documentos</th>
+            <th>Documentos</th>
             <th>Estatus</th>
             <th>Acciones</th>
         </tr>
@@ -29,8 +29,8 @@
             <td>{!! $proyectos->supervisor !!}</td>
             <td>{!! $proyectos->identificacion !!}</td>
             <td>{!! $proyectos->catproducto->nombre !!}</td>
-            <td>@foreach($proyectos->documentos as $documentos)
-              {!! !!}
+            <td>@foreach($proyectos->documentos->unique('categoria') as $documento)
+              <span class="badge" style="background-color:{!! $documento->categoria->color!!}" data-toggle="tooltip" data-placement="top" title="" data-original-title="{!! $documento->categoria->nombre!!}"><i class="{!!$documento->categoria->icono !!}"></i></span>
               @endforeach
             </td>
             <td title="{!! $proyectos->estatusdate['descripcion'] !!}"> <span class="label label-{!! $proyectos->estatusdate['valor'] !!}">{!! $proyectos->catestatus->nombre !!}</span></td>

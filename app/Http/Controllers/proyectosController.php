@@ -96,6 +96,7 @@ class proyectosController extends AppBaseController
           $documento->nombre_doc = $request->file('documento')->getClientOriginalName();
           $documento->descripcion = 'Documento correspondiente al proyecto: '.$request->input('nombre');
           $documento->user_id = Auth::user()->id;
+          $documento->categoria_id = 1;
           $documento->save();
           //hacer la referencia muchos a muchos
           $proyectos->documentos()->attach($documento);
