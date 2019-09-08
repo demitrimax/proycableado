@@ -16,6 +16,7 @@
     <link href="{{asset('appzia/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('appzia/css/icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('appzia/css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet">
 
     <link href="{{asset('appzia/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
       <style>

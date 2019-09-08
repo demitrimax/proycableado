@@ -16,6 +16,7 @@
             <th>Supervisor</th>
             <th>Identificacion</th>
             <th>Producto</th>
+            <td>Documentos</th>
             <th>Estatus</th>
             <th>Acciones</th>
         </tr>
@@ -28,6 +29,10 @@
             <td>{!! $proyectos->supervisor !!}</td>
             <td>{!! $proyectos->identificacion !!}</td>
             <td>{!! $proyectos->catproducto->nombre !!}</td>
+            <td>@foreach($proyectos->documentos as $documentos)
+              {!! !!}
+              @endforeach
+            </td>
             <td title="{!! $proyectos->estatusdate['descripcion'] !!}"> <span class="label label-{!! $proyectos->estatusdate['valor'] !!}">{!! $proyectos->catestatus->nombre !!}</span></td>
             <td>
                 {!! Form::open(['route' => ['proyectos.destroy', $proyectos->id], 'method' => 'delete', 'id'=>'form'.$proyectos->id]) !!}

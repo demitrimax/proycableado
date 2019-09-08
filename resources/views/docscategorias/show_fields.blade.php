@@ -25,6 +25,12 @@
   <td>{!! $docscategorias->imagen !!}</td>
 </tr>
 
+<!-- Icono Field -->
+<tr>
+  <th>{!! Form::label('icono', 'Icono:') !!}</th>
+  <td>{!! $docscategorias->icono !!} <span class="badge" style="background-color:{!!$docscategorias->color !!}"> <i class="{!! $docscategorias->icono!!} fa-3x"></i></span></td>
+</tr>
+
 
 <!-- Created At Field -->
 <tr>
@@ -45,5 +51,3 @@
   <th>{!! Form::label('deleted_at', 'Deleted At:') !!}</th>
   <td>{!! $docscategorias->deleted_at !!}</td>
 </tr>
-
-

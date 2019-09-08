@@ -33,7 +33,9 @@ class docscategorias extends Model
         'nombre',
         'descripcion',
         'modelo',
-        'imagen'
+        'imagen',
+        'icono',
+        'color',
     ];
 
     /**
@@ -46,7 +48,9 @@ class docscategorias extends Model
         'nombre'      => 'string',
         'descripcion' => 'string',
         'modelo'      => 'string',
-        'imagen'      => 'string'
+        'imagen'      => 'string',
+        'icono'       => 'string',
+        'color'       => 'string',
     ];
 
     /**

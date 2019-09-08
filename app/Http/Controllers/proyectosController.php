@@ -17,6 +17,7 @@ use App\Models\catareaciudad;
 use App\Models\contratistas;
 use App\catestatus;
 use App\Models\documentos;
+use App\Models\docscategorias;
 use Auth;
 
 class proyectosController extends AppBaseController
@@ -125,8 +126,9 @@ class proyectosController extends AppBaseController
 
             return redirect(route('proyectos.index'));
         }
+        $categoriasdocs = docscategorias::where('modelo','proyectos')->pluck('nombre','id');
 
-        return view('proyectos.show')->with('proyectos', $proyectos);
+        return view('proyectos.show')->with(compact('proyectos','categoriasdocs'));
     }
 
     /**

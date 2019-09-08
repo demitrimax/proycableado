@@ -3,9 +3,11 @@
     <thead>
         <tr>
             <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>Imagen</th>
-            <th colspan="3">Acciones</th>
+            <th>Descripcion</th>
+            <th>Imagen</th>
+            <th>modelo</th>
+            <th>Icono</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +16,8 @@
             <td>{!! $docscategorias->nombre !!}</td>
             <td>{!! \App\Helpers\SomeClass::cortar_string($docscategorias->descripcion, 50)  !!}</td>
             <td>{!! $docscategorias->imagen !!}</td>
+            <td>{!! $docscategorias->modelo!!}</td>
+            <td><span class="badge" style="background-color:{!!$docscategorias->color !!}"> <i class="{!! $docscategorias->icono!!} fa-3x"></i></span></td>
             <td>
                 {!! Form::open(['route' => ['docscategorias.destroy', $docscategorias->id], 'method' => 'delete', 'id'=>'form'.$docscategorias->id]) !!}
                 <div class='btn-group'>

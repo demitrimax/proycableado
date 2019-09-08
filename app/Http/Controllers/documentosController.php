@@ -80,6 +80,7 @@ class documentosController extends AppBaseController
         $documentos->file_servidor = $documento;
         $documentos->nombre_doc = $request->file('nombre_doc')->getClientOriginalName();
         $documentos->descripcion = $request->input('descripcion');
+        $documentos->categoria_id = $request->input('categoria_id');
         $documentos->user_id = Auth::user()->id;
         $documentos->save();
 

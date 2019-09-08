@@ -51,7 +51,7 @@
                   <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Tipo</th>
                         <th>Documento</th>
                         <th>Descripción</th>
                         <th>Acciones</th>
@@ -60,7 +60,7 @@
                     <tbody>
                       @foreach($proyectos->documentos as $key=>$documento)
                     <tr>
-                        <td>{{$key+1}}</td>
+                        <td><span class="badge" style="background-color:{!! $documento->categoria->color!!}" data-toggle="tooltip" data-placement="top" title="" data-original-title="{!! $documento->categoria->nombre!!}"><i class="{!!$documento->categoria->icono !!}"></i></span></td>
                         <td>
                           <a href="{{url('verdoc/'.$documento->id)}}">{{$documento->nombre_doc}}</a>
                           @if (file_exists(storage_path('app/'.$documento->file_servidor)) )
@@ -94,7 +94,7 @@
                 @can('documentos-create')
 
                   <button title="Agregar Documento" type="button" class="btn waves-effect btn-primary" data-toggle="modal" data-target="#addDoc"> <i class="ion ion-document-text"></i> Agregar Documento</button>
-                  
+
                 @endcan
             </div>
 
@@ -119,13 +119,18 @@
                   <!-- Nombre Doc Field -->
                   <div class="form-group">
                       {!! Form::label('nombre_doc', 'Documento:') !!}
-                      {!! Form::file('nombre_doc', null, ['class' => 'form-control']) !!}
+                      {!! Form::file('nombre_doc', ['class' => 'form-control']) !!}
+                  </div>
+
+                  <div class="form-group">
+                      {!! Form::label('categoria_id', 'Categoria Documento:') !!}
+                      {!! Form::select('categoria_id', $categoriasdocs, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una categoría']) !!}
                   </div>
 
                   <!-- Descripcion Field -->
                   <div class="form-group">
                       {!! Form::label('descripcion', 'Descripcion o Comentario:') !!}
-                      {!! Form::text('descripcion', null, ['class' => 'form-control']) !!}
+                      {!! Form::textarea('descripcion', null, ['class' => 'form-control']) !!}
                   </div>
 
 

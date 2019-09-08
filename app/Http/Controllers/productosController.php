@@ -90,7 +90,8 @@ class productosController extends AppBaseController
             return redirect(route('productos.index'));
         }
 
-        return view('productos.show')->with('productos', $productos);
+
+        return view('productos.show')->with(compact('productos'));
     }
 
     /**
