@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="panel-body p-t-10">
                                             <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up text-success m-r-10"></i><b>{{$proyatendidos}}</b></h2>
-                                            <p class="text-muted m-b-0 m-t-20"><b>{{ (int)(($proyatendidos/$cantproy->count())*100) }}%</b> del total atendidos.</p>
+                                            <p class="text-muted m-b-0 m-t-20"><b>{{ $cantproy->count() == 0 ? '0' : (int)(($proyatendidos/$cantproy->count())*100) }}%</b> del total atendidos.</p>
                                         </div>
                                     </div>
                                 </div>
