@@ -39,7 +39,7 @@
                 </li>
               </ul>
 
-              <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#FotoPerfilModal"><b>Editar Perfil</b></button>
+              <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#FotoPerfilModal"><b>Cambiar Foto de Perfil</b></button>
             </div>
             <!-- /.box-body -->
           </div>
