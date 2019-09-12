@@ -59,6 +59,11 @@ class asistenciaController extends Controller
     public function registrar(Request $request)
     {
       $input = $request->all();
+      if(empty($input['empleados'])){
+        Alert::error('No hay empleados');
+        Flash::error('No hay empleados');
+        return back();
+      }
       $empleados = $input['empleados'];
       $fecha = $input['fecha'];
       //dd($empleados);
