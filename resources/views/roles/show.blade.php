@@ -8,7 +8,7 @@
         <!-- left column -->
         <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-primary">
+          <div class="panel panel-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Rol: {{ $role->name }}</h3>
               <div class="pull-right">

@@ -6,11 +6,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use SoftDeletes;
     use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 
     /**
@@ -46,5 +48,10 @@ class User extends Authenticatable
         $avatar = $this->avatar;
       }
       return $avatar;
+    }
+
+    public function tareas()
+    {
+      return $this->hasMany('App\Models\tareas', 'user_id');
     }
 }

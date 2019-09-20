@@ -19,17 +19,16 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-          <div class="box box-default">
-            <div class="box-header with-border">
-              <i class="fa fa-pencil-square-o"></i>
+          <div class="panel panel-primary">
+            <div class="panel-heading with-border">
+               <h3 class="panel-title"><i class="fa fa-pencil-square-o"></i> Editar Usuario</h3>
 
-              <h3 class="box-title">Editar Usuario</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="panel-body">
               <div class="pull-right">
                   <a class="btn btn-primary" href="{{ route('user.index') }}"> Regresar</a>
               </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
               {!! Form::model($user, ['method' => 'PATCH','route' => ['user.update', $user->id]]) !!}
 
                   <div class="col-xs-12 col-sm-12 col-md-12">
@@ -63,7 +62,7 @@
                       </div>
                   </div>
                   <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary">Guardar</button>
                   </div>
               {!! Form::close() !!}
 

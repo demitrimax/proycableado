@@ -9,22 +9,23 @@
         <!-- left column -->
         <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-primary table-responsive no-padding">
-            <div class="box-header with-border">
-              <h3 class="box-title">Administrador de Rolest</h3>
-              <div class="pull-right">
-                @can('role-create')
-                    <a class="btn btn-success" href="{{ route('roles.create') }}"> Alta de Nuevo Rol</a>
-                    @endcan
-              </div>
+          <div class="panel panel-primary table-responsive no-padding">
+            <div class="panel-heading with-border">
+              <h3 class="panel-title">Administrador de Roles</h3>
+
+
+
             </div>
+            @can('role-create')
+              <a class="btn btn-success pull-right" href="{{ route('roles.create') }}"> Alta de Nuevo Rol</a>
+            @endcan
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
               <p>{{ $message }}</p>
             </div>
             @endif
             <!-- /.box-header -->
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
               <tr>
                  <th>No</th>
                  <th>Name</th>

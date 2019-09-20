@@ -8,12 +8,10 @@
       <div class="row">
         <!-- left column -->
         <div class="col-md-12">
-                  <div class="panel">
+                  <div class="panel panel-primary">
                     <div class="panel-heading">
-                          <h3 class="box-title">Administración de Usuarios</h3>
-                          <div class="pull-right">
-                              <a class="btn btn-success" href="{{ route('user.create') }}"> Alta de Nuevo Usuario</a>
-                          </div>
+                          <h3 class="panel-title">Administración de Usuarios</h3>
+
                       </div>
                     <div class="panel-body">
 
@@ -24,11 +22,14 @@
             @endif
             <!-- /.box-header -->
 
+                <a class="btn btn-success" href="{{ route('user.create') }}"> Alta de Nuevo Usuario</a>
+            
+
               <div class="table-responsive">
                 <table class="table table-bordered">
                  <tr>
                    <th>No</th>
-                   <th>Name</th>
+                   <th>Nombre</th>
                    <th>Email</th>
                    <th>Estado</th>
                    <th>Roles</th>

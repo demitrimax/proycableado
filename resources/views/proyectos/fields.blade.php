@@ -24,7 +24,7 @@ if (isset($proyectos->generico)){
 <div class="form-group">
     {!! Form::label('nombre', 'Nombre:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::text('nombre', null, ['class' => 'form-control', 'maxlength'=>'100', 'required']) !!}
+    {!! Form::text('nombre', null, ['class' => 'form-control', 'maxlength'=>'100', 'required', 'placeholder'=>'nombre del proyecto']) !!}
   </div>
 </div>
 
@@ -64,7 +64,7 @@ if (isset($proyectos->generico)){
 <div class="form-group">
     {!! Form::label('supervisor', 'Supervisor:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10">
-    {!! Form::text('supervisor', null, ['class' => 'form-control', 'maxlength'=>'100', 'required']) !!}
+    {!! Form::text('supervisor', null, ['class' => 'form-control', 'maxlength'=>'100', 'required', 'placeholder'=>'nombre del supervisor']) !!}
   </div>
 </div>
 @php
@@ -88,7 +88,7 @@ if (isset($proyectos->generico)){
 <div class="form-group date">
     {!! Form::label('fechas', 'Rango de Fechas:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10" id="finicio-container">
-    {!! Form::text('fechas', $fechas, ['class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-range'=>'true', 'data-multiple-dates-separator'=>' : ', 'data-date-format'=>'yyyy-mm-dd', 'pattern'=>'.{23}', 'title'=>'Rango de Fechas']) !!}
+    {!! Form::text('fechas', $fechas, ['class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-range'=>'true', 'data-multiple-dates-separator'=>' : ', 'data-date-format'=>'yyyy-mm-dd', 'pattern'=>'.{23}', 'title'=>'Rango de Fechas', 'placeholder'=>'ejemplo: 2019-09-10 : 2019-09-30']) !!}
   </div>
 </div>
 
@@ -96,9 +96,13 @@ if (isset($proyectos->generico)){
 <!-- Identificacion Field -->
 <div class="form-group">
     {!! Form::label('identificacion', 'Identificacion:', ['class'=>'col-md-2 control-label']) !!}
-    <div class="col-md-10">
+    <div class="col-md-5">
     {!! Form::select('identificacion', [''=>'','OB'=>'OB','DTTO'=>'DTTO','ID'=>'ID','OT'=>'OT','SISA'=>'SISA'],null, ['class' => 'form-control']) !!}
   </div>
+  <div class="col-md-5">
+  {!! Form::text('identificacion', null, ['class' => 'form-control', 'maxlength'=>10, 'placeholder'=>'complemento de Identificación' ]) !!}
+</div>
+
 </div>
 
 <!-- Identificacion Field -->

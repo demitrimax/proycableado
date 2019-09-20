@@ -11,6 +11,7 @@ use DB;
 use Hash;
 use Spatie\Permission\Traits\HasRoles;
 use Alert;
+use Flash;
 
 class UserController extends Controller
 {
@@ -150,8 +151,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('users.index')
+
+        $usuario = User::find($id);
+        //verificar que no tenga tareas asignadas
+        if($usuario->tareas->count()>0){
+          Alert::error('El Usuario tiene tareas asignadas...elimine las tareas asociadas primero.');
+          Flash::error('El Usuario tiene tareas asignadas...elimine las tareas asociadas primero.');
+          return back();
+        }
+        $usuario->delete();
+        return redirect()->route('user.index')
                         ->with('success','User deleted successfully');
     }
 }

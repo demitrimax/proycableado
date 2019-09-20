@@ -15,8 +15,8 @@
         @include('flash::message')
 
         <div class="clearfix"></div>
-        <div class="box box-primary">
-            <div class="box-body">
+        <div class="panel panel-primary">
+            <div class="panel-body">
                     @include('users.table')
             </div>
         </div>
