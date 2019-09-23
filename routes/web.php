@@ -80,4 +80,6 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('inventario/informe/ver2', 'invoperacionController@informeVer2');
 
   Route::resource('docscategorias', 'docscategoriasController');
+
+  Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });
