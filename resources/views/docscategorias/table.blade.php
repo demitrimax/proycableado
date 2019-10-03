@@ -21,12 +21,12 @@
             <td>
                 {!! Form::open(['route' => ['docscategorias.destroy', $docscategorias->id], 'method' => 'delete', 'id'=>'form'.$docscategorias->id]) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('docscategorias.show', [$docscategorias->id]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('docscategorias.show', [$docscategorias->id]) !!}" class='btn btn-info'><i class="far fa-eye"></i></a>
                     @can('docscategorias-edit')
-                    <a href="{!! route('docscategorias.edit', [$docscategorias->id]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('docscategorias.edit', [$docscategorias->id]) !!}" class='btn btn-primary'><i class="far fa-edit"></i></a>
                     @endcan
                     @can('docscategorias-delete')
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "ConfirmDelete($docscategorias->id)"]) !!}
+                    {!! Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "ConfirmDelete($docscategorias->id)"]) !!}
                     @endcan
                 </div>
                 {!! Form::close() !!}

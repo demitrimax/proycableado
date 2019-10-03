@@ -46,6 +46,10 @@ class invdetoperacion extends Model
     {
       return $this->belongsTo('App\Models\productos', 'producto_id');
     }
+    public function bodega()
+    {
+      return $this->belongsTo('App\Models\bodegas', 'bodega_id');
+    }
 
     public function getEstatushAttribute()
     {

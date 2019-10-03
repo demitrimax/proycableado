@@ -51,8 +51,7 @@ var table = $('#productos-table').DataTable({
         'render': function(val, _, obj) {
               return '<a href="{{url('productos')}}/' + obj.id + '" target="_self">' + val + '</a>'; }
             },
-        { data:'categoria', name: 'categoria',
-          "defaultContent": "<i>N/D</i>" },
+        { data:'categoria.nombre', name: 'categoria.nombre' },
         { data:'umedida', name: 'medida' },
         { data:'stock', name: 'stock' },
         { data:'acciones', name: 'acciones', orderable: false, searchable: false,

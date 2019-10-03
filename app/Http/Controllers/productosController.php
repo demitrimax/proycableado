@@ -184,7 +184,7 @@ class productosController extends AppBaseController
 
     public function ListaProductos(Request $request)
     {
-          $productos = productos::all();
+          $productos = productos::with('categoria', 'inventarios');
           return Datatables::of($productos)
                             ->addColumn('acciones', '{{$id}}')
                             ->addColumn('stock', function($productos) {

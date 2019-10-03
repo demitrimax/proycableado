@@ -15,7 +15,7 @@
         <tr>
 
             <td><a href="{!! route('invoperacions.show', [$invoperacion->id]) !!}"> {!! $invoperacion->folio !!}</a>
-              {!! $invoperacion->tipo_mov == 'Entrada' ? '<i class="text-primary fa fa-arrow-circle-o-down"></i>' : '<i class="text-success fa fa-arrow-circle-o-up"></i>' !!}</td>
+              {!! $invoperacion->tipo_mov == 'Entrada' ? '<i class="text-primary fas fa-arrow-alt-circle-down"></i>' : '<i class="text-success fas fa-arrow-alt-circle-up"></i>' !!}</td>
             <td>{!! $invoperacion->personanombre !!}</td>
             <td>{!! $invoperacion->numfactura !!}</td>
             <td>{!! number_format($invoperacion->total,2) !!}</td>
@@ -24,12 +24,12 @@
             <td>
                 {!! Form::open(['route' => ['invoperacions.destroy', $invoperacion->id], 'method' => 'delete', 'id'=>'form'.$invoperacion->id]) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('invoperacions.show', [$invoperacion->id]) !!}" class='btn btn-info btn-xs'><i class="fa fa-eye"></i></a>
+                    <a href="{!! route('invoperacions.show', [$invoperacion->id]) !!}" class='btn btn-info'><i class="fa fa-eye"></i></a>
                     @can('invoperacions-edit0')
-                    <a href="{!! route('invoperacions.edit', [$invoperacion->id]) !!}" class='btn btn-primary btn-xs'><i class="fa fa-pencil"></i></a>
+                    <a href="{!! route('invoperacions.edit', [$invoperacion->id]) !!}" class='btn btn-primary'><i class="fa fa-pencil"></i></a>
                     @endcan
                     @can('invoperacions-delete')
-                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "ConfirmDelete($invoperacion->id)"]) !!}
+                    {!! Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "ConfirmDelete($invoperacion->id)"]) !!}
                     @endcan
                 </div>
                 {!! Form::close() !!}

@@ -9,11 +9,16 @@
     {!! Form::label('descripcion', 'Descripcion:') !!}
     {!! Form::textarea('descripcion', null, ['class' => 'form-control']) !!}
 </div>
-
+@php
+$modelos = [
+  'empleados' => 'empleados',
+  'proyectos' => 'proyectos'
+];
+@endphp
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('modelo', 'Modelo que aplica:') !!}
-    {!! Form::text('modelo', null, ['class' => 'form-control', 'placeholder'=>'ej. Proyectos','required']) !!}
+    {!! Form::select('modelo', $modelos, null, ['class' => 'form-control', 'placeholder'=>'ej. Proyectos','required']) !!}
 </div>
 
 <!-- Imagen Field -->
