@@ -18,29 +18,7 @@
             <th>Acciones</th>
         </tr>
     </thead>
-    <tbody>
-    @foreach($productos as $productos)
-        <tr>
-            <td><a href="{!! route('productos.show', [$productos->id]) !!}">{!! $productos->nombre !!}</a> {!! $productos->inventariable ? '<span class="badge badge-warning">Inventariable<span>' : ''!!}</td>
-            <td>{!! $productos->categoria->nombre !!}</td>
-            <td>{!! $productos->umedida !!}</td>
-            <td>{!! $productos->stock !!}</td>
-            <td>
-                {!! Form::open(['route' => ['productos.destroy', $productos->id], 'method' => 'delete', 'id'=>'form'.$productos->id]) !!}
-                <div class='btn-group'>
-                    <a href="{!! route('productos.show', [$productos->id]) !!}" class='btn btn-info btn-xs'><i class="fa fa-eye"></i></a>
-                    @can('productos-edit')
-                    <a href="{!! route('productos.edit', [$productos->id]) !!}" class='btn btn-primary btn-xs'><i class="fa fa-pencil"></i></a>
-                    @endcan
-                    @can('productos-delete')
-                    {!! Form::button('<i class="fa fa-trash-o"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "ConfirmDelete($productos->id)"]) !!}
-                    @endcan
-                </div>
-                {!! Form::close() !!}
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
+
 </table>
 
 @section('scripts')
@@ -59,56 +37,36 @@
 <script src="{{asset('appzia/plugins/datatables/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('appzia/plugins/datatables/responsive.bootstrap.min.js')}}"></script>
 <script src="{{asset('appzia/plugins/datatables/dataTables.scroller.min.js')}}"></script>
+
 <script>
+$(document).ready(function() {
 
+var table = $('#productos-table').DataTable({
+    serverSide: true,
+    processing: true,
+    ajax: "{!! url('inventario/lista/productos') !!}",
+    stateSave: false,
+    columns: [
+        { data: 'nombre', name: 'nombre',
+        'render': function(val, _, obj) {
+              return '<a href="{{url('productos')}}/' + obj.id + '" target="_self">' + val + '</a>'; }
+            },
+        { data:'categoria', name: 'categoria',
+          "defaultContent": "<i>N/D</i>" },
+        { data:'umedida', name: 'medida' },
+        { data:'stock', name: 'stock' },
+        { data:'acciones', name: 'acciones', orderable: false, searchable: false,
+        'render': function(val, _, obj) {
 
-!function($) {
-    "use strict";
+              return @can('productos-edit') '<a href="productos/' + obj.id + '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Detalles</a> ' + @else  '' +   @endcan @can('productos-delete') '<a href="productos/' + obj.id + '/delete" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</a> '  @else '' @endcan ;
+            }
+          },
 
-    var DataTable = function() {
-        this.$dataTableButtons = $("#productos-table")
-    };
-    DataTable.prototype.createDataTableButtons = function() {
-        0 !== this.$dataTableButtons.length && this.$dataTableButtons.DataTable({
-            ordering: false,
-            dom: "Bfrtip",
-            "language": {
-                      "url": "{{asset('appzia/plugins/datatables/Spanish.json')}}"
-                  },
-            buttons: [{
-                extend: "copy",
-                className: "btn-success"
-            }, {
-                extend: "csv"
-            }, {
-                extend: "excel"
-            }, {
-                extend: "pdf"
-            }, {
-                extend: "print"
-            }],
-            responsive: !0
-        });
-    },
-    DataTable.prototype.init = function() {
-        //creating demo tabels
-        $('#datatable').dataTable();
-        $('#datatable-keytable').DataTable({keys: true});
-        var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+    ],
 
-        //creating table with button
-        this.createDataTableButtons();
-    },
-    //init
-    $.DataTable = new DataTable, $.DataTable.Constructor = DataTable
-}(window.jQuery),
+});
 
-//initializing
-function ($) {
-    "use strict";
-    $.DataTable.init();
-}(window.jQuery);
-
+} );
 </script>
 
 <script>

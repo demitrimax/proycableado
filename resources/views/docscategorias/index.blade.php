@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title',config('app.name').' | Docscategorias' )
+@section('title',config('app.name').' | Categorias de Documentos' )
 
 @section('content')
     <div class="row">

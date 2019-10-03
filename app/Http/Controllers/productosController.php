@@ -12,6 +12,8 @@ use Alert;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\categorias;
+use App\Models\productos;
+use Yajra\Datatables\Datatables;
 
 class productosController extends AppBaseController
 {
@@ -178,5 +180,19 @@ class productosController extends AppBaseController
         Alert::success('Producto borrado correctamente.');
 
         return redirect(route('productos.index'));
+    }
+
+    public function ListaProductos(Request $request)
+    {
+          $productos = productos::all();
+          return Datatables::of($productos)
+                            ->addColumn('acciones', '{{$id}}')
+                            ->addColumn('stock', function($productos) {
+                              return $productos->stock;
+                            })
+                            /*->editColumn('matricula', function ($alumno) {
+                              return '<a href="'. route('alumnos.edit',[$alumno->id]) .'">'.$alumno->matricula.'</a>';
+                            })*/
+                            ->make(true);
     }
 }

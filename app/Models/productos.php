@@ -84,6 +84,8 @@ class productos extends Model
         'categoria_id' => 'required'
     ];
 
+    //public $appends = ['stock'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
@@ -95,6 +97,7 @@ class productos extends Model
     {
       return $this->hasMany('App\Models\invdetoperacion', 'producto_id');
     }
+
     public function getStockAttribute()
     {
 
