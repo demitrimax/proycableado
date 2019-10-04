@@ -13,7 +13,7 @@
               @endif
               @if($invoperacion->cliente_id)
               <div class="col-md-4">
-                  {!! Form::label('cliente', 'Cliente:') !!}
+                  {!! Form::label('cliente', 'Cliente/Técnico:') !!}
                   {!! Form::text('cliente', $invoperacion->cliente->nombre, ['class'=>'form-control', 'readonly']) !!}
               </div><!-- col-4 -->
               @endif
@@ -32,6 +32,11 @@
               <div class="col-md-4">
                   {!! Form::label('numfactura', 'Número de Factura:') !!}
                   {!! Form::text('numfactura', $invoperacion->numfactura, ['class'=>'form-control', 'readonly']) !!}
+              </div><!-- col-4 -->
+
+              <div class="col-md-2">
+                  {!! Form::label('bodega_id', 'Bodega:') !!}
+                  {!! Form::text('bodega_id', $invoperacion->invdetoperacions->unique('bodega_id')->get(0)->bodega->nombre, ['class'=>'form-control', 'readonly']) !!}
               </div><!-- col-4 -->
 
             </div><!-- row -->

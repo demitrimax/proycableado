@@ -56,5 +56,35 @@ class bodegas extends Model
         'nombre' => 'required'
     ];
 
+    protected $appends = ['stockpro'];
+
+    public function operacioninvent()
+    {
+      return $this->hasMany('App\Models\invdetoperacion', 'bodega_id');
+    }
+    public function stockpro($productoid)
+    {
+      $entradas = invdetoperacion::where('tipo_operacion', 'Entrada')
+                                    ->where('bodega_id', $this->id)
+                                    ->where('producto_id', $productoid)
+                                    ->where('estatus', 't')
+                                    ->sum('cantidad');
+
+      $entradasP = invdetoperacion::where('tipo_operacion', 'Entrada')
+                                    ->where('bodega_id', $this->id)
+                                    ->where('producto_id', $productoid)
+                                    ->where('estatus', 'p')
+                                    ->sum('parcial');
+
+       $entradas = $entradas + $entradasP;
+
+       $salidas = invdetoperacion::where('tipo_operacion', 'Salida')
+                                    ->where('bodega_id', $this->id)
+                                    ->where('producto_id', $productoid)
+                                    ->where('estatus', 't')
+                                    ->sum('cantidad');
+      return $entradas-$salidas;
+    }
+
 
 }

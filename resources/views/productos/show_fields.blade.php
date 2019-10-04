@@ -63,7 +63,18 @@
 <!-- Umedida Field -->
 <tr>
   <th>{!! Form::label('stock', 'Stock Actual:') !!}</th>
-  <td>{!! $productos->stock !!}</td>
+  <td>
+    {!! $productos->stock !!}
+
+        <ul class="list-group">
+          @foreach($productos->inventarios->unique('bodega_id') as $inventario)
+            <li class="list-group-item">
+              <span class="badge">{{ $inventario->bodega->stockpro($productos->id) }}</span>
+              {{ $inventario->bodega->nombre }}
+            </li>
+            @endforeach
+          </ul>
+  </td>
 </tr>
 
 <!-- Precio de Compra Field -->

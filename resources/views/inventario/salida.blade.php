@@ -27,8 +27,8 @@
 
               <div class="col-lg-8">
                 <div class="form-group">
-                  <label class="form-control-label">Cliente: <span class="tx-danger">*</span></label>
-                  {!! Form::select('cliente_id', $clientes, null, ['class'=>'form-control', 'required', 'placeholder'=>'Selecciones un cliente'])!!}
+                  <label class="form-control-label">Cliente/Técnico: <span class="tx-danger">*</span></label>
+                  {!! Form::select('cliente_id', $clientes, null, ['class'=>'form-control', 'required', 'placeholder'=>'Selecciones un cliente o técnico'])!!}
                 </div>
               </div><!-- col-4 -->
               <div class="col-lg-4">

@@ -25,12 +25,12 @@
         @endif
 
         @if($detoperacion->estatus == 'T')
-        <span class="badge badge-success"> <i class="fa fa-check-square-o"></i> Surtido en su Totalidad</span>
+        <span class="badge badge-success"> <i class="far fa-check-square"></i> Surtido en su Totalidad</span>
         @endif
 
         @if($detoperacion->estatus == 'P')
         {!! Form::button('<i class="fa fa-exchange"></i> Surtido Total', ['class'=>'btn btn-xs btn-info', 'data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Surtido Total', 'onclick' => 'SurtidoTotal('.$detoperacion->id.')' ]) !!}
-        <span class="badge badge-warning"> <i class="fa fa-check-square-o"></i> Surtido parcialmente ({{ number_format($detoperacion->parcial) }})</span>
+        <span class="badge badge-warning"> <i class="far fa-check-square"></i> Surtido parcialmente ({{ number_format($detoperacion->parcial) }})</span>
 
 
         @endif
