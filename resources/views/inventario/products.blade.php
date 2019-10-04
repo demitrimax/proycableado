@@ -224,6 +224,8 @@ $('#btnagregarotro').click(function() {
   ;
   $(newRow).appendTo($('#conceptos tbody'));
   $('.select2').select2();
+  var bodegaid = $('#bodega_id').val();
+  ajaxproductos(bodegaid);
 }) ;
 
 $( "RegistroInventario" ).submit(function( event ) {
@@ -265,5 +267,23 @@ $( "RegistroInventario" ).submit(function( event ) {
 
     });
   });
+  function ajaxproductos(bodegaid)
+  {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+    //ajax
+    $.get('{{url('inventario/bodega')}}/' + bodegaid + '/productos', function(data) {
+      //exito al obtener los datos
+      $('.producto').empty();
+      console.log(data);
+      $.each(data, function(index, producto) {
+        $('.producto').append('<option value ="' + producto.id + '">'+producto.nombre+'('+producto.stock+')</option>' );
+      });
+    });
+  }
 </script>
 @endpush

@@ -20,7 +20,7 @@
   {!! Form::hidden('tipo_mov', 'Entrada') !!}
 <div class="panel panel-primary">
           <h6 class="panel-heading">Registro de Salidas del Inventario</h6>
-          <p class="mg-b-20 mg-sm-b-30">Movimiento de entradas</p>
+          <p class="mg-b-20 mg-sm-b-30">Movimiento de Salidas</p>
 
           <div class="form-layout">
             <div class="row mg-b-25">
@@ -41,13 +41,13 @@
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Bodega: <span class="tx-danger">*</span></label>
-                  {!! Form::select('bodega_id', $bodegas, null, ['class' => 'form-control', 'required'] )!!}
+                  {!! Form::select('bodega_id', $bodegas, null, ['class' => 'form-control', 'required', 'placeholder'=>'Seleccione una bodega', 'id'=>'bodega_id'] )!!}
                 </div>
               </div><!-- col-4 -->
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-control-label">Número de Factura: <span class="tx-danger">*</span></label>
-                  {!! Form::text('numfactura', null, ['class' => 'form-control', 'required'] )!!}
+                  <label class="form-control-label">Número de Factura:</label>
+                  {!! Form::text('numfactura', null, ['class' => 'form-control'] )!!}
                 </div>
               </div><!-- col-4 -->
 
@@ -90,6 +90,13 @@
           $(function () {
             $('[data-toggle="popover"]').popover()
           })
+          //obtener el precio de venta del producto
+          $('#bodega_id').on('change', function(e) {
+            console.log(e.target.name);
+            var bodegaid = e.target.value;
+            ajaxproductos(bodegaid);
+          });
+
   </script>
     @stack('scripts')
   @endsection

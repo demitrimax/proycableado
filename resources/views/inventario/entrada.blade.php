@@ -39,7 +39,7 @@
                 </div>
               </div><!-- col-4 -->
 
-              
+
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Bodega: <span class="tx-danger">*</span></label>
@@ -48,8 +48,8 @@
               </div><!-- col-4 -->
               <div class="col-lg-4">
                 <div class="form-group">
-                  <label class="form-control-label">Número de Factura: <span class="tx-danger">*</span></label>
-                  {!! Form::text('numfactura', null, ['class' => 'form-control', 'required'] )!!}
+                  <label class="form-control-label">Número de Factura:</label>
+                  {!! Form::text('numfactura', null, ['class' => 'form-control'] )!!}
                 </div>
               </div><!-- col-4 -->
 

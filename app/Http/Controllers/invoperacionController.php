@@ -203,6 +203,7 @@ class invoperacionController extends AppBaseController
       $clientes = clientes::orderBy('nombre','asc')->pluck('nombre','id');
       $productos = productos::where('inventariable',0)->orderBy('nombre','asc')->get();
       $productos = $productos->where('stock', '>', 0 )->pluck('nomproductostock','id');
+      $productos = [];
       $bodegas = bodegas::pluck('nombre','id');
       $operaciontipo = 'salida';
       $facturaras = facturara::pluck('nombre','id');
@@ -270,7 +271,8 @@ class invoperacionController extends AppBaseController
           $bodega_id = $input['bodega_id'];
           //dd($cantidad);
           $elproducto = productos::find($productoid);
-          $stock = $elproducto->stock;
+          $bodega = bodegas::find($input['bodega_id']);
+          $stock = $bodega->stockpro($productoid); //stock del producto en la bodega
           //dd($stock);
           if( $cantidad > $stock) {
             $mensaje = 'La cantidad solicitada del '.$elproducto->nombre.' sobrepasa el nivel de stock ('.$elproducto->stock.')';
@@ -397,5 +399,19 @@ class invoperacionController extends AppBaseController
     {
       $productos = productos::all();
       return view('inventario.reportev2')->with(compact('productos'));
+    }
+
+    //Ajax envía la lista de productos disponibles en la bodega y su stock
+    public function productosxbodega($bodegaid)
+    {
+        $bodega = bodegas::find($bodegaid);
+        $operaciones = $bodega->operacioninvent->unique('producto_id');
+        foreach($operaciones as $operacion){
+          if($bodega->stockpro($operacion->producto->id)> 0){
+              $productos[] = ['id'=>$operacion->producto->id, 'nombre'=>$operacion->producto->nombre, 'stock' => $bodega->stockpro($operacion->producto->id)];
+          }
+
+        }
+        return $productos;
     }
 }
