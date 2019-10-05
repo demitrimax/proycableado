@@ -77,7 +77,7 @@
 <!-- Identificacion Field -->
 <tr>
   <th>{!! Form::label('identificacion', 'Identificación:') !!}</th>
-  <td>{!! $proyectos->identificacion !!}</td>
+  <td>{!! $proyectos->identificacion.' '.$proyectos->identifi_text !!}</td>
 </tr>
 
 <!-- Observaciones Field -->

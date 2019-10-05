@@ -100,7 +100,7 @@ if (isset($proyectos->generico)){
     {!! Form::select('identificacion', [''=>'','OB'=>'OB','DTTO'=>'DTTO','ID'=>'ID','OT'=>'OT','SISA'=>'SISA'],null, ['class' => 'form-control']) !!}
   </div>
   <div class="col-md-5">
-  {!! Form::text('identificacion', null, ['class' => 'form-control', 'maxlength'=>10, 'placeholder'=>'complemento de Identificación' ]) !!}
+  {!! Form::text('identifi_text', null, ['class' => 'form-control', 'maxlength'=>10, 'placeholder'=>'complemento de Identificación' ]) !!}
 </div>
 
 </div>
