@@ -32,13 +32,13 @@
     <td class="ColIngImporte">
       <div class="input-group IngresoImporte">
         <span class="input-group-addon d-none d-sm-block"><i class="fa fa-dollar"></i></span>
-        <input type="number" min="1" step="0.01" class="form-control form-control-xs PreUnitario" id="importecon[]" name="importecon[]" placeholder="Importe" size="50">
+        <input type="number" min="0.01" step="0.01" class="form-control form-control-xs PreUnitario" id="importecon[]" name="importecon[]" placeholder="Importe" size="50" required>
       </div>
     </td>
     <td class="ColNMonto">
       <div class="input-group NSubtotalProducto">
         <span class="input-group-addon d-none d-sm-block"><i class="fa fa-dollar"></i></span>
-        <input type="number" min="1" step="0.01" class="form-control NMontoProducto" id="montoconcepto[]" name="montoconcepto[]" placeholder="Monto" readonly size="50">
+        <input type="number" min="0.01" step="0.01" class="form-control NMontoProducto" id="montoconcepto[]" name="montoconcepto[]" placeholder="Monto" readonly size="50">
         <span class="input-group-btn">
           <button type="button" class="btn btn-warning btn" id ="btnagregarotro"><i class="fa fa-plus"></i></button>
         </span>
@@ -209,7 +209,7 @@ $('#btnagregarotro').click(function() {
     '<td class="ColIngImporte">'+
     '<div class="input-group IngresoImporte">'+
       '<span class="input-group-addon d-none d-sm-block"><i class="fa fa-dollar"></i></span>'+
-      '<input type="number" step="0.01" min="1" class="form-control PreUnitario" id="importecon[]" name="importecon[]" placeholder="Importe">'+
+      '<input type="number" step="0.01" min="0.01" class="form-control PreUnitario" id="importecon[]" name="importecon[]" placeholder="Importe">'+
       '</div>'+
     '</td>'+
     '<td class="ColNMonto">'+

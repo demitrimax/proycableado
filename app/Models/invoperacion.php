@@ -174,7 +174,7 @@ class invoperacion extends Model
         elseif( in_array('S', $diferentes)){
           $estado = 'Solicitud';
           $est = 'S';
-          $label = 'primary';
+          $label = 'danger';
         }
         elseif( in_array('P', $diferentes)){
           $estado = 'Surtido Parcialmente';

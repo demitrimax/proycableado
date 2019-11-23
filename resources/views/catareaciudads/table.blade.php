@@ -16,9 +16,9 @@
             <td>
                 {!! Form::open(['route' => ['catareaciudads.destroy', $catareaciudad->id], 'method' => 'delete', 'id'=>'form'.$catareaciudad->id]) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('catareaciudads.show', [$catareaciudad->id]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('catareaciudads.edit', [$catareaciudad->id]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
+                    <a href="{!! route('catareaciudads.show', [$catareaciudad->id]) !!}" class='btn btn-info'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('catareaciudads.edit', [$catareaciudad->id]) !!}" class='btn btn-primary'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Estas Seguro?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

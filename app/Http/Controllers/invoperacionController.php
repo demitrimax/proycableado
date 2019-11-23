@@ -192,7 +192,11 @@ class invoperacionController extends AppBaseController
     public function entrada()
     {
       $proveedores = invproveedores::orderBy('nombre','asc')->pluck('nombre','id');
-      $productos = productos::where('inventariable',0)->orderBy('nombre','asc')->pluck('nombre','id');
+      $productos = productos::selectRaw( "*, CONCAT(codigo_1, ' ', nombre) as nombrecod")
+                              ->where('inventariable',0)
+                              ->orderBy('nombre','asc')
+                              ->pluck('nombrecod','id');
+      //
       $bodegas = bodegas::pluck('nombre','id');
       $operaciontipo = 'entrada';
       $facturara = facturara::pluck('nombre', 'id');
@@ -201,7 +205,10 @@ class invoperacionController extends AppBaseController
     public function salida()
     {
       $clientes = clientes::orderBy('nombre','asc')->pluck('nombre','id');
-      $productos = productos::where('inventariable',0)->orderBy('nombre','asc')->get();
+      $productos = productos::selectRaw( "*, CONCAT(codigo_1, ' ', nombre) as nombrecod")
+                              ->where('inventariable',0)
+                              ->orderBy('nombre','asc')
+                              ->get();
       $productos = $productos->where('stock', '>', 0 )->pluck('nomproductostock','id');
       $productos = [];
       $bodegas = bodegas::pluck('nombre','id');
@@ -213,6 +220,16 @@ class invoperacionController extends AppBaseController
     {
       $input = $request->all();
       //dd($input);
+
+      $rules = [
+        'importecon[]' => 'numeric'
+      ];
+      $messages = [
+        'importecon.required'   => 'Es necesario el importe',
+        'importecon.number'     => 'Es necesario el importe'
+      ];
+
+      //$this->validate($request, $rules, $messages);
 
       $string = $input['aTotal'];
       $monto  = floatval($string);
@@ -408,7 +425,7 @@ class invoperacionController extends AppBaseController
         $operaciones = $bodega->operacioninvent->unique('producto_id');
         foreach($operaciones as $operacion){
           if($bodega->stockpro($operacion->producto->id)> 0){
-              $productos[] = ['id'=>$operacion->producto->id, 'nombre'=>$operacion->producto->nombre, 'stock' => $bodega->stockpro($operacion->producto->id)];
+              $productos[] = ['id'=>$operacion->producto->id, 'nombre'=>$operacion->producto->codigo_1.' '.$operacion->producto->nombre, 'stock' => $bodega->stockpro($operacion->producto->id)];
           }
 
         }

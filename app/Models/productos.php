@@ -52,6 +52,9 @@ class productos extends Model
         'stock_min',
         'pventa',
         'pcompra',
+        'codigo_1',
+        'codigo_2',
+        'codigo_3',
     ];
 
     /**
@@ -72,6 +75,9 @@ class productos extends Model
         'stock_min'     => 'integer',
         'pcompra'       => 'float',
         'pventa'        => 'float',
+        'codigo_1'      => 'string',
+        'codigo_2'      => 'string',
+        'codigo_3'      => 'string',
     ];
 
     /**
@@ -115,7 +121,12 @@ class productos extends Model
       $salidas = invdetoperacion::where('producto_id', $this->id)
                                   ->where('tipo_operacion', 'Salida')
                                   ->sum('cantidad');
-      return $entradas-$salidas;
+      $cantidad = $entradas - $salidas;
+      if($this->inventariable == 1){
+        $cantidad = 1;
+      }
+
+      return $cantidad;
     }
     public function getNomproductostockAttribute()
     {

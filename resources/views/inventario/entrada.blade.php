@@ -14,6 +14,7 @@
 
 @include('flash::message')
 
+@include('adminlte-templates::common.errors')
 <div class="clearfix"></div>
 
 {!! Form::open(['route'=>'inventario.regentrada', 'id'=>'RegistroInventario'])!!}

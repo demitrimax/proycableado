@@ -28,7 +28,25 @@
 <!-- Barcode Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('barcode', 'Barcode:') !!}
-    {!! Form::text('barcode', null, ['class' => 'form-control maxlen', 'maxlength'=>'50']) !!}
+    {!! Form::text('barcode', null, ['class' => 'form-control maxlen', 'maxlength'=>'20']) !!}
+</div>
+
+<!-- Codigo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('codigo_1', 'Código 1:') !!}
+    {!! Form::text('codigo_1', null, ['class' => 'form-control maxlen', 'maxlength'=>'20']) !!}
+</div>
+
+<!-- Codigo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('codigo_2', 'Código 2:') !!}
+    {!! Form::text('codigo_2', null, ['class' => 'form-control maxlen', 'maxlength'=>'20']) !!}
+</div>
+
+<!-- Codigo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('codigo_3', 'Código 3:') !!}
+    {!! Form::text('codigo_3', null, ['class' => 'form-control maxlen', 'maxlength'=>'20']) !!}
 </div>
 
 <!-- Categoria Id Field -->
