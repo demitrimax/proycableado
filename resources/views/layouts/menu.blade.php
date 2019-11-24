@@ -22,7 +22,7 @@
   @php
   if( Request::is('inventario*') || Request::is('productos*') || Request::is('categorias*')
       || Request::is('bodegas*') || Request::is('clientes*') ) {
-      $varActive = "active";
+      $varActive = "active subdrop";
   } else {
     $varActive = "";
   }
@@ -62,7 +62,7 @@
 <li class="has_sub">
   @php
   if( Request::is('catpaisdivisions*') || Request::is('catareaciudads*') || Request::is('contratistas*') ||  Request::is('docscategorias*') ) {
-      $varActive = "active";
+      $varActive = "active subdrop";
   } else {
     $varActive = "";
   }
@@ -104,7 +104,7 @@
   @hasrole('administrador')
     @php
     if( Request::is('user*') || Request::is('permissions*') || Request::is('roles*')  ) {
-        $varActive = "active";
+        $varActive = "active subdrop";
     } else {
       $varActive = "";
     }
