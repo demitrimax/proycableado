@@ -93,6 +93,8 @@
           $(function () {
             $('[data-toggle="popover"]').popover()
           })
+          //script ajax productos
+          
   </script>
     @stack('scripts')
   @endsection

@@ -15,7 +15,7 @@
                     @include('documentos.show_fields')
                     </tbody>
                   </table>
-                    <a href="{!! route('documentos.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('documentos.index') !!}" class="btn btn-default">Regresar</a>
                 </div>
             </div>
         </div>

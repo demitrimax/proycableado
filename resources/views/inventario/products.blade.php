@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr id="r0">
     <td class="NCantidadProd">
         <div class="input-group NCantProd">
          <input type="number" class="form-control NCantidadProducto" id="cantidad[]" name="cantidad[0]" placeholder="Cantidad" title="Cantidad" min="1" value=1 >
@@ -24,8 +24,8 @@
        </datalist>
      </div>
     </td>
-    <td>
-      <div class="input-group col-md-12">
+    <td class="ColProducto">
+      <div class="input-group col-md-12 CProducto">
          {!! Form::select('producto[]', $productos, null, ['class'=>'form-control select2 producto', 'required', 'placeholder'=>'Seleccione un producto', 'style'=>'width: 100%;'])!!}
       </div>
     </td>
@@ -201,8 +201,8 @@ $('#btnagregarotro').click(function() {
        '</datalist>'+
      '</div>'+
     '</td>'+
-    '<td>'+
-      '<div class="input-group col-md-12">'+
+    '<td class="ColProducto">'+
+      '<div class="input-group col-md-12 CProducto">'+
          '{!! Form::select("producto[]", $productos, null, ["class"=>"form-control select2 producto", "required", "placeholder"=>"Seleccione un producto", "style"=>"width:100%;" ])!!}'+
       '</div>'+
     '</td>'+
@@ -223,9 +223,11 @@ $('#btnagregarotro').click(function() {
     '</td>'
   ;
   $(newRow).appendTo($('#conceptos tbody'));
+  var MyRow = $("#r"+IdRow).children(".ColProducto").children(".CProducto").children(".producto");
+  console.log('Mi Fila '+MyRow)
   $('.select2').select2();
   var bodegaid = $('#bodega_id').val();
-  ajaxproductos(bodegaid);
+  ajaxproductos(bodegaid, MyRow);
 }) ;
 
 $( "RegistroInventario" ).submit(function( event ) {
@@ -267,7 +269,7 @@ $( "RegistroInventario" ).submit(function( event ) {
 
     });
   });
-  function ajaxproductos(bodegaid)
+  function ajaxproductos(bodegaid, row)
   {
 
     $.ajaxSetup({
@@ -278,10 +280,10 @@ $( "RegistroInventario" ).submit(function( event ) {
     //ajax
     $.get('{{url('inventario/bodega')}}/' + bodegaid + '/productos', function(data) {
       //exito al obtener los datos
-      $('.producto').empty();
+      row.empty();
       console.log(data);
       $.each(data, function(index, producto) {
-        $('.producto').append('<option value ="' + producto.id + '">'+producto.nombre+'('+producto.stock+')</option>' );
+        row.append('<option value ="' + producto.id + '">'+producto.nombre+'('+producto.stock+')</option>' );
       });
     });
   }

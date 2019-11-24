@@ -94,7 +94,8 @@
           $('#bodega_id').on('change', function(e) {
             console.log(e.target.name);
             var bodegaid = e.target.value;
-            ajaxproductos(bodegaid);
+            var MyRow = $("#r0").children(".ColProducto").children(".CProducto").children(".producto");
+            ajaxproductos(bodegaid, MyRow);
           });
 
   </script>

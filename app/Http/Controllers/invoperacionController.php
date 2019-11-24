@@ -192,11 +192,13 @@ class invoperacionController extends AppBaseController
     public function entrada()
     {
       $proveedores = invproveedores::orderBy('nombre','asc')->pluck('nombre','id');
-      $productos = productos::selectRaw( "*, CONCAT(codigo_1, ' ', nombre) as nombrecod")
+       $productos = productos::selectRaw( "*, CONCAT(codigo_1, ' ', nombre) as nombrecod")
                               ->where('inventariable',0)
                               ->orderBy('nombre','asc')
                               ->pluck('nombrecod','id');
-      //
+
+      
+      //$productos = [];
       $bodegas = bodegas::pluck('nombre','id');
       $operaciontipo = 'entrada';
       $facturara = facturara::pluck('nombre', 'id');
@@ -205,11 +207,12 @@ class invoperacionController extends AppBaseController
     public function salida()
     {
       $clientes = clientes::orderBy('nombre','asc')->pluck('nombre','id');
-      $productos = productos::selectRaw( "*, CONCAT(codigo_1, ' ', nombre) as nombrecod")
+
+      /* $productos = productos::selectRaw( "*, CONCAT(codigo_1, ' ', nombre) as nombrecod")
                               ->where('inventariable',0)
                               ->orderBy('nombre','asc')
                               ->get();
-      $productos = $productos->where('stock', '>', 0 )->pluck('nomproductostock','id');
+      $productos = $productos->where('stock', '>', 0 )->pluck('nomproductostock','id');*/
       $productos = [];
       $bodegas = bodegas::pluck('nombre','id');
       $operaciontipo = 'salida';

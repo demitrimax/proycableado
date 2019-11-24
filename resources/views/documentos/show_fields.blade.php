@@ -28,22 +28,13 @@
 
 <!-- Created At Field -->
 <tr>
-  <th>{!! Form::label('created_at', 'Created At:') !!}</th>
-  <td>{!! $documentos->created_at !!}</td>
+  <th>{!! Form::label('created_at', 'Creado el:') !!}</th>
+  <td>{!! $documentos->created_at->format('d-m-Y h:i:s') !!}</td>
 </tr>
 
 
 <!-- Updated At Field -->
 <tr>
-  <th>{!! Form::label('updated_at', 'Updated At:') !!}</th>
-  <td>{!! $documentos->updated_at !!}</td>
+  <th>{!! Form::label('updated_at', 'Actualizado el:') !!}</th>
+  <td>{!! $documentos->updated_at->format('d-m-Y h:i:s') !!}</td>
 </tr>
-
-
-<!-- Deleted At Field -->
-<tr>
-  <th>{!! Form::label('deleted_at', 'Deleted At:') !!}</th>
-  <td>{!! $documentos->deleted_at !!}</td>
-</tr>
-
-

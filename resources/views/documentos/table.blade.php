@@ -2,9 +2,8 @@
     <thead>
         <tr>
             <th>Nombre Doc</th>
-        <th>File Servidor</th>
-        <th>Descripcion</th>
-            <th colspan="3">Acciones</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +26,6 @@
               ( {{ human_filesize(filesize(storage_path('app/'.$documentos->file_servidor))) }}bytes)
               @endif
             </td>
-            <td>{!! $documentos->file_servidor !!}</td>
             <td>{!! $documentos->descripcion !!}</td>
             <td>
                 {!! Form::open(['route' => ['documentos.destroy', $documentos->id], 'method' => 'delete', 'id'=>'form'.$documentos->id]) !!}
