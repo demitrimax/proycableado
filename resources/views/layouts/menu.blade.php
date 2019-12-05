@@ -1,6 +1,6 @@
 <li class="menu-title">Menu</li>
 <li class="{{ Request::is('home*') ? 'active' : '' }}">
-    <a href="{{url('home')}}" class="waves-effect"><i class="mdi mdi-home"></i><span> Dashboard <span class="badge badge-primary pull-right">1</span></span></a>
+    <a href="{{url('home')}}" class="waves-effect"><i class="mdi mdi-home"></i><span> Dashboard <!--<span class="badge badge-primary pull-right">1</span>--></span></a>
 </li>
 @can('proyectos-list')
 <li>
@@ -21,7 +21,7 @@
 <li class="has_sub">
   @php
   if( Request::is('inventario*') || Request::is('productos*') || Request::is('categorias*')
-      || Request::is('bodegas*') || Request::is('clientes*') ) {
+      || Request::is('bodegas*') || Request::is('clientes*') || Request::is('invoperacions*') ) {
       $varActive = "active subdrop";
   } else {
     $varActive = "";
