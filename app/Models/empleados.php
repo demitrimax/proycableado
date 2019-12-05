@@ -72,6 +72,11 @@ class empleados extends Model
 
     ];
 
+    public function getNombrecompletoAttribute()
+    {
+      return $this->nombre.' '.$this->apellidos;
+    }
+
     public function getUfotoAttribute()
     {
       $avatar = 'avatar/avatar.png';
@@ -84,6 +89,11 @@ class empleados extends Model
     public function documentos()
     {
       return $this->belongsToMany('App\Models\documentos', 'documentos_catempleados', 'empleado_id', 'documento_id');
+    }
+
+    public function prestamos()
+    {
+      return $this->hasMany('App\Models\invprestamos', 'empleado_id');
     }
 
 

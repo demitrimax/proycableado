@@ -27,16 +27,21 @@
 
       <div class="col-lg-6">
 
-        <div class="panel panel-primary">
-        <div class="panel-heading card-header-default">
-          <h3 class="panel-title">Operaciones</h3>
-        </div>
-            <div class="panel-body">
-                @include('productos.detoperaciones')
-                </div>
-            </div>
+    @if($productos->inventariable <> 1)
+
+        @include('productos.detoperaciones')
+    @else
+
+        @include('productos.prestamos')
+
+      @endif
+
           </div>
 
   </div>
   </div>
+@endsection
+
+@section('scripts')
+  @stack('scripts')
 @endsection

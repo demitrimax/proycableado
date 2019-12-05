@@ -18,6 +18,8 @@ use App\Models\invoperacion;
 use App\Models\invdetoperacion;
 use App\Models\bodegas;
 use App\Models\facturara;
+use App\Models\empleados;
+use App\Models\invprestamos;
 use Auth;
 
 class invoperacionController extends AppBaseController
@@ -197,7 +199,7 @@ class invoperacionController extends AppBaseController
                               ->orderBy('nombre','asc')
                               ->pluck('nombrecod','id');
 
-      
+
       //$productos = [];
       $bodegas = bodegas::pluck('nombre','id');
       $operaciontipo = 'entrada';
@@ -433,5 +435,61 @@ class invoperacionController extends AppBaseController
 
         }
         return $productos;
+    }
+    public function prestamos()
+    {
+
+      $empleados = empleados::all();
+      $productos = productos::where('inventariable', 1)
+                            ->whereNotIn('id', function ($query) {
+                                  $query->select('producto_id')
+                                        ->whereNull('devuelto_en')
+                                        ->from('inv_prestamos');
+                                })
+                            ->get();
+      return view('inventario.prestamos')->with(compact('empleados', 'productos'));
+    }
+
+    public function registroprestamo(Request $request)
+    {
+      $input = $request->all();
+      //dd($input);
+      $prestamo = new invprestamos;
+      $prestamo->producto_id = $input['producto_id'];
+      $prestamo->empleado_id = $input['empleado_id'];
+      //$prestamos->resguardofile
+      $prestamo->fecha = date('Y-m-d');
+      $prestamo->save();
+
+      $mensaje = 'Se ha registrado el prestamo correctamente';
+      Alert::success($mensaje);
+      Flash::success($mensaje);
+      return back();
+    }
+
+    public function registrodevolucion($idproducto, $idempleado)
+    {
+      $producto_id = $idproducto;
+      $empleado_id = $idempleado;
+
+      $prestamo = invprestamos::where('producto_id', $producto_id)
+                              ->where('empleado_id', $empleado_id)
+                              ->whereNull('devuelto_en')
+                              ->first();
+      if(empty($prestamo)){
+        $mensaje = 'No se encontró el prestamo';
+        Alert::error($mensaje);
+        Flash::error($mensaje);
+        return back();
+      }
+
+      $prestamo->devuelto_en = date('Y-m-d h:i:s');
+      $prestamo->save();
+
+      $mensaje = 'Se realizó la devolución correctamente';
+      Alert::success($mensaje);
+      Flash::success($mensaje);
+      return back();
+
     }
 }

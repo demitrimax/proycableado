@@ -1,4 +1,6 @@
-<table class="table mg-b-0 table-primary table-hover">
+@component('components.com_panel', ['title'=>'Operaciones'])
+
+          <table class="table mg-b-0 table-primary table-hover">
               <thead class="bg-info">
                 <tr>
                   <th>No.  </th>
@@ -26,3 +28,4 @@
                 @endforeach
               </tbody>
             </table>
+@endcomponent

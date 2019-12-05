@@ -33,8 +33,13 @@
 </tr>
 
 <tr>
-  <th>{!! Form::label('codigo_1', 'Codigo 1:') !!}</th>
+  <th>{!! Form::label('codigo_1', 'Código 1:') !!}</th>
   <td>{!! $productos->codigo_1 !!}</td>
+</tr>
+
+<tr>
+  <th>{!! Form::label('codigo_2', 'Código 2:') !!}</th>
+  <td>{!! $productos->codigo_2 !!}</td>
 </tr>
 
 <tr>

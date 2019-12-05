@@ -35,6 +35,9 @@
         @can('inventario-entrada')
         <li class="nav-item"><a href="{!! route('inventario.entrada') !!}" class="nav-link {{ Request::is('inventario/entrada*') ? 'active' : '' }}">Entradas</a></li>
         @endcan
+        @can('inventario-prestamos')
+        <li class="{{ Request::is('inventario/prestamos*') ? 'active' : '' }}"><a href="{{route('inventario.prestamos')}}">Prestamos</a></li>
+        @endcan
         @can('invoperacions-list')
         <li class="nav-item"><a href="{!! route('invoperacions.index') !!}" class="nav-link {{ Request::is('invoperacions*') ? 'active' : '' }}">Operación</a></li>
         @endcan
@@ -54,6 +57,7 @@
         @can('invproveedores-list')
         <li class="{{ Request::is('invproveedores*') ? 'active' : '' }}"><a href="{{route('invproveedores.index')}}">Proveedores</a></li>
         @endcan
+
 
     </ul>
 </li>

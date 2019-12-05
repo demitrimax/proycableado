@@ -7,6 +7,7 @@
   <div class="clearfix"></div>
 
         <div class="col-lg-6">
+
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Datos del Empleado</h3>
@@ -57,6 +58,9 @@
         </div>
       </div>
       @include('empleados.expediente')
+      <div class="col-lg-6">
+      @include('empleados.prestamos')
+    </div>
 
     </div>
 

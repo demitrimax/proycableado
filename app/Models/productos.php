@@ -104,6 +104,11 @@ class productos extends Model
       return $this->hasMany('App\Models\invdetoperacion', 'producto_id');
     }
 
+    public function getNombreserieAttribute()
+    {
+      return $this->nombre.'['.$this->codigo_1.']';
+    }
+
     public function getStockAttribute()
     {
 
@@ -131,5 +136,9 @@ class productos extends Model
     public function getNomproductostockAttribute()
     {
       return $this->nombre.' ('.$this->stock.')';
+    }
+    public function prestamos()
+    {
+      return $this->hasMany('App\Models\invprestamos', 'producto_id');
     }
 }

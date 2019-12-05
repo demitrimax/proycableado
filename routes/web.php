@@ -80,8 +80,12 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('inventario/informe/ver1', 'invoperacionController@informeVer1');
   Route::get('inventario/informe/ver2', 'invoperacionController@informeVer2');
   Route::get('inventario/bodega/{bodegaid}/productos', 'invoperacionController@productosxbodega');
+  Route::get('inventario/prestamos', 'invoperacionController@prestamos')->name('inventario.prestamos');
+  Route::post('inventario/registro/prestamo', 'invoperacionController@registroprestamo')->name('inventario.registro.prestamo');
+  Route::get('inventario/{idproducto}/producto/{idempleado}/empleado', 'invoperacionController@registrodevolucion')->name('inventario.registro.devolucion');
 
   Route::resource('docscategorias', 'docscategoriasController');
+
 
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });
