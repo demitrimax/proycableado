@@ -21,22 +21,13 @@
 
 <!-- Created At Field -->
 <tr>
-  <th>{!! Form::label('created_at', 'Created At:') !!}</th>
-  <td>{!! $bodegas->created_at !!}</td>
+  <th>{!! Form::label('created_at', 'Creado el:') !!}</th>
+  <td>{!! $bodegas->created_at->format('d-m-Y H:i:s') !!}</td>
 </tr>
 
 
 <!-- Updated At Field -->
 <tr>
-  <th>{!! Form::label('updated_at', 'Updated At:') !!}</th>
-  <td>{!! $bodegas->updated_at !!}</td>
+  <th>{!! Form::label('updated_at', 'Actualizado el:') !!}</th>
+  <td>{!! $bodegas->updated_at->format('d-m-Y H:i:s') !!}</td>
 </tr>
-
-
-<!-- Deleted At Field -->
-<tr>
-  <th>{!! Form::label('deleted_at', 'Deleted At:') !!}</th>
-  <td>{!! $bodegas->deleted_at !!}</td>
-</tr>
-
-

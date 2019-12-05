@@ -49,12 +49,7 @@
                         </button>
                         <span class="clearfix"></span>
                     </div>
-                    <form class="navbar-form pull-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control search-bar" placeholder="Buscar...">
-                        </div>
-                        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                    </form>
+                    
 
                     <ul class="nav navbar-nav navbar-right pull-right">
                       @if($vartareas->count()>0)
