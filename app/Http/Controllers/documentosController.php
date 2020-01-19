@@ -208,10 +208,15 @@ class documentosController extends AppBaseController
       $documentos = $this->documentosRepository->findWithoutFail($id);
 
       if (empty($documentos)) {
-          Flash::error('Documentos no encontrado');
-          Alert::error('Documentos no encontrado');
+          Flash::error('Documento no encontrado');
+          Alert::error('Documento no encontrado');
 
           return redirect(route('documentos.index'));
+      }
+      if(!Storage::exists($documentos->documento)){
+        Alert::error('Ocurrió un error, no se encontró el archivo');
+        Flash::error('Ocurrió un error, no se encontró el archivo');
+        return back();
       }
       $nomarchivo = SomeClass::normalizeString($documentos->nombre_doc);
 
