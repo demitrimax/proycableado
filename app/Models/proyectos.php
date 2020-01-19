@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class proyectos
@@ -31,12 +32,14 @@ use Carbon\Carbon;
 class proyectos extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
     public $table = 'proyectos';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
     public $fillable = [
         'nombre',
@@ -53,6 +56,7 @@ class proyectos extends Model
         'observaciones',
         'generico',
         'terminado',
+        'etapa_id',
     ];
 
     /**
@@ -76,6 +80,7 @@ class proyectos extends Model
         'observaciones' => 'string',
         'generico' => 'string',
         'terminado' => 'date',
+        'etapa_id'  => 'integer'
     ];
 
     /**
@@ -145,6 +150,10 @@ class proyectos extends Model
         $formatFolio = 'G'.$this->ftermino->format('y').$this->ftermino->format('m').str_pad($this->id,4,"0",STR_PAD_LEFT);
       }
       return $formatFolio;
+    }
+    public function etapa()
+    {
+      return $this->belongsTo('App\Models\catetapa', 'etapa_id');
     }
 
     public function getEstatusdateAttribute()

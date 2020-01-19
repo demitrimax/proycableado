@@ -2,34 +2,39 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Model;
+use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
- * Class catpaisdivision
+ * Class catetapa
  * @package App\Models
- * @version April 14, 2019, 4:32 am UTC
+ * @version January 18, 2020, 4:49 pm CST
  *
  * @property \Illuminate\Database\Eloquent\Collection
+ * @property \Illuminate\Database\Eloquent\Collection
  * @property string nombre
- * @property string observaciones
+ * @property string descripcion
  */
-class catpaisdivision extends Model
+class catetapa extends Model
 {
     use SoftDeletes;
     use LogsActivity;
-    public $table = 'cat_pais-division';
+
+    public $table = 'cat_etapa';
+    protected static $logAttributes = ['*'];
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+
     protected $dates = ['deleted_at'];
-    protected static $logAttributes = ['*'];
+
 
     public $fillable = [
         'nombre',
-        'observaciones'
+        'descripcion',
+        'color_hex',
     ];
 
     /**
@@ -40,7 +45,8 @@ class catpaisdivision extends Model
     protected $casts = [
         'id' => 'integer',
         'nombre' => 'string',
-        'observaciones' => 'string'
+        'descripcion' => 'string',
+        'color_hex' => 'string'
     ];
 
     /**
@@ -49,7 +55,8 @@ class catpaisdivision extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required'
+        'nombre' => 'required',
+        'color_hex'   => 'required|max:10'
     ];
 
 

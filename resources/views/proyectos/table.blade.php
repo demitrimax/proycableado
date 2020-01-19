@@ -11,7 +11,7 @@
 <table class="table table-striped table-bordered" id="proyectos-table">
     <thead>
         <tr>
-            <th>Folio</th>
+            <th>Folio </th>
             <th>Nombre</th>
             <th>Supervisor</th>
             <th>Identificacion</th>
@@ -24,7 +24,7 @@
     <tbody>
     @foreach($proyectos as $proyectos)
         <tr>
-            <td><a href="{!! route('proyectos.show', [$proyectos->id]) !!}"> {!! $proyectos->folio !!} </a></td>
+            <td><a href="{!! route('proyectos.show', [$proyectos->id]) !!}"> {!! $proyectos->folio !!} </a> <span class="badge" style="background-color:{!! $proyectos->etapa->color_hex !!}">{!! $proyectos->etapa->nombre !!}</span></td>
             <td>{!! $proyectos->nombre !!}</td>
             <td>{!! $proyectos->supervisor !!}</td>
             <td>{!! $proyectos->identificacion !!}</td>

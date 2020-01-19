@@ -19,6 +19,8 @@ use App\catestatus;
 use App\Models\documentos;
 use App\Models\docscategorias;
 use Auth;
+use App\Models\proyectos;
+use App\Models\catetapa;
 
 class proyectosController extends AppBaseController
 {
@@ -46,8 +48,19 @@ class proyectosController extends AppBaseController
         $this->proyectosRepository->pushCriteria(new RequestCriteria($request));
         $proyectos = $this->proyectosRepository->orderBy('estatus_id', 'asc')->orderBy('ftermino', 'asc')->get();
 
+        $proyectos = proyectos::where('etapa_id',1)->orderBy('estatus_id', 'asc')->orderBy('ftermino', 'asc')->get();
+
+        if(isset($_GET['filtro']) && $_GET['filtro'] > 0  )
+        {
+
+          $mifiltro = $_GET['filtro'];
+          $proyectos = proyectos::where('etapa_id', $mifiltro )->orderBy('estatus_id', 'asc')->orderBy('ftermino', 'asc')->get();
+        }
+
+        $etapas = catetapa::all();
+
         return view('proyectos.index')
-            ->with(compact('proyectos'));
+            ->with(compact('proyectos', 'etapas'));
     }
 
     /**
@@ -263,5 +276,23 @@ class proyectosController extends AppBaseController
 
       return back();
 
+    }
+
+    public function cambioEtapa(Request $request, $id, $etapa)
+    {
+        $proyecto = proyectos::find($id);
+        $etapasel = catetapa::find($etapa);
+        if(empty($etapasel)){
+          Alert::error('No se puede pasar a la etapa seleccionada, No existe!');
+          Flash::error('No se puede pasar a la etapa seleccionada, No existe!');
+          return back();
+        }
+
+        $proyecto->etapa_id = $etapasel->id;
+        $proyecto->save();
+
+        Alert::success('Se cambió de etapa satisfactoriamente');
+        Flash::success('Se cambió de etapa correctamente');
+        return back();
     }
 }

@@ -21,11 +21,13 @@
                       @can('proyectos-edit')
                       <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}" class="btn btn-primary">Editar</a>
                       @endcan
+
                       @can('proyectos-terminar')
                         @if($proyectos->estatus_id == 'A')
                         <button onclick="ConfirmTerminar()" title="Terminar Proyecto" type="button" class="btn waves-effect btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Terminar el Proyecto actual"> <i class="ion ion-checkmark-round"></i> </button>
                         @endif
                       @endcan
+
                       @can('proyectos-delete')
                       {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'button', 'class' => 'btn btn-danger', 'onclick' => "ConfirmDelete($proyectos->id)", 'data-original-title'=>'Eliminar Proyecto', 'data-toggle'=>'tooltip', 'data-placement'=>'top' ]) !!}
                       @endcan
@@ -195,4 +197,5 @@ function ConfirmDeleteDoc(id) {
 })
 }
 </script>
+  @stack('scripts')
 @endsection

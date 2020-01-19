@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class asistencia extends Model
 {
     //
 
     use SoftDeletes;
+    use LogsActivity;
 
     public $table = 'asistencias';
 
@@ -17,6 +19,7 @@ class asistencia extends Model
     const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
     public $fillable = [
         'empleado_id',

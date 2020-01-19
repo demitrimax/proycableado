@@ -97,7 +97,7 @@ if (isset($proyectos->generico)){
 <div class="form-group">
     {!! Form::label('identificacion', 'Identificacion:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-5">
-    {!! Form::select('identificacion', [''=>'','OB'=>'OB','DTTO'=>'DTTO','ID'=>'ID','OT'=>'OT','SISA'=>'SISA'],null, ['class' => 'form-control']) !!}
+    {!! Form::select('identificacion', [''=>'','OB'=>'OB','DTTO'=>'DTTO','ID'=>'ID','OT'=>'OT','SISA'=>'SISA'], null, ['class' => 'form-control']) !!}
   </div>
   <div class="col-md-5">
   {!! Form::text('identifi_text', null, ['class' => 'form-control', 'maxlength'=>10, 'placeholder'=>'complemento de Identificación' ]) !!}

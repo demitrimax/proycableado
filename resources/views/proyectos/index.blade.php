@@ -22,6 +22,17 @@
 
                         <div class="clearfix"></div>
                         <div class="box box-primary">
+                          <div class="row">
+                            Filtrar los proyectos
+                            <div class="btn-group center">
+
+                              @foreach($etapas as $etapa)
+                              <a href="{{url('proyectos'.'?filtro='.$etapa->id)}}"><span class="badge" style="background-color:{!! $etapa->color_hex !!}">{!! $etapa->nombre !!}</span></a>
+
+                              @endforeach
+                            </div>
+                            <p></p>
+                          </div>
                             <div class="table-responsive">
                                     @include('proyectos.table')
                             </div>

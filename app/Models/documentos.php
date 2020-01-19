@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class documentos
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class documentos extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     public $table = 'documentos';
 
@@ -26,6 +28,7 @@ class documentos extends Model
 
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
 
     public $fillable = [

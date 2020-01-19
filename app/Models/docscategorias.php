@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class docscategorias
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class docscategorias extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     public $table = 'docs_categorias';
 
@@ -27,6 +29,7 @@ class docscategorias extends Model
 
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
 
     public $fillable = [

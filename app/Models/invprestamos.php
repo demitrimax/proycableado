@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class invprestamos extends Model
 {
     //
     use SoftDeletes;
+    use LogsActivity;
 
     public $table = 'inv_prestamos';
 
@@ -17,6 +19,7 @@ class invprestamos extends Model
 
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
 
     public $fillable = [

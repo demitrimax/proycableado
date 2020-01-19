@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class catareaciudad
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class catareaciudad extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     public $table = 'cat_areaciudad';
 
@@ -25,6 +27,7 @@ class catareaciudad extends Model
     const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
     public $fillable = [
         'nombre',

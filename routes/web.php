@@ -40,6 +40,7 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('proyectos', 'proyectosController');
 
   Route::get('proyecto/{id}/terminar', 'proyectosController@terminar');
+  Route::get('proyecto/{id}/cetapa/{etapa}', 'proyectosController@cambioEtapa');
 
   Route::resource('documentos', 'documentosController');
   Route::get('verdoc/{id}', 'documentosController@showdoc');
@@ -85,6 +86,7 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('inventario/{idproducto}/producto/{idempleado}/empleado', 'invoperacionController@registrodevolucion')->name('inventario.registro.devolucion');
 
   Route::resource('docscategorias', 'docscategoriasController');
+  Route::resource('catetapas', 'catetapaController');
 
 
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

@@ -1,3 +1,15 @@
+@php
+  $etapa_ac = $proyectos->etapa->id;
+  $etapa_new = App\Models\catetapa::find($etapa_ac + 1);
+  if(empty($etapa_new)){
+    $etapanom = 'NINGUNA';
+    $etapanewid = 0;
+  } else {
+    $etapanom = $etapa_new->nombre;
+    $etapanewid = $etapa_new->id;
+  }
+
+@endphp
 <!-- Id Field -->
 <tr>
   <th>{!! Form::label('id', 'Folio:') !!}</th>
@@ -92,3 +104,43 @@
   <th>{!! Form::label('estatus_id', 'Estatus:') !!}</th>
   <td title="{!! $proyectos->estatusdate['descripcion'] !!}"> <span class="label label-{!! $proyectos->estatusdate['valor'] !!}">{!! $proyectos->catestatus->nombre !!}</span> </td>
 </tr>
+
+<!-- Etapa Id Field -->
+<tr>
+  <th>{!! Form::label('etapa_id', 'Etapa:') !!}</th>
+  <td title="{!! $proyectos->etapa->descripcion !!}">
+    <span class="badge" style="background-color:{!! $proyectos->etapa->color_hex !!}">
+      {!! $proyectos->etapa->nombre !!}
+    </span>
+    @if($etapanewid > 0)
+      @can('proyectos-cetapa')
+        <button onclick="ConfirmCambioEtapa()" title="Cambiar de Etapa" type="button" class="btn btn-xs waves-effect btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pasar el proyecto a la siguiente etapa"> <i class="ion ion-checkmark-round"></i> </button>
+      @endcan
+    @endif
+  </td>
+</tr>
+
+@push('scripts')
+  @can('proyectos-cetapa')
+
+
+  <script>
+    function ConfirmCambioEtapa() {
+      swal.fire({
+            title: 'Cambiar de Etapa',
+            text: 'El proyecto cambiará a la etapa {{$etapanom}}',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Continuar',
+            }).then((result) => {
+      if (result.value) {
+        //document.forms['formcetapa'].submit();
+        window.location.href = "{{url('proyecto/'.$proyectos->id.'/cetapa/'.$etapanewid)}}";
+      }
+    })
+    }
+  </script>
+  @endcan
+@endpush

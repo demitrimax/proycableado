@@ -100,7 +100,11 @@
             <a href="{!! route('docscategorias.index') !!}"><span>Categorías de Documentos</span></a>
         </li>
         @endcan
-
+        @can('catetapas-list')
+        <li class="{{ Request::is('catetapas*') ? 'active' : '' }}">
+            <a href="{!! route('catetapas.index') !!}"><span>Etapas</span></a>
+        </li>
+        @endcan
     </ul>
 </li>
 

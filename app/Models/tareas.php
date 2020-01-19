@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class tareas
@@ -22,6 +23,7 @@ use Carbon\Carbon;
 class tareas extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     public $table = 'tareas';
 
@@ -30,6 +32,7 @@ class tareas extends Model
 
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
 
     public $fillable = [

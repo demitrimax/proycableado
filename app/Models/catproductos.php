@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
+
 
 /**
  * Class catproductos
@@ -17,7 +19,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class catproductos extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
+    
     public $table = 'cat_productos';
+    protected static $logAttributes = ['*'];
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

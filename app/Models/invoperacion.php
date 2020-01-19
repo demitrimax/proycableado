@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class invoperacion
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class invoperacion extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     public $table = 'inv_operacion';
 
@@ -38,6 +40,7 @@ class invoperacion extends Model
 
 
     protected $dates = ['deleted_at'];
+    protected static $logAttributes = ['*'];
 
 
     public $fillable = [
