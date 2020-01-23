@@ -122,6 +122,7 @@
         <li class="{{ Request::is('user*') ? 'active' : '' }}"><a href="{{url('user')}}">Usuarios</a></li>
         <li class="{{ Request::is('roles*') ? 'active' : '' }}"><a href="{{url('roles')}}">Roles</a></li>
         <li class="{{ Request::is('permissions*') ? 'active' : '' }}"><a href="{{url('permissions')}}">Permisos</a></li>
+        <li class="{{ Request::is('backup*') ? 'active' : '' }}"><a href="{{url('backup')}}">Copias de Seguridad</a></li>
     </ul>
 </li>
 @endhasrole

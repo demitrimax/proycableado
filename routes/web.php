@@ -88,6 +88,13 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('docscategorias', 'docscategoriasController');
   Route::resource('catetapas', 'catetapaController');
 
+  //backup
+  Route::get('backup', 'BackupController@index');
+  Route::get('backup/create', 'BackupController@create');
+  Route::get('backup/download/{file_name}', 'BackupController@download');
+  Route::get('backup/delete/{file_name}', 'BackupController@delete');
+  Route::get('backup/createbackup', 'BackupController@createbackup');
+
 
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });
