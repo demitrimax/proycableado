@@ -155,6 +155,10 @@ class proyectos extends Model
     {
       return $this->belongsTo('App\Models\catetapa', 'etapa_id');
     }
+    public function comentarios()
+    {
+      return $this->hasMany('App\Models\proycomentarios', 'proyecto_id');
+    }
 
     public function getEstatusdateAttribute()
     {

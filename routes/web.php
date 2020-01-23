@@ -38,6 +38,7 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('catproductos', 'catproductosController');
 
   Route::resource('proyectos', 'proyectosController');
+  Route::post('proyectos/comentarios/add', 'proyectosController@agregarComentario')->name('comentarios.agregar');
 
   Route::get('proyecto/{id}/terminar', 'proyectosController@terminar');
   Route::get('proyecto/{id}/cetapa/{etapa}', 'proyectosController@cambioEtapa');
@@ -96,5 +97,5 @@ Route::group(['middleware'=>['auth']], function() {
   Route::get('backup/createbackup', 'BackupController@createbackup');
 
 
-  Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+  Route::get('mylogs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });

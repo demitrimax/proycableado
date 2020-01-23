@@ -287,12 +287,40 @@ class proyectosController extends AppBaseController
           Flash::error('No se puede pasar a la etapa seleccionada, No existe!');
           return back();
         }
-
+        $etapa_anterior = $proyecto->etapa->nombre;
         $proyecto->etapa_id = $etapasel->id;
         $proyecto->save();
+
+        activity()->performedOn($proyecto)
+                  ->causedBy(Auth::user())
+                  ->withProperties(['Etapa Anterior' => $etapa_anterior, 'Etapa Nueva' => $etapasel->nombre])
+                  ->log('cambio de etapa');
 
         Alert::success('Se cambió de etapa satisfactoriamente');
         Flash::success('Se cambió de etapa correctamente');
         return back();
+    }
+
+    public function agregarComentario(Request $request)
+    {
+      $input = $request->all();
+      if(isset($input['comentario']) && $input['comentario'] != ''){
+        $comentario = new \App\Models\proycomentarios;
+        $comentario->proyecto_id = $input['proyecto_id'];
+        $comentario->usuario_id = Auth::user()->id;
+        $comentario->comentario = $input['comentario'];
+        $comentario->save();
+      } else
+      {
+        Alert::error('Tienes que escribir un comentario');
+        Flash::error('Tienes que escribir un comentario');
+        return back();
+      }
+
+
+      Alert::success('Se agregó un nuevo comentario satisfactoriamente');
+      Flash::success('Se agregó un nuevo comentario satisfactoriamente');
+
+      return back();
     }
 }
