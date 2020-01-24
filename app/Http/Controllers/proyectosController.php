@@ -141,8 +141,9 @@ class proyectosController extends AppBaseController
             return redirect(route('proyectos.index'));
         }
         $categoriasdocs = docscategorias::where('modelo','proyectos')->pluck('nombre','id');
+        $activity = \Spatie\Activitylog\Models\Activity::where('subject_type', 'App\Models\proyectos')->where('subject_id', $id)->get();
 
-        return view('proyectos.show')->with(compact('proyectos','categoriasdocs'));
+        return view('proyectos.show')->with(compact('proyectos','categoriasdocs', 'activity'));
     }
 
     /**
@@ -293,7 +294,7 @@ class proyectosController extends AppBaseController
 
         activity()->performedOn($proyecto)
                   ->causedBy(Auth::user())
-                  ->withProperties(['Etapa Anterior' => $etapa_anterior, 'Etapa Nueva' => $etapasel->nombre])
+                  ->withProperties(['Etapa Anterior' => $etapa_anterior, 'Etapa Nueva' => $etapasel->nombre ])
                   ->log('cambio de etapa');
 
         Alert::success('Se cambió de etapa satisfactoriamente');
@@ -320,6 +321,22 @@ class proyectosController extends AppBaseController
 
       Alert::success('Se agregó un nuevo comentario satisfactoriamente');
       Flash::success('Se agregó un nuevo comentario satisfactoriamente');
+
+      return back();
+    }
+    public function deleteComentario($id)
+    {
+
+      $comentario = \App\Models\proycomentarios::find($id);
+      if(empty($comentario)){
+        Alert::error('No se puede eliminar, el comentario no existe');
+        Flash::error('No se puede eliminar, el comentario no existe');
+        return back();
+      }
+
+      $comentario->delete();
+      Alert::success('Se eliminó el comentario correctamente!');
+      Flash::success('Se eliminó el comentario correctamente!');
 
       return back();
     }

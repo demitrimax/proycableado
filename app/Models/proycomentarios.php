@@ -26,4 +26,9 @@ class proycomentarios extends Model
     public $fillable = [
         'comentario',
     ];
+
+    public function usuario()
+    {
+      return $this->belongsTo('App\User', 'user_id');
+    }
 }

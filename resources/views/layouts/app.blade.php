@@ -25,6 +25,7 @@
       }
       </style>
     @yield('css')
+    @stack('css')
 </head>
 <body class="fixed-left">
     <!-- Begin page -->
@@ -49,7 +50,7 @@
                         </button>
                         <span class="clearfix"></span>
                     </div>
-                    
+
 
                     <ul class="nav navbar-nav navbar-right pull-right">
                       @if($vartareas->count()>0)
@@ -117,6 +118,8 @@
           <script src="{{asset('appzia/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
           @include('sweetalert::alert')
           @yield('scripts')
+          
+          @stack('scripts')
         </div>
         <!-- END wrapper -->
   </body>

@@ -18,7 +18,7 @@
           {{$comentario->created_at->format('d-m-Y')}}</a>
         </td>
         <td>{{$comentario->comentario}}</td>
-        <td> <a href="{!! url('comentario/'.$comentario->id.'/eliminar')!!}">Eliminar</a>     </td>
+        <td> <a href="{!! url('proyectos/comentario/'.$comentario->id.'/eliminar')!!}">Eliminar</a>     </td>
     </tr>
     @endforeach
     </tbody>
@@ -45,7 +45,7 @@ No existen comentarios para el proyecto.
               <!-- Nombre Doc Field -->
               <div class="form-group">
                   {!! Form::label('comentario', 'Comentario:') !!}
-                  {!! Form::text('comentario', null, ['class' => 'form-control']) !!}
+                  {!! Form::text('comentario', null, ['class' => 'form-control maxlen', 'maxlength' => '150']) !!}
               </div>
 
 
@@ -58,3 +58,11 @@ No existen comentarios para el proyecto.
       </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
+
+@push('scripts')
+<script src="{{asset('appzia/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}" type="text/javascript"></script>
+<script>
+//Bootstrap-MaxLength
+   $('.maxlen').maxlength();
+</script>
+@endpush
