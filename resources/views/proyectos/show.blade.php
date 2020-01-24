@@ -73,7 +73,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion-test-2" href="#collapseThree-2" class="collapsed" aria-expanded="false">
-                                    Historico del Proyecto
+                                    Histórico del Proyecto
                                 </a>
                             </h4>
                         </div>
