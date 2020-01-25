@@ -219,7 +219,7 @@ class documentosController extends AppBaseController
       //$existe = Storage::exists($miarchivo);
 
         //dd($existe);
-      if( $existe ) {
+      if( $existe == false ) {
         Alert::error('Ocurrió un error, no se encontró el archivo');
         Flash::error('Ocurrió un error, no se encontró el archivo');
         return back();
