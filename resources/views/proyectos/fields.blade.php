@@ -96,13 +96,18 @@ if (isset($proyectos->generico)){
 <!-- Identificacion Field -->
 <div class="form-group">
     {!! Form::label('identificacion', 'Identificacion:', ['class'=>'col-md-2 control-label']) !!}
-    <div class="col-md-5">
+    <div class="col-md-3">
     {!! Form::select('identificacion', [''=>'','OB'=>'OB','DTTO'=>'DTTO','ID'=>'ID','OT'=>'OT','SISA'=>'SISA'], null, ['class' => 'form-control']) !!}
   </div>
-  <div class="col-md-5">
+  <div class="col-md-2">
   {!! Form::text('identifi_text', null, ['class' => 'form-control', 'maxlength'=>10, 'placeholder'=>'complemento de Identificación' ]) !!}
 </div>
-
+<div class="col-md-3">
+{!! Form::label('pep', 'PEP:', ['class'=>'col-md-3 control-label']) !!}
+</div>
+<div class="col-md-2">
+{!! Form::text('pep', null, ['class' => 'form-control', 'maxlength'=>10, 'placeholder'=>'PEP' ]) !!}
+</div>
 </div>
 
 <!-- Identificacion Field -->

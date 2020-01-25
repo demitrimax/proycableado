@@ -213,7 +213,9 @@ class documentosController extends AppBaseController
 
           return redirect(route('documentos.index'));
       }
-      if(!Storage::exists($documentos->documento)){
+      $existe = file_exists(storage_path('app\\'.$documentos->file_servidor));
+        //dd($existe);
+      if( $existe == false ) {
         Alert::error('Ocurrió un error, no se encontró el archivo');
         Flash::error('Ocurrió un error, no se encontró el archivo');
         return back();
@@ -234,7 +236,7 @@ class documentosController extends AppBaseController
         ]);
       }
       else {
-        return Storage::download($documentos->file_servidor, $nomarchivo);
+        return response()->download(storage_path('app/'.$documentos->file_servidor, $nomarchivo));
       }
 
     }

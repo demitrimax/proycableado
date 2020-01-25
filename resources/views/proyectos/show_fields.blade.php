@@ -92,6 +92,12 @@
   <td>{!! $proyectos->identificacion.' '.$proyectos->identifi_text !!}</td>
 </tr>
 
+<!-- PEP Field -->
+<tr>
+  <th>{!! Form::label('pep', 'PEP:') !!}</th>
+  <td>{!! $proyectos->pep !!}</td>
+</tr>
+
 <!-- Observaciones Field -->
 <tr>
   <th>{!! Form::label('observaciones', 'Observaciones:') !!}</th>

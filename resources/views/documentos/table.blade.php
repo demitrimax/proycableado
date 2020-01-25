@@ -1,12 +1,4 @@
-@php
 
-function human_filesize($bytes, $decimals = 2) {
-  $sz = 'BKMGTP';
-  $factor = floor((strlen($bytes) - 1) / 3);
-  return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
-}
-
-@endphp
 <table class="table table-responsive" id="documentos-table">
     <thead>
         <tr>
@@ -30,7 +22,7 @@ function human_filesize($bytes, $decimals = 2) {
 
         <tr>
             <td>
-              {!! $documentos->nombre_doc !!}
+              <a href="{{url('verdoc/'.$documentos->id)}}">{!! $documentos->nombre_doc !!}</a>
               @if (file_exists(storage_path('app/'.$documentos->file_servidor)) )
               ( {{ human_filesize(filesize(storage_path('app/'.$documentos->file_servidor))) }}bytes)
               @endif
