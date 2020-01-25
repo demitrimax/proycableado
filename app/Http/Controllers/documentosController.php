@@ -214,8 +214,8 @@ class documentosController extends AppBaseController
           return redirect(route('documentos.index'));
       }
       $existe = file_exists(storage_path('app\\'.$documentos->file_servidor));
-        //dd($existe);
-      if( $existe == false ) {
+        dd($existe);
+      if( $existe ) {
         Alert::error('Ocurrió un error, no se encontró el archivo');
         Flash::error('Ocurrió un error, no se encontró el archivo');
         return back();
