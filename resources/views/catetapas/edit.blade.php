@@ -6,7 +6,7 @@
           @include('adminlte-templates::common.errors')
           <div class="panel panel-default">
               <div class="panel-heading">
-                  <h3 class="panel-title">Editar Catetapa</h3>
+                  <h3 class="panel-title">Editar Etapa</h3>
               </div>
               <div class="panel-body">
               {!! Form::model($catetapa, ['route' => ['catetapas.update', $catetapa->id], 'method' => 'patch']) !!}

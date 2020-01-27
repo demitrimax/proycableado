@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',config('app.name').' | Alta de Nuevo Catetapas' )
+@section('title',config('app.name').' | Alta de Nuevo Etapa|' )
 @section('content')
 <div class="row">
       <div class="col-lg-12">
@@ -18,5 +18,5 @@
           </div>
       </div>
   </div>
-  
+
 @endsection
