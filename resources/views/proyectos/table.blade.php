@@ -24,16 +24,22 @@
     <tbody>
     @foreach($proyectos as $proyectos)
         <tr>
-            <td><a href="{!! route('proyectos.show', [$proyectos->id]) !!}"> {!! $proyectos->folio !!} </a> <span class="badge" style="background-color:{!! $proyectos->etapa->color_hex !!}">{!! $proyectos->etapa->nombre !!}</span></td>
+            <td><a href="{!! route('proyectos.show', [$proyectos->id]) !!}"> {!! $proyectos->folio !!} </a> </td>
             <td>{!! $proyectos->nombre !!}</td>
             <td>{!! $proyectos->supervisor !!}</td>
-            <td>{!! $proyectos->identificacion !!}</td>
+            <td>
+              {!! $proyectos->identificacion !!}
+              {!! $proyectos->identifi_text ? $proyectos->identifi_text : ''  !!}
+              {!! $proyectos->pep ? 'PEP: '.$proyectos->pep : '' !!}
+            </td>
             <td>{!! $proyectos->catproducto->nombre !!}</td>
             <td>@foreach($proyectos->documentos->unique('categoria') as $documento)
               <span class="badge" style="background-color:{!! $documento->categoria->color!!}" data-toggle="tooltip" data-placement="top" title="" data-original-title="{!! $documento->categoria->nombre!!}"><i class="{!!$documento->categoria->icono !!}"></i></span>
               @endforeach
             </td>
-            <td title="{!! $proyectos->estatusdate['descripcion'] !!}"> <span class="label label-{!! $proyectos->estatusdate['valor'] !!}">{!! $proyectos->catestatus->nombre !!}</span></td>
+            <td> <span title="{!! $proyectos->estatusdate['descripcion'] !!}" class="label label-{!! $proyectos->estatusdate['valor'] !!}">{!! $proyectos->catestatus->nombre !!}</span>
+                <span class="badge" style="background-color:{!! $proyectos->etapa->color_hex !!}">{!! $proyectos->etapa->nombre !!}</span>
+            </td>
             <td>
                 {!! Form::open(['route' => ['proyectos.destroy', $proyectos->id], 'method' => 'delete', 'id'=>'form'.$proyectos->id]) !!}
                 <div class='btn-group'>
@@ -104,7 +110,11 @@ function ConfirmDelete(id) {
             }, {
                 extend: "csv"
             }, {
-                extend: "excel"
+                text: "Excel",
+                action: function (e, dt, node, config){
+                  window.location.href = "{{url('/proyectos/reporte/excel')}}";
+                  //alert('Exportar a Excel');
+                }
             }, {
                 extend: "pdf"
             }, {

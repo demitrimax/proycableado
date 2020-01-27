@@ -6,6 +6,10 @@ use App\Http\Requests\CreateproyectosRequest;
 use App\Http\Requests\UpdateproyectosRequest;
 use App\Repositories\proyectosRepository;
 use App\Http\Controllers\AppBaseController;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Helper\Html as HtmlHelper;
 use Illuminate\Http\Request;
 use Flash;
 use Alert;
@@ -88,6 +92,12 @@ class proyectosController extends AppBaseController
     public function store(CreateproyectosRequest $request)
     {
         $input = $request->all();
+
+        /*$rules = [
+          'fechas' => 'regex: '
+        ];
+        $this->validate($request, $rules);
+        */
         $findstring = ":";
         $pos = strpos($input['fechas'],$findstring);
         $finicio = substr($input['fechas'], 0, 10);
@@ -339,5 +349,76 @@ class proyectosController extends AppBaseController
       Flash::success('Se eliminó el comentario correctamente!');
 
       return back();
+    }
+    public function proyectosExcel()
+    {
+      $proyectos = proyectos::all();
+      $reader = IOFactory::createReader('Xlsx');
+      $spreadsheet = $reader->load(public_path() . '/excel_plantillas/formato_proyectos.xlsx');
+      $spreadsheet->getProperties()->setCreator('grupo Ammex tec sur')
+          ->setLastModifiedBy('Ammex')
+          ->setTitle('Reporte de Proyectos')
+          ->setSubject('Reporte de Proyectos')
+          ->setDescription('Reporte de proyectos')
+          ->setKeywords('proyectos, ammex')
+          ->setCategory('PROYECTOS');
+      $wizard = new HtmlHelper();
+
+      $spreadsheet->getActiveSheet()->setCellValue('E4', date('d-m-Y'));
+      $baseRow = 11;
+
+      foreach ($proyectos as $key => $proyecto) {
+        //
+        $row = $baseRow + $key;
+        $activity = \Spatie\Activitylog\Models\Activity::where('subject_type', 'App\Models\proyectos')
+                                                        ->where('subject_id', $proyecto->id)
+                                                        ->where('updated_at', $proyecto->updated_at)
+                                                        ->first();
+        if(!empty($activity)){
+          $usuario = \App\User::find($activity->causer_id);
+          $usuarionombre = $usuario->name;
+        }
+        else {
+          $usuarionombre = 'Sin Registro';
+        }
+
+
+        $documentos = '';
+        foreach($proyecto->documentos->unique('categoria') as $documento){
+          $documentos .= $documento->categoria->nombre.', ';
+        }
+        $spreadsheet->getActiveSheet()->setCellValue('A' . $row, $proyecto->folio)
+                                      ->setCellValue('B'.$row, $proyecto->etapa->nombre)
+                                      ->setCellValue('C'.$row, $proyecto->nombre)
+                                      ->setCellValue('D'.$row, $proyecto->supervisor)
+                                      ->setCellValue('E'.$row, $proyecto->identificacion)
+                                      ->setCellValue('F'.$row, $proyecto->identifi_text)
+                                      ->setCellValue('G'.$row, $proyecto->pep)
+                                      ->setCellValue('H'.$row, $proyecto->catproducto->nombre)
+                                      ->setCellValue('I'.$row, $documentos)
+                                      ->setCellValue('J'.$row, $proyecto->catestatus->nombre)
+                                      ->setCellValue('K'.$row, $proyecto->estatusdate['descripcion'])
+                                      ->setCellValue('L'.$row, $proyecto->updated_at)
+                                      ->setCellValue('M'.$row, $usuarionombre );
+
+
+      }
+
+      // Redirect output to a client’s web browser (Xlsx)
+      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      header('Content-Disposition: attachment;filename="GrupoTecSur_'.date('dmY').'.xlsx"');
+      header('Cache-Control: max-age=0');
+      // If you're serving to IE 9, then the following may be needed
+      header('Cache-Control: max-age=1');
+
+      // If you're serving to IE over SSL, then the following may be needed
+      header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+      header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+      header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+      header('Pragma: public'); // HTTP/1.0
+
+      $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+      $writer->save('php://output');
+      exit;
     }
 }

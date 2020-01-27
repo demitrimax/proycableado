@@ -40,6 +40,7 @@ Route::group(['middleware'=>['auth']], function() {
   Route::resource('proyectos', 'proyectosController');
   Route::post('proyectos/comentarios/add', 'proyectosController@agregarComentario')->name('comentarios.agregar');
   Route::get('proyectos/comentario/{id}/eliminar', 'proyectosController@deleteComentario');
+  Route::get('proyectos/reporte/excel', 'proyectosController@proyectosExcel');
 
   Route::get('proyecto/{id}/terminar', 'proyectosController@terminar');
   Route::get('proyecto/{id}/cetapa/{etapa}', 'proyectosController@cambioEtapa');

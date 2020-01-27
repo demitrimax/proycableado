@@ -88,7 +88,7 @@ if (isset($proyectos->generico)){
 <div class="form-group date">
     {!! Form::label('fechas', 'Rango de Fechas:', ['class'=>'col-md-2 control-label']) !!}
     <div class="col-md-10" id="finicio-container">
-    {!! Form::text('fechas', $fechas, ['class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-range'=>'true', 'data-multiple-dates-separator'=>' : ', 'data-date-format'=>'yyyy-mm-dd', 'pattern'=>'.{23}', 'title'=>'Rango de Fechas', 'placeholder'=>'ejemplo: 2019-09-10 : 2019-09-30']) !!}
+    {!! Form::text('fechas', $fechas, ['class' => 'form-control datepicker-here', 'data-language'=>'es', 'data-range'=>'true', 'data-multiple-dates-separator'=>' : ', 'data-date-format'=>'yyyy-mm-dd', 'pattern'=>'.{23}', 'title'=>'Rango de Fechas', 'placeholder'=>'ejemplo: 2019-09-10 : 2019-09-30', 'required']) !!}
   </div>
 </div>
 
